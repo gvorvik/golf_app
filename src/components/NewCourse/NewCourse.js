@@ -10,16 +10,14 @@ class NewCourse extends Component {
 
         this.state = {
             courseName: '',
+            selectedDate: new Date(),
         }
     }
 
     handleChange = (event) => {
-
         this.setState({
             courseName: event.target.value,
-            selectedDate: new Date(),
         });
-
     }
 
     handleSubmit = (event) => {
@@ -36,13 +34,14 @@ class NewCourse extends Component {
 
         return (
             <MuiPickersUtilsProvider utils={MomentUtils}>
+            <div>
+                <h2>Enter a New Course</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Course Name:
                     <input onChange={this.handleChange} name="courseName" type="text" />
                         Date Played:
                     <DatePicker
-                            label="Basic example"
                             value={selectedDate}
                             onChange={this.handleDateChange}
                             animateYearScrolling={false}
@@ -50,6 +49,7 @@ class NewCourse extends Component {
                     </label>
                     <input type="submit" />
                 </form>
+            </div>
             </MuiPickersUtilsProvider>
         )
     }
