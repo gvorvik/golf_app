@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import ScoreInput from '../ScoreInput/ScoreInput';
+import { connect } from 'react-redux';
+
+const mapReduxStateToProps = (reduxState) => (
+    { reduxState }
+);
 
 class Scorecard extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            totalScore: 0,
+
+    handleSubmit = () => {
+        for(let thing in this.props.reduxState.scoreReducer) {
+            if(this.props.reduxState.scoreReducer[thing] === 0) {
+                return alert('You cannot have a score of 0 on a hole');
+            }
         }
-    }
-
-    sendTotalScore = () => {
-        let totalScore = 0;
-        for(let thing in this.state) {
-            totalScore += this.state[thing];
-        };
         this.props.dispatch({
-            type: 'SET_TOTAL_SCORE',
-            payload: totalScore
+            type: 'SUBMIT_SCORE',
+            payload: this.props.reduxState.scoreReducer,
         });
     }
 
@@ -117,15 +117,13 @@ class Scorecard extends Component {
                             <td><input type="text" /></td>
                             <td>X</td>
                         </tr>
-                        <ScoreInput
-                            totalScore={this.state.totalScore}
-                        />
+                        <ScoreInput/>
                     </tbody>
                 </table>
-                <button>Submit Score</button>
+                <button onClick={this.handleSubmit}>Submit Score</button>
             </div>
         )
     }
 }
 
-export default Scorecard;
+export default connect(mapReduxStateToProps)(Scorecard);

@@ -21,7 +21,7 @@ class ScoreInput extends Component {
         let totalScore = 0;
 
         for(let thing in this.props.reduxState.scoreReducer) {
-            totalScore += this.props.reduxState.scoreReducer[thing];
+            totalScore = totalScore + this.props.reduxState.scoreReducer[thing];
         };
 
         return (
