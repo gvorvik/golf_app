@@ -6,8 +6,19 @@ class Scorecard extends Component {
         super(props);
 
         this.state = {
-
+            totalScore: 0,
         }
+    }
+
+    sendTotalScore = () => {
+        let totalScore = 0;
+        for(let thing in this.state) {
+            totalScore += this.state[thing];
+        };
+        this.props.dispatch({
+            type: 'SET_TOTAL_SCORE',
+            payload: totalScore
+        });
     }
 
     render() {
@@ -106,9 +117,12 @@ class Scorecard extends Component {
                             <td><input type="text" /></td>
                             <td>X</td>
                         </tr>
-                        <ScoreInput />
+                        <ScoreInput
+                            totalScore={this.state.totalScore}
+                        />
                     </tbody>
                 </table>
+                <button>Submit Score</button>
             </div>
         )
     }

@@ -1,47 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+
+
+const mapReduxStateToProps = (reduxState) => (
+    { reduxState }
+);
 
 class ScoreInput extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            hole1: 0,
-            hole2: 0,
-            hole3: 0,
-            hole4: 0,
-            hole5: 0,
-            hole6: 0,
-            hole7: 0,
-            hole8: 0,
-            hole9: 0,
-            hole10: 0,
-            hole11: 0,
-            hole12: 0,
-            hole13: 0,
-            hole14: 0,
-            hole15: 0,
-            hole16: 0,
-            hole17: 0,
-            hole18: 0,
-            total: 0,
-        }
-    }
-
 
     handleChange = (event) => {
-        this.setState({
-            [event.target.name]: Number(event.target.value),
+        this.props.dispatch({
+            type: 'RECORD_SCORE',
+            payload: {[event.target.name]: Number(event.target.value)},
         });
     }
 
 
     render() {
-
         let totalScore = 0;
 
-        for(let thing in this.state) {
-            totalScore += this.state[thing];
+        for(let thing in this.props.reduxState.scoreReducer) {
+            totalScore += this.props.reduxState.scoreReducer[thing];
         };
 
         return (
@@ -71,4 +51,4 @@ class ScoreInput extends Component {
     }
 }
 
-export default ScoreInput;
+export default connect(mapReduxStateToProps)(ScoreInput);
