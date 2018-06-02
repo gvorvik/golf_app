@@ -6,58 +6,66 @@ class ScoreInput extends Component {
         super(props);
 
         this.state = {
-            1: '',
-            2: '',
-            3: '',
-            4: '',
-            5: '',
-            6: '',
-            7: '',
-            8: '',
-            9: '',
-            10: '',
-            11: '',
-            12: '',
-            13: '',
-            14: '',
-            15: '',
-            16: '',
-            17: '',
-            18: '',
-            total: '',
+            hole1: 0,
+            hole2: 0,
+            hole3: 0,
+            hole4: 0,
+            hole5: 0,
+            hole6: 0,
+            hole7: 0,
+            hole8: 0,
+            hole9: 0,
+            hole10: 0,
+            hole11: 0,
+            hole12: 0,
+            hole13: 0,
+            hole14: 0,
+            hole15: 0,
+            hole16: 0,
+            hole17: 0,
+            hole18: 0,
+            total: 0,
         }
     }
 
+
     handleChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value,
+            [event.target.name]: Number(event.target.value),
         });
     }
 
+
     render() {
+
+        let totalScore = 0;
+
+        for(let thing in this.state) {
+            totalScore += this.state[thing];
+        };
 
         return (
             <tr>
                 <td>Score</td>
-                <td><input onChange={this.handleChange} name="1" type="number" /></td>
-                <td><input onChange={this.handleChange} name="2" type="number" /></td>
-                <td><input onChange={this.handleChange} name="3" type="number" /></td>
-                <td><input onChange={this.handleChange} name="4" type="number" /></td>
-                <td><input onChange={this.handleChange} name="5" type="number" /></td>
-                <td><input onChange={this.handleChange} name="6" type="number" /></td>
-                <td><input onChange={this.handleChange} name="7" type="number" /></td>
-                <td><input onChange={this.handleChange} name="8" type="number" /></td>
-                <td><input onChange={this.handleChange} name="9" type="number" /></td>
-                <td><input onChange={this.handleChange} name="10" type="number" /></td>
-                <td><input onChange={this.handleChange} name="11" type="number" /></td>
-                <td><input onChange={this.handleChange} name="12" type="number" /></td>
-                <td><input onChange={this.handleChange} name="13" type="number" /></td>
-                <td><input onChange={this.handleChange} name="14" type="number" /></td>
-                <td><input onChange={this.handleChange} name="15" type="number" /></td>
-                <td><input onChange={this.handleChange} name="16" type="number" /></td>
-                <td><input onChange={this.handleChange} name="17" type="number" /></td>
-                <td><input onChange={this.handleChange} name="18" type="number" /></td>
-                <td><input name="total" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole1" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole2" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole3" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole4" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole5" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole6" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole7" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole8" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole9" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole10" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole11" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole12" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole13" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole14" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole15" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole16" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole17" type="number" /></td>
+                <td><input onChange={this.handleChange} name="hole18" type="number" /></td>
+                <td>{totalScore}</td>
             </tr>
         )
     }
