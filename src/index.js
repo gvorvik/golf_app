@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import App from './components/App/App';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -10,7 +11,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 const sagaMiddleware = createSageMiddleware();
 
-//Sagas
+//SAGAS
 
 //ROOT SAGA
 function* rootSaga() {
@@ -26,23 +27,19 @@ function* submitScore(action) {
         }
         scoreCard = {...scoreCard, totalScore: totalScore};
         console.log(scoreCard);
+        let scorePost = yield call(axios.post, '/api/score', scoreCard);
+        console.log(scorePost);
     } catch(error) {
         console.log(error);
     }
 }
 
-//Reducers
+
+//REDUCERS
 const scoreReducer = (state = {}, action) => {
     switch (action.type) {
         case 'RECORD_SCORE':
             return { ...state, ...action.payload };
-        // case 'SET_TOTAL_SCORE':
-        //     let totalScore = 0;
-        //     for(let thing in state) {
-        //         totalScore += state[thing];
-        //     }
-        //     console.log(totalScore);
-        //     return state;
         case 'CLEAR_SCORES':
             return {};
         default:
