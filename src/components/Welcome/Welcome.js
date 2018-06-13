@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Welcome() {
+const Welcome = () => {
     return <h1>I am an example of a functional component!</h1>
 }
 

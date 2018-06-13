@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-
 const mapReduxStateToProps = (reduxState) => (
     { reduxState }
 );
@@ -13,6 +12,18 @@ class ScoreInput extends Component {
         this.props.dispatch({
             type: 'RECORD_SCORE',
             payload: {[event.target.name]: Number(event.target.value)},
+        });
+    }
+
+    handleSubmit = () => {
+        for(let thing in this.props.reduxState.scoreReducer) {
+            if(this.props.reduxState.scoreReducer[thing] === 0) {
+                return alert('You cannot have a score of 0 on a hole');
+            }
+        }
+        this.props.dispatch({
+            type: 'SUBMIT_SCORE',
+            payload: this.props.reduxState.scoreReducer,
         });
     }
 

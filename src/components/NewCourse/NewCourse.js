@@ -1,56 +1,126 @@
 import React, { Component } from 'react';
-import { DatePicker } from 'material-ui-pickers';
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
+import NumberOfHoles from './NumberOfHoles/NumberOfHoles';
 
 
 class NewCourse extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            courseName: '',
-            selectedDate: new Date(),
-        }
+        this.state = {}
     }
 
     handleChange = (event) => {
         this.setState({
-            courseName: event.target.value,
+            [event.target.name]: event.target.value,
         });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
-    }
-
-    handleDateChange = (date) => {
-        this.setState({ selectedDate: date });
+        this.setState({});
     }
 
     render() {
-        const { selectedDate } = this.state;
-
         return (
-            <MuiPickersUtilsProvider utils={MomentUtils}>
             <div>
-                <h2>Enter a New Course</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Course Name:
-                    <input onChange={this.handleChange} name="courseName" type="text" />
-                        Date Played:
-                    <DatePicker
-                            value={selectedDate}
-                            onChange={this.handleDateChange}
-                            animateYearScrolling={false}
-                        />
-                    </label>
-                    <input type="submit" />
-                </form>
+                <NewCourseInformation />
+                <NumberOfHoles/>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Par</td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                        </tr>
+                        <tr>
+                            <td>Yardage</td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                        </tr>
+                        <tr>
+                            <td>Handicap</td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td>X</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            </MuiPickersUtilsProvider>
         )
     }
 }

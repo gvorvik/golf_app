@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router, 
+  Route, 
+  Switch,
+} from 'react-router-dom';
 import NewCourse from '../NewCourse/NewCourse';
-import Scorecard from '../Scorecard/Scorecard';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <NewCourse/>
-        <Scorecard/>
-      </div>
-    );
-  }
+
+const App = () => {
+  return <Router>
+    <div className="App">
+      <Switch>
+        <Route
+          path="/newcourse"
+          component={NewCourse}
+        />
+      </Switch>
+    </div>
+  </Router>
 }
 
 export default App;
