@@ -8,7 +8,7 @@ class NewCourseInformation extends Component {
         this.state = {
             courseName: '',
             courseCity: '',
-            courseState: '',
+            numberOfHoles: '',
         }
     }
 
@@ -24,7 +24,7 @@ class NewCourseInformation extends Component {
         this.setState({
             courseName: '',
             courseCity: '',
-            courseState: '',
+            numberOfHoles: '',
         })
     }
 
@@ -41,10 +41,12 @@ class NewCourseInformation extends Component {
                     City:
                 </label>
                 <input onChange={this.handleChange} value={this.state.courseCity} name="courseCity" type="text" />
-                <label>
-                    State:
-                </label>
-                <input onChange={this.handleChange} value={this.state.courseState} name="courseState" type="text" />
+                <div>
+                    <label htmlFor="9Holes">9 Holes</label>
+                    <input onChange={this.handleChange} type="radio" name="numberOfHoles" value="9" id="9Holes"/>
+                    <label htmlFor="18Holes">18 Holes</label>
+                    <input onChange={this.handleChange} type="radio" name="numberOfHoles" value="18" id="18Holes"/>
+                </div>
                 <input type="submit" value="Next"/>
             </form>
         )
