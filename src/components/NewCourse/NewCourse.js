@@ -24,7 +24,7 @@ class NewCourse extends Component {
     render() {
         return (
             <div>
-                <NewCourseInformation />
+                <NewCourseInformation/>
                 <HoleInformation/>
             </div>
         )

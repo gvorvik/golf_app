@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import App from './components/App/App';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 import createSageMiddleware from 'redux-saga';
 import { takeEvery, call, put } from 'redux-saga/effects';
 
-const sagaMiddleware = createSageMiddleware();
+import reducer from './redux/reducers';
 
-//SAGAS
+const sagaMiddleware = createSageMiddleware();
 
 //ROOT SAGA
 function* rootSaga() {
@@ -35,23 +35,8 @@ function* submitScore(action) {
 }
 
 
-//REDUCERS
-const scoreReducer = (state = {}, action) => {
-    switch (action.type) {
-        case 'RECORD_SCORE':
-            return { ...state, ...action.payload };
-        case 'CLEAR_SCORES':
-            return {};
-        default:
-            return state;
-    }
-};
-
 const store = createStore(
-    combineReducers({
-        scoreReducer
-    }),
-
+    reducer,
     applyMiddleware(sagaMiddleware, logger),
 );
 
