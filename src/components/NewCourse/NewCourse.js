@@ -3,12 +3,6 @@ import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
 
 
-let fieldValues = {
-    courseName: null,
-    courseCity: null,
-    numberOfHoles: null,
-}
-
 class NewCourse extends Component {
     constructor(props) {
         super(props);
@@ -48,7 +42,10 @@ class NewCourse extends Component {
                             parentState={this.state}
                         />
             case 2:
-                return <HoleInformation />
+                return <HoleInformation 
+                            nextStep={this.nextStep}
+                            previousStep={this.previousStep}
+                        />
             default:
                 return <NewCourseInformation />
         }
