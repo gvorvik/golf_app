@@ -3,11 +3,31 @@ import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
 
 
+let fieldValues = {
+    courseName: null,
+    courseCity: null,
+    numberOfHoles: null,
+}
+
 class NewCourse extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            step: 1,
+        }
+    }
+
+    nextStep = () => {
+        this.setState({
+            step: this.state.step+1,
+        })
+    }
+
+    previousStep = () => {
+        this.setState({
+            step: this.state.step-1,
+        })
     }
 
     handleChange = (event) => {
@@ -16,18 +36,22 @@ class NewCourse extends Component {
         });
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.setState({});
-    }
 
     render() {
-        return (
-            <div>
-                <NewCourseInformation/>
-                <HoleInformation/>
-            </div>
-        )
+
+
+        switch (this.state.step) {
+            case 1:
+                return <NewCourseInformation 
+                            nextStep={this.nextStep}
+                            handleChange={this.handleChange}
+                            parentState={this.state}
+                        />
+            case 2:
+                return <HoleInformation />
+            default:
+                return <NewCourseInformation />
+        }
     }
 }
 
