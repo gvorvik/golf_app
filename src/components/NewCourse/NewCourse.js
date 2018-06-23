@@ -9,16 +9,22 @@ class NewCourse extends Component {
 
         this.state = {
             step: 1,
+            courseName: '',
+            courseCity: '',
+            numberOfHoles: '',
+            holeInformation: [],
         }
     }
 
-    nextStep = () => {
+    nextStep = (event) => {
+        event.preventDefault();
         this.setState({
             step: this.state.step+1,
         })
     }
 
-    previousStep = () => {
+    previousStep = (event) => {
+        event.preventDefault()
         this.setState({
             step: this.state.step-1,
         })
@@ -45,6 +51,8 @@ class NewCourse extends Component {
                 return <HoleInformation 
                             nextStep={this.nextStep}
                             previousStep={this.previousStep}
+                            handleChange={this.handleChange}
+                            numberOfHoles={Number(this.state.numberOfHoles)}
                         />
             default:
                 return <NewCourseInformation />

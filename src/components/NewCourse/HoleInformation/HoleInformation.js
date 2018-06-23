@@ -1,9 +1,17 @@
 import React from 'react';
+import HoleCard from './HoleCard/HoleCard'
 
 const HoleInformation = (props) => {
+    let holeList =[];
+
+    for(let i = 0; i<props.numberOfHoles; i++) {
+        holeList = [...holeList, <HoleCard key={i}/>]
+    }
 
     return <div>
-        <table>
+        
+        {holeList}
+        {/* <table>
             <thead>
                 <tr>
                     <th></th>
@@ -31,25 +39,25 @@ const HoleInformation = (props) => {
             <tbody>
                 <tr>
                     <td>Par</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td><input type="text" name="" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
+                    <td><input type="text" onChange={props.handleChange}/></td>
                 </tr>
                 <tr>
                     <td>Yardage</td>
@@ -96,7 +104,7 @@ const HoleInformation = (props) => {
                     <td>X</td>
                 </tr>
             </tbody>
-        </table>
+        </table> */}
         <button onClick={props.previousStep}>Previous</button>
         <button onClick={props.nextStep}>Next</button>
     </div>
