@@ -12,6 +12,7 @@ class NewCourse extends Component {
             courseName: '',
             courseCity: '',
             numberOfHoles: '',
+            holeInformation: {}
         }
     }
 
@@ -35,6 +36,17 @@ class NewCourse extends Component {
         });
     }
 
+    addHoleToList = (holeNumber, par, yardage, handicap) => {
+        let holeInfo = {
+            par,
+            yardage,
+            handicap
+        };
+        this.setState({
+            holeInformation: {...this.state.holeInformation, [holeNumber]: holeInfo}
+        });
+    }
+
 
     render() {
 
@@ -51,6 +63,7 @@ class NewCourse extends Component {
                             previousStep={this.previousStep}
                             handleChange={this.handleChange}
                             numberOfHoles={Number(this.state.numberOfHoles)}
+                            addHoleToList={this.addHoleToList}
                         />
             default:
                 return <NewCourseInformation />
