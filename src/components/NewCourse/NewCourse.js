@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
+import SummaryOfNewCourse from './NewCourseSummary/NewCourseSummary';
 
 
 class NewCourse extends Component {
@@ -65,6 +66,8 @@ class NewCourse extends Component {
                             numberOfHoles={Number(this.state.numberOfHoles)}
                             addHoleToList={this.addHoleToList}
                         />
+            case 3:
+                return <SummaryOfNewCourse />
             default:
                 return <NewCourseInformation />
         }
