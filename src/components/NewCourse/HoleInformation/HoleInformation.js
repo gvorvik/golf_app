@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import HoleCard from './HoleCard/HoleCard'
 
 const HoleInformation = (props) => {

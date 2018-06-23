@@ -5,7 +5,7 @@ class HoleCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hole: this.props.hole,
+            holeNumber: this.props.hole,
             par: '',
             yardage: '',
             handicap: '',
@@ -25,7 +25,7 @@ class HoleCard extends Component {
             <input onChange={this.handleChange} value={this.state.par} name="par" type="text" placeholder="par"/>
             <input onChange={this.handleChange} value={this.state.yardage} name="yardage" type="text" placeholder="yardage"/>
             <input onChange={this.handleChange} value={this.state.handicap} name="handicap" type="text" placeholder="handicap"/>
-            <button onClick={() => this.props.addHoleToList(this.state.hole, this.state.par, this.state.yardage, this.state.handicap)}>Set Hole Info</button>
+            <button onClick={() => this.props.addHoleToList(this.state)}>Set Hole Info</button>
         </div>
     }
 }

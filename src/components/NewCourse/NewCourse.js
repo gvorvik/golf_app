@@ -13,7 +13,7 @@ class NewCourse extends Component {
             courseName: '',
             courseCity: '',
             numberOfHoles: '',
-            holeInformation: {}
+            holeInformation: []
         }
     }
 
@@ -37,14 +37,15 @@ class NewCourse extends Component {
         });
     }
 
-    addHoleToList = (holeNumber, par, yardage, handicap) => {
+    addHoleToList = (obj) => {
         let holeInfo = {
-            par,
-            yardage,
-            handicap
+            holeNumber: obj.holeNumber,
+            par: obj.par,
+            yardage: obj.yardage,
+            handicap: obj.handicap
         };
         this.setState({
-            holeInformation: {...this.state.holeInformation, [holeNumber]: holeInfo}
+            holeInformation: {...this.state.holeInformation, [obj.holeNumber]: holeInfo}
         });
     }
 
@@ -67,7 +68,12 @@ class NewCourse extends Component {
                             addHoleToList={this.addHoleToList}
                         />
             case 3:
-                return <SummaryOfNewCourse />
+                return <SummaryOfNewCourse 
+                            courseName={this.state.courseName}
+                            courseCity={this.state.courseCity}
+                            numberOfHoles={this.state.numberOfHoles}
+                            holeInformation={this.state.holeInformation}
+                        />
             default:
                 return <NewCourseInformation />
         }
