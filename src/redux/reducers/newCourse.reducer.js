@@ -5,6 +5,8 @@ const newCourse = (state = [], action) => {
   switch (action.type) {
     case COURSE_ACTIONS.SET_NEW_COURSE:
         return [...state, action.payload];
+    case COURSE_ACTIONS.SET_HOLE_INFO:
+        return [...state, action.payload];
     default:
         return state;
   }

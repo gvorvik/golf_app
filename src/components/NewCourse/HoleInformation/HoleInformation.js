@@ -1,113 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HoleCard from './HoleCard/HoleCard'
 
-const HoleInformation = (props) => {
-    let holeList =[];
+class HoleInformation extends Component {
+    constructor(props) {
+        super(props)
 
-    for(let i = 0; i<props.numberOfHoles; i++) {
-        holeList = [...holeList, <HoleCard key={i}/>]
+        this.state = {}
     }
 
-    return <div>
-        
-        {holeList}
-        {/* <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                    <th>10</th>
-                    <th>11</th>
-                    <th>12</th>
-                    <th>13</th>
-                    <th>14</th>
-                    <th>15</th>
-                    <th>16</th>
-                    <th>17</th>
-                    <th>18</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Par</td>
-                    <td><input type="text" name="" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                    <td><input type="text" onChange={props.handleChange}/></td>
-                </tr>
-                <tr>
-                    <td>Yardage</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                </tr>
-                <tr>
-                    <td>Handicap</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td>X</td>
-                </tr>
-            </tbody>
-        </table> */}
-        <button onClick={props.previousStep}>Previous</button>
-        <button onClick={props.nextStep}>Next</button>
-    </div>
+    addHoleToList = (holeNumber, par, yardage, handicap) => {
+        let holeInfo = {
+            par,
+            yardage,
+            handicap
+        };
+        this.setState({
+            holeInformation: {...this.state.holeInformation, [holeNumber]: holeInfo}
+        });
+    }
+
+    render() {
+        let holeList = [];
+
+        for (let i = 1; i <= this.props.numberOfHoles; i++) {
+            holeList = [...holeList, <HoleCard key={i} hole={i} addHoleToList={this.addHoleToList}/>]
+        }
+    
+       return <div>
+            {holeList}
+            <button onClick={this.props.previousStep}>Previous</button>
+            <button onClick={this.props.nextStep}>Next</button>
+        </div>
+    }  
 }
 
 export default HoleInformation;

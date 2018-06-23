@@ -16,9 +16,11 @@ const NewCourseInformation = (props) => {
                 <input onChange={props.handleChange} value={props.parentState.courseCity} name="courseCity" type="text" />
                 <div>
                     <label htmlFor="9Holes">9 Holes</label>
-                    <input onChange={props.handleChange} type="radio" name="numberOfHoles" value="9" id="9Holes"/>
+                    <input onChange={props.handleChange} type="radio" name="numberOfHoles" 
+                        value="9" id="9Holes"/>
                     <label htmlFor="18Holes">18 Holes</label>
-                    <input onChange={props.handleChange} type="radio" name="numberOfHoles" value="18" id="18Holes"/>
+                    <input onChange={props.handleChange} type="radio" name="numberOfHoles" 
+                        value="18" id="18Holes"/>
                 </div>
                 <input type="submit" value="Next"/>
             </form>
