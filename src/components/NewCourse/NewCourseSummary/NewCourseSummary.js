@@ -5,7 +5,14 @@ const SummaryOfNewCourse = (props) => {
 
     for(let i in props.holeInformation) {
         let hole = props.holeInformation[i]; 
-        let listItem = <li key={hole.holeNumber}>{hole.par}</li>
+        let listItem = <div key={hole.holeNumber}>
+            <h2>Hole {hole.holeNumber}</h2> 
+            <ul>
+                <li>Par: {hole.par}</li>
+                <li>Yards: {hole.yardage}</li>
+                <li>Handicap: {hole.handicap}</li>
+            </ul>
+        </div>
         holeInfo = [...holeInfo, listItem]
     }
 
@@ -14,11 +21,9 @@ const SummaryOfNewCourse = (props) => {
             <h2>Course Name: {props.courseName}</h2>
             <h2>Course City: {props.courseCity}</h2>
             <h2>Number of Holes: {props.numberOfHoles}</h2>
-            <ul>
+            <div>
                 {holeInfo}
-            </ul>
-                {JSON.stringify(props.holeInformation)}
-            
+            </div>
         </div>
 }
 
