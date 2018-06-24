@@ -20,6 +20,9 @@ class NewCourse extends Component {
 
     nextStep = (event) => {
         event.preventDefault();
+        if(this.state.numberOfHoles === '') {
+            return alert('You must select 9 or 18 holes');
+        }
         this.setState({
             step: this.state.step+1,
         });
@@ -28,6 +31,17 @@ class NewCourse extends Component {
     nextHole = () => {
         this.setState({
             holeStep: this.state.holeStep+1
+        });
+    }
+
+    previousHole = () => {
+        if(this.state.holeStep === 1) {
+            return this.setState({
+                step: 1
+            });
+        }
+        this.setState({
+            holeStep: this.state.holeStep-1
         });
     }
 
@@ -75,6 +89,7 @@ class NewCourse extends Component {
                             addHoleToList={this.addHoleToList}
                             holeStep={this.state.holeStep}
                             nextHole={this.nextHole}
+                            previousHole={this.previousHole}
                             numberOfHoles={Number(this.state.numberOfHoles)}
                         />
             case 3:
