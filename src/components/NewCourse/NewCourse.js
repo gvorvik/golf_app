@@ -10,6 +10,7 @@ class NewCourse extends Component {
 
         this.state = {
             step: 1,
+            holeStep: 1,
             courseName: '',
             courseCity: '',
             numberOfHoles: '',
@@ -21,7 +22,13 @@ class NewCourse extends Component {
         event.preventDefault();
         this.setState({
             step: this.state.step+1,
-        })
+        });
+    }
+
+    nextHole = () => {
+        this.setState({
+            holeStep: this.state.holeStep+1
+        });
     }
 
     previousStep = (event) => {
@@ -40,13 +47,14 @@ class NewCourse extends Component {
     addHoleToList = (obj) => {
         let holeInfo = {
             holeNumber: obj.holeNumber,
-            par: obj.par,
-            yardage: obj.yardage,
-            handicap: obj.handicap
+            par: Number(obj.par),
+            yardage: Number(obj.yardage),
+            handicap: Number(obj.handicap)
         };
         this.setState({
             holeInformation: {...this.state.holeInformation, [obj.holeNumber]: holeInfo}
         });
+        this.nextHole();
     }
 
 
@@ -64,8 +72,10 @@ class NewCourse extends Component {
                             nextStep={this.nextStep}
                             previousStep={this.previousStep}
                             handleChange={this.handleChange}
-                            numberOfHoles={Number(this.state.numberOfHoles)}
                             addHoleToList={this.addHoleToList}
+                            holeStep={this.state.holeStep}
+                            nextHole={this.nextHole}
+                            numberOfHoles={Number(this.state.numberOfHoles)}
                         />
             case 3:
                 return <SummaryOfNewCourse 
