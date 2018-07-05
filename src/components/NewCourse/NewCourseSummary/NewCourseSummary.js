@@ -3,10 +3,10 @@ import React from 'react';
 const SummaryOfNewCourse = (props) => {
     let holeInfo = [];
 
-    for(let i in props.holeInformation) {
-        let hole = props.holeInformation[i]; 
+    for (let i in props.holeInformation) {
+        let hole = props.holeInformation[i];
         let listItem = <div key={hole.holeNumber}>
-            <h2>Hole {hole.holeNumber}</h2> 
+            <h2>Hole {hole.holeNumber}</h2>
             <ul>
                 <li>Par: {hole.par}</li>
                 <li>Yards: {hole.yardage}</li>
@@ -17,14 +17,15 @@ const SummaryOfNewCourse = (props) => {
     }
 
     return <div>
-            <h1>Hello Summary</h1>
-            <h2>Course Name: {props.courseName}</h2>
-            <h2>Course City: {props.courseCity}</h2>
-            <h2>Number of Holes: {props.numberOfHoles}</h2>
-            <div>
-                {holeInfo}
-            </div>
+        <h1>Hello Summary</h1>
+        <h2>Course Name: {props.courseName}</h2>
+        <h2>Course City: {props.courseCity}</h2>
+        <h2>Number of Holes: {props.numberOfHoles}</h2>
+        <div>
+            {holeInfo}
         </div>
+        <button onClick={props.submitCourse}>Submit Course</button>
+    </div>
 }
 
 export default SummaryOfNewCourse;

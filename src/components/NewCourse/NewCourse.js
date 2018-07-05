@@ -71,6 +71,17 @@ class NewCourse extends Component {
         this.nextHole();
     }
 
+    submitCourse = () => {
+        this.setState({
+            step: 1,
+            holeStep: 1,
+            courseName: '',
+            courseCity: '',
+            numberOfHoles: '',
+            holeInformation: []
+        });
+    }
+
 
     render() {
 
@@ -98,6 +109,7 @@ class NewCourse extends Component {
                             courseCity={this.state.courseCity}
                             numberOfHoles={this.state.numberOfHoles}
                             holeInformation={this.state.holeInformation}
+                            submitCourse={this.submitCourse}
                         />
             default:
                 return <NewCourseInformation />
