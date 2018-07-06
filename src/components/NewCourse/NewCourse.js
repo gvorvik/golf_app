@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
 import SummaryOfNewCourse from './NewCourseSummary/NewCourseSummary';
@@ -72,6 +74,19 @@ class NewCourse extends Component {
     }
 
     submitCourse = () => {
+        axios({
+            method: 'POST',
+            url: '/api/course',
+            data: {
+                name: this.state.courseName,
+                city: this.state.courseCity,
+                numberOfHoles: this.state.numberOfHoles,
+                holeInformation: this.state.holeInformation
+            }
+        })
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
+
         this.setState({
             step: 1,
             holeStep: 1,
