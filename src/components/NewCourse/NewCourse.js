@@ -17,7 +17,7 @@ class NewCourse extends Component {
             courseName: '',
             courseCity: '',
             numberOfHoles: '',
-            holeInformation: []
+            holeInformation: {},
         }
     }
 
@@ -69,7 +69,7 @@ class NewCourse extends Component {
             handicap: Number(obj.handicap)
         };
         this.setState({
-            holeInformation: [...this.state.holeInformation, holeInfo]
+            holeInformation: {...this.state.holeInformation, [obj.holeNumber]: holeInfo}
         });
         this.nextHole();
     }
