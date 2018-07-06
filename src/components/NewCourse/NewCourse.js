@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
@@ -68,24 +69,22 @@ class NewCourse extends Component {
             handicap: Number(obj.handicap)
         };
         this.setState({
-            holeInformation: {...this.state.holeInformation, [obj.holeNumber]: holeInfo}
+            holeInformation: [...this.state.holeInformation, holeInfo]
         });
         this.nextHole();
     }
 
     submitCourse = () => {
-        axios({
-            method: 'POST',
-            url: '/api/course',
-            data: {
+        let action = {
+            type: 'ADD_COURSE',
+            payload: {
                 name: this.state.courseName,
                 city: this.state.courseCity,
                 numberOfHoles: this.state.numberOfHoles,
                 holeInformation: this.state.holeInformation
-            }
-        })
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
+            },
+        };
+        this.props.dispatch(action);
 
         this.setState({
             step: 1,
@@ -132,4 +131,4 @@ class NewCourse extends Component {
     }
 }
 
-export default NewCourse;
+export default connect()(NewCourse);

@@ -10,29 +10,30 @@ import createSageMiddleware from 'redux-saga';
 import { takeEvery, call } from 'redux-saga/effects';
 
 import reducer from './redux/reducers';
+import rootSaga from './redux/sagas';
 
 const sagaMiddleware = createSageMiddleware();
 
-//ROOT SAGA
-function* rootSaga() {
-    yield takeEvery('SUBMIT_SCORE', submitScore);
-}
+// //ROOT SAGA
+// function* rootSaga() {
+//     yield takeEvery('SUBMIT_SCORE', submitScore);
+// }
 
-function* submitScore(action) {
-    try{
-        let scoreCard = action.payload;
-        let totalScore = 0;
-        for(let thing in action.payload) {
-            totalScore=totalScore+action.payload[thing];
-        }
-        scoreCard = {...scoreCard, totalScore: totalScore};
-        console.log(scoreCard);
-        let scorePost = yield call(axios.post, '/api/score', scoreCard);
-        console.log(scorePost);
-    } catch(error) {
-        console.log(error);
-    }
-}
+// function* submitScore(action) {
+//     try{
+//         let scoreCard = action.payload;
+//         let totalScore = 0;
+//         for(let thing in action.payload) {
+//             totalScore=totalScore+action.payload[thing];
+//         }
+//         scoreCard = {...scoreCard, totalScore: totalScore};
+//         console.log(scoreCard);
+//         let scorePost = yield call(axios.post, '/api/score', scoreCard);
+//         console.log(scorePost);
+//     } catch(error) {
+//         console.log(error);
+//     }
+// }
 
 
 const store = createStore(
