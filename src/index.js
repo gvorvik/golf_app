@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 import createSageMiddleware from 'redux-saga';
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery, call } from 'redux-saga/effects';
 
 import reducer from './redux/reducers';
 
