@@ -6,6 +6,7 @@ const NavBar = () => {
         <h1>Greg's Golf App</h1>
         <ul id="navbarList">
             <li><Link to='/home'>Home</Link></li>
+            <li><Link to='/newscore'>Add New Score</Link></li>
             <li><Link to='/newcourse'>Add New Course</Link></li>
         </ul>
     </div>
