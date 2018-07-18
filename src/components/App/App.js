@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 import NewCourse from '../NewCourse/NewCourse';
 import HomePage from '../HomePage/HomePage';
-import NavBar from '../NavBar/NavBar';
 import Login from '../Login/Login';
 import Register from '../Login/Register/Register';
 import NewScore from '../NewScore/NewScore';
@@ -17,8 +16,7 @@ import NewScore from '../NewScore/NewScore';
 const App = () => {
   return <Router>
     <div className="App">
-      <NavBar />
-      <Switch>
+    <Switch>
       <Redirect exact from="/" to="/login"/>
         <Route
           path="/login"
@@ -40,6 +38,7 @@ const App = () => {
           path="/newscore"
           component={NewScore}
         />
+        <Route render={() => <h1>404</h1>} />
       </Switch>
     </div>
   </Router>

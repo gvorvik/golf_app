@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import axios from 'axios';
 
 const mapStateToProps = state => ({
-    user: state.user,
+    user: state.user.userReducer,
   });
 
 class Login extends Component {
@@ -15,6 +14,12 @@ class Login extends Component {
             password: '',
         };
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user.username) {
+          this.props.history.push('/home');
+        }
+      }
 
     handleChange = (event) => {
         this.setState({
@@ -28,20 +33,6 @@ class Login extends Component {
         if(this.state.username === '' || this.state.password === '') {
             return alert('please complete both fields!');
         }
-        // axios({
-        //     method: 'POST',
-        //     url: '/api/login',
-        //     data: {
-        //         username: this.state.username,
-        //         password: this.state.password
-        //     }
-        // })
-        // .then(response => {
-        //     console.log(response.data);
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });
         let objectToSend = {
             username: this.state.username,
             password: this.state.password,
@@ -60,7 +51,7 @@ class Login extends Component {
     render() {
         return (
         <div>
-            <h1>Hello Login</h1>
+            <h1>Please Log In</h1>
             <form onSubmit={this.login}>
                 <label htmlFor="usernameInput">Username:
                     <input type="text" name="username" value={this.state.username} id="usernameInput" onChange={this.handleChange}/>
