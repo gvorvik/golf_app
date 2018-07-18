@@ -16,9 +16,9 @@ const loginRouter = require('./routes/loginRouter');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessionMiddleware);
+require('./modules/passport')(passport, pool);
 app.use(passport.initialize());
 app.use(passport.session());
-require('./modules/passport')(passport, pool);
 app.use(express.static('build'));
 
 

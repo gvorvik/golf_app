@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import axios from 'axios';
+
+const mapStateToProps = state => ({
+    user: state.user,
+  });
 
 class Login extends Component {
     constructor(props) {
@@ -23,20 +28,28 @@ class Login extends Component {
         if(this.state.username === '' || this.state.password === '') {
             return alert('please complete both fields!');
         }
-        axios({
-            method: 'POST',
-            url: '/api/login',
-            data: {
-                username: this.state.username,
-                password: this.state.password
-            }
+        // axios({
+        //     method: 'POST',
+        //     url: '/api/login',
+        //     data: {
+        //         username: this.state.username,
+        //         password: this.state.password
+        //     }
+        // })
+        // .then(response => {
+        //     console.log(response.data);
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // });
+        let objectToSend = {
+            username: this.state.username,
+            password: this.state.password,
+        }
+        this.props.dispatch({
+            type: 'LOG_IN',
+            payload: objectToSend,
         })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(err => {
-            console.log(err);
-        });
 
         this.setState({
             username: '',
@@ -63,4 +76,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default connect(mapStateToProps)(Login)
