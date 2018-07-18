@@ -6,7 +6,7 @@ import {
   Redirect, 
   Switch,
 } from 'react-router-dom';
-import NewCourse from '../NewCourse/NewCourse';
+import NewCourseTemplate from '../NewCourse/NewCourseTemplate';
 import HomePage from '../HomePage/HomePage';
 import Login from '../Login/Login';
 import Register from '../Login/Register/Register';
@@ -32,7 +32,7 @@ const App = () => {
         />
         <Route
           path="/newcourse"
-          component={NewCourse}
+          component={NewCourseTemplate}
         />
         <Route
           path="/newscore"

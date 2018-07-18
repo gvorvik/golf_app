@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import NavBar from './../NavBar/NavBar';
+import NewCourse from './NewCourse';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
 });
-class HomePage extends Component {
+
+class NewCourseTemplate extends Component {
     constructor(props) {
         super(props);
 
@@ -21,8 +23,7 @@ class HomePage extends Component {
         if (this.props.user.username) {
             content = (
             <div>
-                <h1>Hello Home Page</h1>
-                <h2>Current User: {this.props.user.username}</h2>
+                <NewCourse />
             </div>
             )
         }
@@ -36,4 +37,4 @@ class HomePage extends Component {
     };
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(NewCourseTemplate);

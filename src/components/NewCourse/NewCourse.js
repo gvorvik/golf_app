@@ -98,7 +98,6 @@ class NewCourse extends Component {
 
 
     render() {
-
         switch (this.state.step) {
             case 1:
                 return <NewCourseInformation 
