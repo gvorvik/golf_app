@@ -12,7 +12,14 @@ router.post('/', passport.authenticate('local'),
 );
 
 router.get('/current', (req, res) => {
+    console.log('req.user:', req.user);
     res.send(req.user);
 });
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    console.log('req.user:', req.user);
+    res.sendStatus(200);
+})
 
 module.exports = router;

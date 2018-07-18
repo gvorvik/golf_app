@@ -11,8 +11,18 @@ function* loginUser(action) {
   }
 }
 
+function* logoutUser(action) {
+  try{
+    yield call(axios.get, '/api/login/logout');
+    yield put({type: 'CLEAR_USER'});
+  } catch(err){
+    console.log(err);
+  }
+}
+
 function* userSaga() {
   yield takeEvery('LOG_IN', loginUser);
+  yield takeEvery('LOG_OUT', logoutUser);
 }
 
 export default userSaga;
