@@ -1,11 +1,11 @@
+
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = (passport, pool) => {
     passport.use(new LocalStrategy(
         (username, password, done) => {
-            return pool.query("SELECT id, username, password FROM person WHERE username=$1 AND password=$2",
-                [username, password])
+            return pool.query("SELECT * FROM person WHERE username=$1", [username])
                 .then((result) => {
                     if(result.rows.length === 0) {
                         return done(null, false, { message: 'Incorrect username or password.' });
