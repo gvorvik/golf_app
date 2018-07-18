@@ -1,9 +1,11 @@
-import { takeEvery, call } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* loginUser(action) {
   try {
-    console.log('addCourse Ran', action.payload);
+    yield call(axios.post, '/api/login', action.payload);
+    const currentUser = yield call(axios.get, '/api/login/current');
+    yield put({type: 'SET_USER', payload: currentUser.data});
   } catch(err) {
     console.log(err);
   }

@@ -11,4 +11,8 @@ router.post('/', passport.authenticate('local'),
     }
 );
 
+router.get('/current', (req, res) => {
+    res.send(req.user);
+});
+
 module.exports = router;
