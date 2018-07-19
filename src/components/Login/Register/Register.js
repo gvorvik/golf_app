@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 class Register extends Component {
     constructor(props) {
@@ -23,6 +24,21 @@ class Register extends Component {
     registerUser = (event) => {
         event.preventDefault();
         console.log('user submitted!');
+        axios({
+            method:'POST',
+            url:'/api/login/register',
+            data: this.state,
+        })
+        .then(response=>{
+            if(response.status === 200) {
+                this.props.history.push('/login');
+            }
+            else {
+                console.log('error on register');
+            }
+        })
+        .catch(err=>console.log(err));
+
         this.setState({
             firstName: '',
             lastName: '',
