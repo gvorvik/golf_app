@@ -15,6 +15,10 @@ class HomePage extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.dispatch({ type: 'FETCH_USER' });
+    }
+
     render() {
         let content = null;
 

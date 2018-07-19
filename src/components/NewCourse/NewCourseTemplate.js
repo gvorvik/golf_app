@@ -16,15 +16,18 @@ class NewCourseTemplate extends Component {
 
         }
     }
+    componentDidMount() {
+        this.props.dispatch({ type: 'FETCH_USER' });
+    }
 
     render() {
         let content = null;
 
         if (this.props.user.username) {
             content = (
-            <div>
-                <NewCourse />
-            </div>
+                <div>
+                    <NewCourse />
+                </div>
             )
         }
 

@@ -14,6 +14,10 @@ class NewScore extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.dispatch({ type: 'FETCH_USER' });
+    }
+
     render() {
         let content = null;
         if(this.props.user.username) {

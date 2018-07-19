@@ -20,9 +20,19 @@ function* logoutUser(action) {
   }
 }
 
+function* fetchUser(action) {
+  try{
+    const currentUser = yield call(axios.get, '/api/login/current');
+    yield put({type: 'SET_USER', payload: currentUser.data});
+  }catch(err) {
+
+  }
+}
+
 function* userSaga() {
   yield takeEvery('LOG_IN', loginUser);
   yield takeEvery('LOG_OUT', logoutUser);
+  yield takeEvery('FETCH_USER', fetchUser);
 }
 
 export default userSaga;
