@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import ScoreInput from './ScoreInput/ScoreInput';
+import axios from 'axios';
 import NavBar from '../NavBar/NavBar';
 import { connect } from 'react-redux';
+import NewScoreForm from './NewScoreForm/NewScoreForm';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -10,12 +11,16 @@ class NewScore extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            selectedCourse: ''
         }
     }
 
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_USER' });
+    }
+
+    setSelectedCourse = (event) => {
+        console.log('selected', event.target.value);
     }
 
     render() {
@@ -24,7 +29,9 @@ class NewScore extends Component {
             content = (
                 <div>
                     <h1>New Score</h1>
-                    {/* <ScoreInput /> */}
+                    <NewScoreForm
+                        setSelectedCourse={this.setSelectedCourse}
+                    />
                 </div>
             )
         }

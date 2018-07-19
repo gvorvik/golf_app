@@ -1,3 +1,6 @@
-export const COURSE_ACTIONS = {
+const COURSE_ACTIONS = {
     SET_NEW_COURSE: 'SET_NEW_COURSE',
+    ADD_MY_COURSES: 'ADD_MY_COURSES',
   };
+
+export default COURSE_ACTIONS;

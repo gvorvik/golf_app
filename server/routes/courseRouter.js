@@ -1,6 +1,13 @@
 const router = require('express').Router();
 const pool = require('../modules/pool');
 
+router.get('/courses', (req, res) => {
+    const queryText = `SELECT * FROM "course"`;
+    pool.query(queryText)
+    .then(result=>res.send(result.rows))
+    .catch(err=>res.sendStatus(500));
+});
+
 router.get('/:courseName', (req, res) => {
     let courseName = req.params.courseName;
     const queryText = `SELECT "id" FROM "course" WHERE "name"=$1`;
