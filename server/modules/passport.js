@@ -8,9 +8,14 @@ module.exports = (passport, pool) => {
             return pool.query("SELECT * FROM person WHERE username=$1", [username])
                 .then((result) => {
                     if(result.rows.length === 0) {
-                        return done(null, false, { message: 'Incorrect username or password.' });
+                        return done(null, false, { message: 'Incorrect username.' });
                     }
-                    return done(null, result.rows[0]);
+                    bcrypt.compare(password, result.rows[0].password, (err, res) => {
+                        if(res) {
+                            return done(null, result.rows[0]);
+                        }
+                        return done(null, false, { message: 'Incorrect password.' });
+                    });
                 })
                 .catch((err) => {
                     console.log(err);

@@ -4,11 +4,10 @@ const bcrypt = require('bcryptjs');
 const pool = require('../modules/pool');
 
 
-router.post('/', passport.authenticate('local'),
-    (req, res) => {
-        console.log('req.user:', req.user);
+router.post('/', passport.authenticate('local'),(req, res) => {
+        console.log('is authenticated?', req.isAuthenticated());
         if (req.isAuthenticated()) {
-            console.log('authenticated!');
+            
             res.send(req.user);
         }
     }
@@ -28,28 +27,24 @@ router.post('/register', (req, res) => {
                 res.sendStatus(500);
             }
             password = hash;
-            console.log(password);
             pool.query(queryText, [username, password, firstName, lastName])
             .then(response=>{
-                console.log('post succeeded', response);
                 res.sendStatus(200);
             })
             .catch(err=>{
-                console.log(err);
-                res.send(err);
+                res.sendStatus(500);
             });
         });
     });
 });
 
 router.get('/current', (req, res) => {
-    console.log('req.user:', req.user);
     res.send(req.user);
 });
 
 router.get('/logout', (req, res) => {
     req.logout();
-    console.log('req.user:', req.user);
+    console.log('is authenitacted logout?', req.isAuthenticated());
     res.sendStatus(200);
 })
 
