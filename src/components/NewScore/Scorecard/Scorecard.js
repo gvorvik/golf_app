@@ -9,24 +9,82 @@ const mapStateToProps = state => ({
 });
 
 const Scorecard = (props) => {
-    let holeDivs;
+    let holeNumbers;
+    let holePars;
+    let holeYardages;
+    let holeHandicaps;
+    let holeScores;
+    let totalPar = 0;
+    let totalYardage = 0;
 
     if(props.holeInfo) {
-        holeDivs = props.holeInfo.map((hole, i) => {
-            return <HoleScoreDiv 
-                key={i}
-                holeNumber={hole.holenumber}
-                holeYardage={hole.yardage}
-                holeHandicap={hole.handicap}
-                holePar={hole.par}
-            />
-        })
+        holeNumbers = props.holeInfo.map((hole, i) => {
+            return <td key={i}>
+                {hole.holenumber}
+            </td>
+        });
+        holePars = props.holeInfo.map((hole, i) => {
+            return <td key={i}>
+                {hole.par}
+            </td>
+        });
+        holeYardages = props.holeInfo.map((hole, i) => {
+            return <td key={i}>
+                {hole.yardage}
+            </td>
+        });
+        holeHandicaps = props.holeInfo.map((hole, i) => {
+            return <td key={i}>
+                {hole.handicap}
+            </td>
+        });
+        holeScores = props.holeInfo.map((hole, i) => {
+            return <td key={i}>
+                <input type="number"/>
+            </td>
+        });
+        props.holeInfo.forEach((hole) => {
+            totalPar=totalPar+=hole.par;
+        });
+        props.holeInfo.forEach((hole) => {
+            totalYardage=totalYardage+=hole.yardage;
+        });
     }
 
     return (
-        <div>
+        <div id="scorecardDiv">
             <h1>Scorecard</h1>
-            {holeDivs}
+            <table>
+                <thead>
+                    <tr>
+                        <td>Hole</td>
+                        {holeNumbers}
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Par</td>
+                        {holePars}
+                        <td>{totalPar}</td>
+                    </tr>
+                    <tr>
+                        <td>Yardage</td>
+                        {holeYardages}
+                        <td>{totalYardage}</td>
+                    </tr>
+                    <tr>
+                        <td>Handicap</td>
+                        {holeHandicaps}
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>Score</td>
+                        {holeScores}
+                        <td>X</td>
+                    </tr>
+                </tbody>
+            </table>
             <Button variant="raised" color="primary">Submit Score</Button>
         </div>
     )
