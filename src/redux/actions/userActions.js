@@ -1,0 +1,9 @@
+const USER_ACTIONS = {
+    FETCH_USER: 'FETCH_USER',
+    LOG_IN: 'LOG_IN',
+    LOG_OUT: 'LOG_OUT',
+    SET_USER: 'SET_USER',
+    CLEAR_USER: 'CLEAR_USER',
+};
+
+export default USER_ACTIONS;

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { COURSE_ACTIONS } from '../actions/courseActions';
+import COURSE_ACTIONS from '../actions/courseActions';
 
 const newCourse = (state = [], action) => {
   switch (action.type) {
@@ -12,7 +12,17 @@ const newCourse = (state = [], action) => {
   }
 }
 
+const myCourses = (state = [], action) => {
+  switch (action.type) {
+    case COURSE_ACTIONS.ADD_MY_COURSES:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 
 export default combineReducers({
   newCourse,
+  myCourses
 });

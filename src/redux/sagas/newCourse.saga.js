@@ -5,7 +5,6 @@ import axios from 'axios';
 
 function* addCourse(action) {
   try {
-    console.log('addCourse Ran', action.payload);
     let newCourseInfo = {
         name: action.payload.name,
         city: action.payload.city,
@@ -13,7 +12,6 @@ function* addCourse(action) {
     };
     yield call(axios.post, '/api/course', newCourseInfo);
     const getCourseInfo = yield call(axios.get, `/api/course/${action.payload.name}`);
-    console.log(getCourseInfo);
     yield call(axios.post, '/api/course/holes', {holeInformation: action.payload.holeInformation, id: getCourseInfo.data[0].id});
   } catch(err) {
     console.log(err);

@@ -1,12 +1,27 @@
 const router = require('express').Router();
 const pool = require('../modules/pool');
 
+router.get('/courses', (req, res) => {
+    const queryText = `SELECT * FROM "course"`;
+    pool.query(queryText)
+    .then(result=>res.send(result.rows))
+    .catch(err=>res.sendStatus(500));
+});
+
 router.get('/:courseName', (req, res) => {
     let courseName = req.params.courseName;
-    const queryText = `SELECT "id" FROM "course" WHERE "name"=$1`;
+    const queryText = `SELECT "id" FROM "course" WHERE "name" = $1`;
     pool.query(queryText, [courseName])
     .then(response => res.send(response.rows))
     .catch(err => res.sendStatus(500));
+});
+
+router.get('/holeinfo/:courseID', (req, res) => {
+    let courseID = req.params.courseID;
+    let queryText = `SELECT * FROM "hole" WHERE "course_id" = $1`;
+    pool.query(queryText, [courseID])
+    .then(response=>res.send(response.rows))
+    .catch(err=>res.sendStatus(500))
 });
 
 router.post('/', (req, res) => {

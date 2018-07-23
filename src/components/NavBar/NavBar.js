@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import USER_ACTIONS from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -10,7 +11,7 @@ const NavBar = (props) => {
     let content = null;
 
     const logout = () => {
-        props.dispatch({ type: 'LOG_OUT' });
+        props.dispatch({ type: USER_ACTIONS.LOG_OUT });
     }
 
     if (props.user.username) {

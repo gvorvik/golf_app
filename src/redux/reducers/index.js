@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import newCourse from './newCourse.reducer';
+import course from './course.reducer';
 import score from './score.reducer';
 import user from './user.reducer';
 
 const store = combineReducers({
-    newCourse,
+    course,
     score,
     user,
 });

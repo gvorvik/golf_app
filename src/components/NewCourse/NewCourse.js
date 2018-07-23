@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
 import SummaryOfNewCourse from './NewCourseSummary/NewCourseSummary';
+import COURSE_ACTIONS from '../../redux/actions/courseActions';
 
 
 class NewCourse extends Component {
@@ -76,7 +76,7 @@ class NewCourse extends Component {
 
     submitCourse = () => {
         let action = {
-            type: 'ADD_COURSE',
+            type: COURSE_ACTIONS.ADD_COURSE,
             payload: {
                 name: this.state.courseName,
                 city: this.state.courseCity,

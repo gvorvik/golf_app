@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-
 const NewCourseInformation = (props) => {
 
         return <form onSubmit={props.nextStep}>
