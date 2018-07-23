@@ -20,7 +20,7 @@ const NewScoreForm = (props) => {
                 {courses}
             </select>
             <label>Date Played</label>
-            <input type="date"/>
+            <input onChange={props.setDate} type="date"/>
         </form>
     </div>
     )

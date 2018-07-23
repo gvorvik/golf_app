@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import ScoreInput from './ScoreInput/ScoreInput';
-import SCORE_ACTIONS from '../../../redux/actions/scoreActions';
 
 
 const mapStateToProps = state => ({
@@ -17,18 +16,6 @@ const Scorecard = (props) => {
     let holeHandicaps;
     let totalPar = 0;
     let totalYardage = 0;
-
-    const handleSubmit = () => {
-        for (let thing in props.scoreReducer) {
-            if (props.scoreReducer[thing] === 0) {
-                return alert('You cannot have a score of 0 on a hole');
-            }
-        }
-        props.dispatch({
-            type: SCORE_ACTIONS.SUBMIT_SCORE,
-            payload: props.scoreReducer,
-        });
-    }
 
     if (props.holeInfo) {
         holeNumbers = props.holeInfo.map((hole, i) => {
@@ -82,7 +69,7 @@ const Scorecard = (props) => {
                     <ScoreInput />
                 </tbody>
             </table>
-            <Button variant="raised" color="primary" onClick={handleSubmit}>Submit Score</Button>
+            <Button variant="raised" color="primary" onClick={props.handleSubmit}>Submit Score</Button>
         </div>
     )
 }

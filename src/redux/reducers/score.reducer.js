@@ -26,6 +26,8 @@ const holeInfo = (state = null, action) => {
         case COURSE_ACTIONS.SET_HOLE_INFO:
             action.payload.sort(compare);
             return action.payload;
+        case COURSE_ACTIONS.CLEAR_COURSE_INFO:
+            return null;
         default:
             return state;
     }
