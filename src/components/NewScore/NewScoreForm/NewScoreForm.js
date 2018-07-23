@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 
 const NewScoreForm = (props) => {
     let courses = props.myCourses.map((course, i) => {
-        return <option key={i} name={course.name}>{course.name}</option>;
+        return <option key={i} value={course.id} name={course.name}>{course.name}</option>;
     });
 
     return (
@@ -15,11 +15,11 @@ const NewScoreForm = (props) => {
         <form>
             <h3>Details</h3>
             <label>Course Name</label>
-            <select onChange={props.setSelectedCourse}>
-                <option disabled selected></option>
+            <select onChange={props.setSelectedCourse} defaultValue="default">
+                <option disabled value="default">-Select An Option-</option>
                 {courses}
             </select>
-            <label>Date Player</label>
+            <label>Date Played</label>
             <input type="date"/>
         </form>
     </div>

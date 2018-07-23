@@ -4,6 +4,8 @@ import NavBar from '../NavBar/NavBar';
 import { connect } from 'react-redux';
 import NewScoreForm from './NewScoreForm/NewScoreForm';
 import USER_ACTIONS from '../../redux/actions/userActions';
+import COURSE_ACTIONS from '../../redux/actions/courseActions';
+import Scorecard from './Scorecard/Scorecard';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -22,7 +24,7 @@ class NewScore extends Component {
 
     setSelectedCourse = (event) => {
         this.props.dispatch({
-            type: '',
+            type: COURSE_ACTIONS.GET_HOLE_INFO,
             payload: event.target.value
         });
     }
@@ -36,6 +38,7 @@ class NewScore extends Component {
                     <NewScoreForm
                         setSelectedCourse={this.setSelectedCourse}
                     />
+                    <Scorecard />
                 </div>
             )
         }
