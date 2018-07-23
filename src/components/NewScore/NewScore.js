@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import NavBar from '../NavBar/NavBar';
 import { connect } from 'react-redux';
 import NewScoreForm from './NewScoreForm/NewScoreForm';
@@ -19,7 +18,7 @@ class NewScore extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_USER' });
+        this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     }
 
     setSelectedCourse = (event) => {

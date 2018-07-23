@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import USER_ACTIONS from '../../redux/actions/userActions';
 import NavBar from './../NavBar/NavBar';
 import NewCourse from './NewCourse';
 
@@ -17,7 +18,7 @@ class NewCourseTemplate extends Component {
         }
     }
     componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_USER' });
+        this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     }
 
     render() {

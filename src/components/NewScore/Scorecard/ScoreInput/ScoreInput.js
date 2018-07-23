@@ -1,65 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import SCORE_ACTIONS from '../../../../redux/actions/scoreActions';
 
 
-const mapReduxStateToProps = (reduxState) => (
-    { reduxState }
-);
+const mapStateToProps = (state) => ({
+    holeInfo: state.score.holeInfo,
+    scoreReducer: state.score.scoreReducer,
+    state
+});
 
-class ScoreInput extends Component {
+const ScoreInput = (props) => {
 
-    handleChange = (event) => {
-        this.props.dispatch({
-            type: 'RECORD_SCORE',
-            payload: {[event.target.name]: Number(event.target.value)},
+    const handleChange = (event) => {
+        props.dispatch({
+            type: SCORE_ACTIONS.RECORD_SCORE,
+            payload: {
+                holeId: event.target.name,
+                score: Number(event.target.value)
+            },
         });
     }
 
-    handleSubmit = () => {
-        for(let thing in this.props.reduxState.scoreReducer) {
-            if(this.props.reduxState.scoreReducer[thing] === 0) {
-                return alert('You cannot have a score of 0 on a hole');
-            }
-        }
-        this.props.dispatch({
-            type: 'SUBMIT_SCORE',
-            payload: this.props.reduxState.scoreReducer,
+    let totalScore = 0;
+
+    for (let thing in props.scoreReducer) {
+        totalScore = totalScore + props.scoreReducer[thing];
+    };
+
+    let holeScores = null;
+
+    if (props.holeInfo) {
+        holeScores = props.holeInfo.map((hole, i) => {
+            return <td key={i}>
+                <input onChange={handleChange} name={hole.id} type="number" />
+            </td>
         });
-    }
-
-
-    render() {
-        let totalScore = 0;
-
-        for(let thing in this.props.reduxState.scoreReducer) {
-            totalScore = totalScore + this.props.reduxState.scoreReducer[thing];
-        };
-
-        return (
-            <tr>
-                <td>Score</td>
-                <td><input onChange={this.handleChange} name="hole1" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole2" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole3" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole4" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole5" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole6" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole7" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole8" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole9" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole10" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole11" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole12" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole13" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole14" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole15" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole16" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole17" type="number" /></td>
-                <td><input onChange={this.handleChange} name="hole18" type="number" /></td>
-                <td>{totalScore}</td>
-            </tr>
-        )
+        holeScores = <tr><td>Score</td>{holeScores}<td>{totalScore}</td></tr>
+        return (holeScores);
+    } else {
+        return null;
     }
 }
 
-export default connect(mapReduxStateToProps)(ScoreInput);
+export default connect(mapStateToProps)(ScoreInput);

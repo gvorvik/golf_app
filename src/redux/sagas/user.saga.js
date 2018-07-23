@@ -26,7 +26,7 @@ function* fetchUser(action) {
     const currentUser = yield call(axios.get, '/api/login/current');
     yield put({type: USER_ACTIONS.SET_USER, payload: currentUser.data});
   }catch(err) {
-
+    console.log(err);
   }
 }
 

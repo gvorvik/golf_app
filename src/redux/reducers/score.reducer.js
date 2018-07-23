@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import COURSE_ACTIONS from '../actions/courseActions';
+import SCORE_ACTIONS from '../actions/scoreActions';
 
 function compare(a,b) {
     if (a.holenumber < b.holenumber)
@@ -11,18 +12,26 @@ function compare(a,b) {
 
 const scoreReducer = (state = {}, action) => {
     switch (action.type) {
-        case COURSE_ACTIONS.SET_HOLE_INFO:
-            action.payload.sort(compare);
-            return {...state, holeInfo: action.payload};
-        case 'RECORD_SCORE':
-            return { ...state, ...action.payload };
-        case 'CLEAR_SCORES':
+        case SCORE_ACTIONS.RECORD_SCORE:
+            return { ...state, [action.payload.holeId]: action.payload.score };
+        case SCORE_ACTIONS.CLEAR_SCORES:
             return {};
         default:
             return state;
     }
 };
 
+const holeInfo = (state = null, action) => {
+    switch (action.type) {
+        case COURSE_ACTIONS.SET_HOLE_INFO:
+            action.payload.sort(compare);
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     scoreReducer,
+    holeInfo,
   });
