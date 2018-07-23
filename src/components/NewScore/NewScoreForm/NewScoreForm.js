@@ -16,6 +16,7 @@ const NewScoreForm = (props) => {
             <h3>Details</h3>
             <label>Course Name</label>
             <select onChange={props.setSelectedCourse}>
+                <option disabled selected></option>
                 {courses}
             </select>
             <label>Date Player</label>

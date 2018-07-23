@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import USER_ACTIONS from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -38,7 +39,7 @@ class Login extends Component {
             password: this.state.password,
         }
         this.props.dispatch({
-            type: 'LOG_IN',
+            type: USER_ACTIONS.LOG_IN,
             payload: objectToSend,
         })
 

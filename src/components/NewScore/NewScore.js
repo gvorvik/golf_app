@@ -3,6 +3,7 @@ import axios from 'axios';
 import NavBar from '../NavBar/NavBar';
 import { connect } from 'react-redux';
 import NewScoreForm from './NewScoreForm/NewScoreForm';
+import USER_ACTIONS from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -16,11 +17,14 @@ class NewScore extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_USER' });
+        this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     }
 
     setSelectedCourse = (event) => {
-        console.log('selected', event.target.value);
+        this.props.dispatch({
+            type: '',
+            payload: event.target.value
+        });
     }
 
     render() {
