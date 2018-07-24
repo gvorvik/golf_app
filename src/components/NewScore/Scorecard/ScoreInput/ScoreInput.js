@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SCORE_ACTIONS from '../../../../redux/actions/scoreActions';
 
@@ -9,10 +9,16 @@ const mapStateToProps = (state) => ({
     state
 });
 
-const ScoreInput = (props) => {
+class ScoreInput extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            
+        }
+    }
 
-    const handleChange = (event) => {
-        props.dispatch({
+    handleChange = (event) => {
+        this.props.dispatch({
             type: SCORE_ACTIONS.RECORD_SCORE,
             payload: {
                 holeId: event.target.name,
@@ -21,24 +27,27 @@ const ScoreInput = (props) => {
         });
     }
 
-    let totalScore = 0;
+    render() {
 
-    for (let thing in props.scoreReducer) {
-        totalScore = totalScore + props.scoreReducer[thing];
-    };
+        let totalScore = 0;
 
-    let holeScores = null;
+        for (let thing in this.props.scoreReducer) {
+            totalScore = totalScore + this.props.scoreReducer[thing];
+        };
 
-    if (props.holeInfo) {
-        holeScores = props.holeInfo.map((hole, i) => {
-            return <td key={i}>
-                <input onChange={handleChange} name={hole.id} type="number" />
-            </td>
-        });
-        holeScores = <tr><td>Score</td>{holeScores}<td>{totalScore}</td></tr>
-        return (holeScores);
-    } else {
-        return null;
+        let holeScores = null;
+
+        if (this.props.holeInfo) {
+            holeScores = this.props.holeInfo.map((hole, i) => {
+                return <td key={i}>
+                    <input onChange={this.handleChange} name={hole.id} type="number" />
+                </td>
+            });
+            holeScores = <tr><td>Score</td>{holeScores}<td>{totalScore}</td></tr>
+            return holeScores;
+        } else {
+            return null;
+        }
     }
 }
 

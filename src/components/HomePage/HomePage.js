@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import COURSE_ACTIONS from '../../redux/actions/courseActions';
 import NavBar from './../NavBar/NavBar';
+import USER_ACTIONS from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -19,23 +20,7 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_USER' });
-        this.getCourses();
-    }
-
-    getCourses = () => {
-        axios({
-            method: 'GET',
-            url: '/api/course/courses'
-        })
-        .then(response=>{
-            let courses = response.data;
-            this.props.dispatch({
-                type: COURSE_ACTIONS.ADD_MY_COURSES,
-                payload: courses,
-            });
-        })
-        .catch(err=>console.log(err))
+        this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     }
 
     render() {

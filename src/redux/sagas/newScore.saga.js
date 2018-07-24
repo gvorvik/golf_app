@@ -15,7 +15,17 @@ function* getHoleInformation(action) {
 
 function* submitScore(action) {
   try {
-    console.log('submit score ran');
+    const newRound = {
+      date: action.payload.date,
+      courseID: action.payload.courseID,
+      totalScore: action.payload.totalScore,
+    }
+    const roundID = yield call(axios.post, `/api/score/newround`, newRound);
+    const scoresToSend = {
+      roundID: roundID.data.id,
+      scores: action.payload.scores
+    }
+    yield call(axios.post, `/api/score/recordscore`, scoresToSend)
     yield put({type: SCORE_ACTIONS.CLEAR_SCORES});
   } catch(err) {
     console.log(err);
