@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import USER_ACTIONS from '../../redux/actions/userActions';
 import NavBar from './../NavBar/NavBar';
-import NewCourse from './NewCourse';
+import NewCourseEntry from './NewCourseEntry/NewCourseEntry';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -27,7 +27,7 @@ class NewCourseTemplate extends Component {
         if (this.props.user.username) {
             content = (
                 <div>
-                    <NewCourse />
+                    <NewCourseEntry />
                 </div>
             )
         }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import COURSE_ACTIONS from '../../redux/actions/courseActions';
 import NavBar from './../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import RecentScores from './RecentScores/RecentScores';
