@@ -5,6 +5,7 @@ import axios from 'axios';
 import COURSE_ACTIONS from '../../redux/actions/courseActions';
 import NavBar from './../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
+import RecentScores from './RecentScores/RecentScores';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -15,12 +16,22 @@ class HomePage extends Component {
         super(props);
 
         this.state = {
-            
+            recentScores: [],
         }
     }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
+        this.getRecentScores();
+    }
+
+    getRecentScores = () => {
+        axios({
+            method: 'GET',
+            url: '/api/score/recentscores'
+        })
+        .then(response => this.setState({recentScores: response.data}))
+        .catch(err=>console.log(err));
     }
 
     render() {
@@ -29,7 +40,9 @@ class HomePage extends Component {
         if (this.props.user.username) {
             content = (
             <div>
-                <h1>Hello Home Page</h1>
+                <RecentScores
+                    recentScores={this.state.recentScores}
+                />
             </div>
             )
         }
