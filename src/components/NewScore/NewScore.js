@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import moment from 'moment';
+
 import NavBar from '../NavBar/NavBar';
 import { connect } from 'react-redux';
 import NewScoreForm from './NewScoreForm/NewScoreForm';
@@ -54,8 +56,9 @@ class NewScore extends Component {
     }
 
     setDate = (event) => {
+        let date = moment(event.target.value).format('MM-DD-YYYY');
         this.setState({
-            date: event.target.value
+            date,
         })
     }
 

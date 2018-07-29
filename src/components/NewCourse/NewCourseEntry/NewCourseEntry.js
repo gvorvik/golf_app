@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
 import SummaryOfNewCourse from './NewCourseSummary/NewCourseSummary';
-import COURSE_ACTIONS from '../../redux/actions/courseActions';
+import COURSE_ACTIONS from '../../../redux/actions/courseActions';
 
 
-class NewCourse extends Component {
+class NewCourseEntry extends Component {
     constructor(props) {
         super(props);
 
@@ -130,4 +130,4 @@ class NewCourse extends Component {
     }
 }
 
-export default connect()(NewCourse);
+export default connect()(NewCourseEntry);

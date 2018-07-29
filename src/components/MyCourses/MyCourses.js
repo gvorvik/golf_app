@@ -3,33 +3,27 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import NavBar from './../NavBar/NavBar';
-import USER_ACTIONS from '../../redux/actions/userActions';
-import RecentScores from './RecentScores/RecentScores';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
 });
 
-class HomePage extends Component {
+class MyCourses extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            recentScores: [],
+            
         }
     }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-        this.getRecentScores();
     }
 
-    getRecentScores = () => {
-        axios({
-            method: 'GET',
-            url: '/api/score/recentscores'
-        })
-        .then(response => this.setState({recentScores: response.data}))
+    getCourseInformation = () => {
+        axios()
+        .then()
         .catch(err=>console.log(err));
     }
 
@@ -39,9 +33,7 @@ class HomePage extends Component {
         if (this.props.user.username) {
             content = (
             <div>
-                <RecentScores
-                    recentScores={this.state.recentScores}
-                />
+                <h1>My Courses</h1>
             </div>
             )
         }
@@ -55,4 +47,4 @@ class HomePage extends Component {
     };
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(MyCourses);

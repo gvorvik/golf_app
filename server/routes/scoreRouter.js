@@ -1,6 +1,16 @@
 const router = require('express').Router();
 const pool = require('./../modules/pool');
 
+router.get('/recentscores', (req, res) => {
+    let queryText = `SELECT "round"."date_played", "round"."total_score", "course"."name"
+                    FROM "round"
+                    JOIN "course" ON "round"."course_id"="course"."id"
+                    ORDER BY "date_played" DESC LIMIT 10;`
+    pool.query(queryText)
+    .then(response => res.send(response.rows))
+    .catch(err => res.sendStatus(500))
+});
+
 router.post('/', (req, res) => {
     console.log(req.body);
     res.sendStatus(200);
