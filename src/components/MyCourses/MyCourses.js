@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import NavBar from './../NavBar/NavBar';
+import USER_ACTIONS from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -34,6 +36,7 @@ class MyCourses extends Component {
             content = (
             <div>
                 <h1>My Courses</h1>
+                <Link to="/newcourse">Add New Course</Link>
             </div>
             )
         }

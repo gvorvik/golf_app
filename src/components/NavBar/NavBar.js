@@ -21,7 +21,7 @@ const NavBar = (props) => {
                 <ul id="navbarList">
                     <li><Link to='/home'>Dashboard</Link></li>
                     <li><Link to='/newscore'>Add New Score</Link></li>
-                    <li><Link to='/newcourse'>Add New Course</Link></li>
+                    <li><Link to='/courses'>My Courses</Link></li>
                     <li><Link to='/login' onClick={logout}>Log Out</Link></li>
                 </ul>
             </div>
