@@ -64,11 +64,11 @@ class NewScore extends Component {
 
     handleSubmit = () => {
         let totalScore = 0;
-        for (let thing in this.props.scoreReducer) {
-            if (this.props.scoreReducer[thing] === 0) {
-                return alert('You cannot have a score of 0 on a hole');
+        for (let score in this.props.scoreReducer) {
+            if (this.props.scoreReducer[score] <= 0) {
+                return alert('You cannot have a score below 1 on a hole');
             }
-            totalScore = totalScore + this.props.scoreReducer[thing];
+            totalScore = totalScore + this.props.scoreReducer[score];
         }
         let objectToSend = {
             scores: this.props.scoreReducer,
@@ -80,6 +80,7 @@ class NewScore extends Component {
             type: SCORE_ACTIONS.SUBMIT_SCORE,
             payload: objectToSend,
         });
+        this.props.history.push('/home');
     }
 
     render() {
@@ -87,7 +88,6 @@ class NewScore extends Component {
         if(this.props.user.username) {
             content = (
                 <div>
-                    <h1>New Score</h1>
                     <NewScoreForm
                         setSelectedCourse={this.setSelectedCourse}
                         setDate={this.setDate}

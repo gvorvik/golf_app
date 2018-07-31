@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from './../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import RecentScores from './RecentScores/RecentScores';
+import DashboardInfo from './DashboardInfo/DashboardInfo';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -42,6 +43,7 @@ class HomePage extends Component {
                 <RecentScores
                     recentScores={this.state.recentScores}
                 />
+                <DashboardInfo/>
             </div>
             )
         }
