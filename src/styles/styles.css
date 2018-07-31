@@ -3,12 +3,47 @@
     padding: 0;
 }
 
+/*-------Links-------*/
+
+a:link,
+a:visited {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 1px;
+    transition: border-bottom 0.2s, color 0.2s;
+}
+
+a:hover,
+a:active {
+    color: #fff;
+    border-bottom: 1px solid transparent;
+}
+
+#scorecardDiv td {
+    min-width: 30px;
+    padding: 3px;
+}
+
+#scorecardDiv input {
+    width: 30px;
+}
+
+/* ------------------------------ */
+/* Navbar Styling */
+/* ------------------------------ */
+
 #navbar {
+    background-color: rgb(74, 199, 112);
     height: 60px;
+    padding-top: 12px;
 }
 
 #navbar h1{
     float: left;
+    color: #fff;
+    padding-left: 10px;
+    font-size: 2.2em;
 }
 
 #navbarList {
@@ -22,15 +57,65 @@
     text-transform: uppercase;
     margin-right: 40px;
     margin-top: 10px;
+    font-size: 1.2em;
  }
 
-#scorecardDiv td {
-    min-width: 30px;
-    padding: 3px;
+/* ------------------------------ */
+/* Dashboard Styling */
+/* ------------------------------ */
+
+#recent-scores-div {
+    position: absolute;
+    top: 72px;
+    bottom: 0;
+    width: 200px;
+    background-color: #444;
+    color: #fff;
+    text-align: left;
+    padding-left: 15px;
 }
 
-#scorecardDiv input {
-    width: 30px;
+#recent-scores-div h2 {
+    margin-top: 15px;
+    text-decoration: underline;
 }
 
+.recent-score {
+    padding: 10px 0;
+}
+
+#dashboard-main {
+    margin-left: 215px;
+    text-align: center;
+}
+
+#dashboard-main h1{
+    margin-top: 25px;
+    font-size: 2.5em;
+}
+
+.dashboard-info-div {
+    width: 100%;
+    height: 300px;
+    margin-top: 35px;
+}
+
+.dashboard-info-div-child {
+    display: inline-block;
+    height: 100%;
+    width: 30%;
+}
+
+/* ------------------------------ */
+/* New Score Styling */
+/* ------------------------------ */
+
+#new-score-form {
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+    background-color: rgb(124, 124, 124);
+    border-radius: 5px;
+    padding: 10px 0;
+}
 

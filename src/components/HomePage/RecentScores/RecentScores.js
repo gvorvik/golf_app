@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 const RecentScores = (props) => {
     let scores = props.recentScores.map(score=>{
@@ -10,8 +9,8 @@ const RecentScores = (props) => {
     </div>
     })
     return (
-    <div>
-        <h1>Recent Scores</h1>
+    <div id="recent-scores-div">
+        <h2>Latest Scores</h2>
         {scores}
     </div>
 )}

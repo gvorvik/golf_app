@@ -6,11 +6,12 @@ import {
   Redirect, 
   Switch,
 } from 'react-router-dom';
-import NewCourseTemplate from '../NewCourse/NewCourseTemplate';
+import MyCourses from '../MyCourses/MyCourses';
 import HomePage from '../HomePage/HomePage';
 import Login from '../Login/Login';
 import Register from '../Login/Register/Register';
 import NewScore from '../NewScore/NewScore';
+import NewCourse from '../NewCourse/NewCourseTemplate';
 
 
 const App = () => {
@@ -31,12 +32,16 @@ const App = () => {
           component={HomePage}
         />
         <Route
-          path="/newcourse"
-          component={NewCourseTemplate}
+          path="/courses"
+          component={MyCourses}
         />
         <Route
           path="/newscore"
           component={NewScore}
+        />
+        <Route
+          path="/newcourse"
+          component={NewCourse}
         />
         <Route render={() => <h1>404</h1>} />
       </Switch>

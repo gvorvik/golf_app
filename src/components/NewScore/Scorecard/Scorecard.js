@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
 import ScoreInput from './ScoreInput/ScoreInput';
 
 
@@ -69,7 +68,7 @@ const Scorecard = (props) => {
                     <ScoreInput />
                 </tbody>
             </table>
-            <Button variant="raised" color="primary" onClick={props.handleSubmit}>Submit Score</Button>
+            <button onClick={props.handleSubmit}>Submit Score</button>
         </div>
     )
 }
