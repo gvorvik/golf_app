@@ -50,23 +50,31 @@ class Register extends Component {
     render() {
         return (
             <div>
-                <h1>Register User</h1>
-                <form onSubmit={this.registerUser}>
-                    <label htmlFor="usernameInput">First Name:
-                        <input type="text" name="firstName" value={this.state.firstName} id="firstNameInput" onChange={this.handleInputChange} />
-                    </label>
-                    <label htmlFor="usernameInput">Last Name:
-                        <input type="text" name="lastName" value={this.state.lastName} id="lastNameInput" onChange={this.handleInputChange} />
-                    </label>
-                    <label htmlFor="usernameInput">Username:
-                        <input type="text" name="username" value={this.state.username} id="usernameInput" onChange={this.handleInputChange} />
-                    </label>
-                    <label htmlFor="passwordInput">Password:
-                        <input type="password" name="password" value={this.state.password} id="passwordInput" onChange={this.handleInputChange} />
-                    </label>
+                <form id="registerForm" onSubmit={this.registerUser}>
+                    <h1>Register User</h1>
+                    <div className="form-input">
+                        <label htmlFor="usernameInput">First Name:
+                            <input type="text" name="firstName" value={this.state.firstName} id="firstNameInput" onChange={this.handleInputChange} />
+                        </label>
+                    </div>
+                    <div className="form-input">
+                        <label htmlFor="usernameInput">Last Name:
+                            <input type="text" name="lastName" value={this.state.lastName} id="lastNameInput" onChange={this.handleInputChange} />
+                        </label>
+                    </div>
+                    <div className="form-input">
+                        <label htmlFor="usernameInput">Username:
+                            <input type="text" name="username" value={this.state.username} id="usernameInput" onChange={this.handleInputChange} />
+                        </label>
+                    </div>
+                    <div className="form-input">
+                        <label htmlFor="passwordInput">Password:
+                            <input type="password" name="password" value={this.state.password} id="passwordInput" onChange={this.handleInputChange} />
+                        </label>
+                    </div>
                     <input type="submit"/>
+                    <Link to="/login">Log In</Link>
                 </form>
-                <Link to="/login">Log In</Link>
             </div>
         )
     }
