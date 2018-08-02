@@ -8,6 +8,20 @@ router.get('/courses', (req, res) => {
     .catch(err=>res.sendStatus(500));
 });
 
+router.get('/mycourses', (req, res) => {
+    const queryText = `SELECT * FROM "course"`;
+    pool.query(queryText)
+    .then(response=>res.send(response.rows))
+    .catch(err=>res.sendStatus(500));
+});
+
+router.get('/selectedcourse/:id', (req, res) => {
+    let queryText = `SELECT * FROM "hole" WHERE "course_id"=$1`;
+    pool.query(queryText, [req.params.id])
+    .then(response=>res.send(response.rows))
+    .catch(err=>res.sendStatus(500));
+});
+
 router.get('/:courseName', (req, res) => {
     let courseName = req.params.courseName;
     const queryText = `SELECT "id" FROM "course" WHERE "name" = $1`;
