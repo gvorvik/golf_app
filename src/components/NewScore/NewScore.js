@@ -87,7 +87,7 @@ class NewScore extends Component {
         let content = null;
         if(this.props.user.username) {
             content = (
-                <div>
+                <div id="new-score-div">
                     <NewScoreForm
                         setSelectedCourse={this.setSelectedCourse}
                         setDate={this.setDate}

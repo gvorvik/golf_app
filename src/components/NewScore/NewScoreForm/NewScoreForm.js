@@ -11,7 +11,7 @@ const NewScoreForm = (props) => {
     });
 
     return (
-    <div>
+    <div id="new-score-form-div">
         <form id="new-score-form">
             <h2>Where'd you play?</h2>
             <div className="form-input">
