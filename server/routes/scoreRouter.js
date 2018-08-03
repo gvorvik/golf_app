@@ -5,9 +5,9 @@ router.get('/recentscores', (req, res) => {
     let queryText = `SELECT "round"."date_played", "round"."total_score", "course"."name"
                     FROM "round"
                     JOIN "course" ON "round"."course_id"="course"."id"
-                    WHERE "person_id" = ${req.user.id}
+                    WHERE "round"."person_id" = $1
                     ORDER BY "date_played" DESC LIMIT 10;`
-    pool.query(queryText)
+    pool.query(queryText, [req.user.id])
     .then(response => res.send(response.rows))
     .catch(err => res.sendStatus(500))
 });

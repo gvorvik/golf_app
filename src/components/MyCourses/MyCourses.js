@@ -29,7 +29,7 @@ class MyCourses extends Component {
     getCourses = () => {
         axios({
             method: 'GET',
-            url: '/api/course/mycourses'
+            url: '/api/course/courses'
         })
         .then(response=>this.setState({myCourses: response.data}))
         .catch(err=>console.log(err));
