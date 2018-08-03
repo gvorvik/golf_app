@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const pool = require('./../modules/pool');
+const {authenticate} = require('./../modules/rejectUnauthenticated');
 
-router.get('/recentscores', (req, res) => {
+router.get('/recentscores', authenticate, (req, res) => {
     let queryText = `SELECT "round"."date_played", "round"."total_score", "course"."name"
                     FROM "round"
                     JOIN "course" ON "round"."course_id"="course"."id"
@@ -17,7 +18,7 @@ router.post('/', (req, res) => {
     res.sendStatus(200);
 });
 
-router.post('/newround', (req, res) => {
+router.post('/newround', authenticate, (req, res) => {
     let round = req.body;
     let queryText = `INSERT INTO "round" ("date_played", "total_score", "course_id", "person_id")
                         VALUES ($1, $2, $3, $4)
@@ -29,7 +30,7 @@ router.post('/newround', (req, res) => {
     .catch(err=>res.sendStatus(500));
 })
 
-router.post('/recordscore', (req, res) => {
+router.post('/recordscore', authenticate, (req, res) => {
     let roundID = req.body.roundID;
     let scores = req.body.scores;
     let queryText = `INSERT INTO "scores" ("score", "hole_id", "round_id")

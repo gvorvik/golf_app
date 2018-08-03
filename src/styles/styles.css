@@ -218,6 +218,10 @@ input[type=submit]:active {
     padding: 10px;
 }
 
+#myCoursesDiv a {
+    color: #555;
+}
+
 .courseDiv {
     height: 350px;
     width: 250px;
