@@ -2,15 +2,15 @@ const router = require('express').Router();
 const pool = require('../modules/pool');
 
 router.get('/courses', (req, res) => {
-    const queryText = `SELECT * FROM "course"`;
-    pool.query(queryText)
+    const queryText = `SELECT * FROM "course" WHERE "person_id" = $1`;
+    pool.query(queryText, [req.user.id])
     .then(result=>res.send(result.rows))
     .catch(err=>res.sendStatus(500));
 });
 
 router.get('/mycourses', (req, res) => {
-    const queryText = `SELECT * FROM "course"`;
-    pool.query(queryText)
+    const queryText = `SELECT * FROM "course" WHERE "person_id = $1"`;
+    pool.query(queryText, [req.user.id])
     .then(response=>res.send(response.rows))
     .catch(err=>res.sendStatus(500));
 });
@@ -40,14 +40,11 @@ router.get('/holeinfo/:courseID', (req, res) => {
 
 router.post('/', (req, res) => {
     const newCourse = req.body;
-    let queryText = `INSERT INTO "course" ("name", "city", "holes")
-                    VALUES ($1, $2, $3)`
-    pool.query(queryText, [newCourse.name, newCourse.city, newCourse.numberOfHoles])
-    .then(response => {
-        console.log(response);
-        res.sendStatus(200);
-    })
-    .catch(err => res.sendStatus(500))
+    let queryText = `INSERT INTO "course" ("name", "city", "holes", "person_id")
+                    VALUES ($1, $2, $3, $4)`
+    pool.query(queryText, [newCourse.name, newCourse.city, newCourse.numberOfHoles, req.user.id])
+    .then(response => res.sendStatus(200))
+    .catch(err => res.sendStatus(500));
 });
 
 router.post('/holes', (req, res) => {

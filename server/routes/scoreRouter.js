@@ -5,6 +5,7 @@ router.get('/recentscores', (req, res) => {
     let queryText = `SELECT "round"."date_played", "round"."total_score", "course"."name"
                     FROM "round"
                     JOIN "course" ON "round"."course_id"="course"."id"
+                    WHERE "person_id" = ${req.user.id}
                     ORDER BY "date_played" DESC LIMIT 10;`
     pool.query(queryText)
     .then(response => res.send(response.rows))
@@ -18,11 +19,10 @@ router.post('/', (req, res) => {
 
 router.post('/newround', (req, res) => {
     let round = req.body;
-    console.log(round);
-    let queryText = `INSERT INTO "round" ("date_played", "total_score", "course_id")
-                        VALUES ($1, $2, $3)
+    let queryText = `INSERT INTO "round" ("date_played", "total_score", "course_id", "person_id")
+                        VALUES ($1, $2, $3, $4)
                         RETURNING "id";`;
-    pool.query(queryText, [round.date, round.totalScore, round.courseID])
+    pool.query(queryText, [round.date, round.totalScore, round.courseID, req.user.id])
     .then(response=> {
         res.send(response.rows[0]);
     })
