@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import NavBar from './../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
@@ -56,7 +55,7 @@ class MyCourses extends Component {
             <div id="myCoursesDiv">
                 <h1>My Courses</h1>
                 {courseDivs}
-                <Link to="/newcourse">Add New Course</Link>
+                <a href="/newcourse">Add New Course</a>
             </div>
             )
         }

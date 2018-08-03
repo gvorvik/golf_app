@@ -27,31 +27,18 @@ input[type=password] {
     padding-right: 7px;
 }
 
-
 /*-------Links-------*/
-
-a:link,
-a:visited {
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 1px;
-    transition: border-bottom 0.2s, color 0.2s;
-}
-
-a:hover,
-a:active {
-    color: #fff;
-    border-bottom: 1px solid transparent;
-}
 
 /*-------Buttons-------*/
 
-.btn:link,
-.btn:visited,
+button:link,
+button:visited,
 input[type=submit],
 #logInForm a,
-#registerForm a {
+#registerForm a,
+#myScoresDiv a,
+#myCoursesDiv a
+ {
     display: inline-block;
     padding: 10px 30px;
     font-weight: 300;
@@ -65,10 +52,12 @@ input[type=submit],
     cursor: pointer;
 }
 
-.btn:hover,
-.btn:active,
+button:hover,
+button:active,
 input[type=submit]:hover,
-input[type=submit]:active {
+input[type=submit]:active,
+#myScoresDiv a,
+#myCoursesDiv a  {
     background-color: #555;
     color: #fff;
 }
@@ -88,12 +77,6 @@ input[type=submit]:active {
     margin-top: 200px;
     border-radius: 4px;
 }
-
-#logInForm a,
-#registerForm a {
-    background-color: #fff;
-    color: #555;
-} 
 
 #logInForm {
     height: 300x;
@@ -141,6 +124,21 @@ input[type=submit]:active {
     margin-top: 10px;
     font-size: 1.2em;
  }
+
+#navbar a:link,
+#navbar a:visited {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 1px;
+    transition: border-bottom 0.2s, color 0.2s;
+}
+
+#navbar a:hover,
+#navbar a:active {
+    color: #fff;
+    border-bottom: 1px solid transparent;
+}
 
 /* ------------------------------ */
 /* Dashboard Styling */
@@ -218,10 +216,6 @@ input[type=submit]:active {
     padding: 10px;
 }
 
-#myCoursesDiv a {
-    color: #555;
-}
-
 .courseDiv {
     height: 350px;
     width: 250px;
@@ -242,6 +236,6 @@ input[type=submit]:active {
     padding: 3px;
 }
 
-#scorecardDiv input {
+#scorecardDiv input[type="text"] {
     width: 30px;
 }

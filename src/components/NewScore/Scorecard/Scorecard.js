@@ -68,7 +68,7 @@ const Scorecard = (props) => {
                     <ScoreInput />
                 </tbody>
             </table>
-            <button onClick={props.handleSubmit}>Submit Score</button>
+            <button className="btn" onClick={props.handleSubmit}>Submit Score</button>
         </div>
     )
 }

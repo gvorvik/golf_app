@@ -12,6 +12,7 @@ import Login from '../Login/Login';
 import Register from '../Login/Register/Register';
 import NewScore from '../NewScore/NewScore';
 import NewCourse from '../NewCourse/NewCourseTemplate';
+import MyScores from '../MyScores/MyScores';
 
 
 const App = () => {
@@ -34,6 +35,10 @@ const App = () => {
         <Route
           path="/courses"
           component={MyCourses}
+        />
+        <Route
+          path="/scores"
+          component={MyScores}
         />
         <Route
           path="/newscore"

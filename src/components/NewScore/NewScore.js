@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 import NavBar from '../NavBar/NavBar';
-import { connect } from 'react-redux';
+import Scorecard from './Scorecard/Scorecard';
 import NewScoreForm from './NewScoreForm/NewScoreForm';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import COURSE_ACTIONS from '../../redux/actions/courseActions';
-import Scorecard from './Scorecard/Scorecard';
 import SCORE_ACTIONS from '../../redux/actions/scoreActions';
 
 const mapStateToProps = state => ({
