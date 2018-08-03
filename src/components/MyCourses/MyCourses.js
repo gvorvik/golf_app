@@ -53,7 +53,7 @@ class MyCourses extends Component {
 
         if (this.props.user.username) {
             content = (
-            <div>
+            <div id="myCoursesDiv">
                 <h1>My Courses</h1>
                 {courseDivs}
                 <Link to="/newcourse">Add New Course</Link>
