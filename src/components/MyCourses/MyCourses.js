@@ -54,7 +54,9 @@ class MyCourses extends Component {
             content = (
             <div id="myCoursesDiv">
                 <h1>My Courses</h1>
-                {courseDivs}
+                <div>
+                    {courseDivs}
+                </div>
                 <a href="/newcourse">Add New Course</a>
             </div>
             )

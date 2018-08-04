@@ -13,6 +13,15 @@ router.get('/recentscores', authenticate, (req, res) => {
     .catch(err => res.sendStatus(500))
 });
 
+router.get('/coursescores/:selectedCourse', (req, res) => {
+    let queryText = `SELECT * FROM "round" 
+                    JOIN "course" ON "round"."course_id"="course"."id"
+                    WHERE "course"."name" = $1;`;
+    pool.query(queryText, [req.params.selectedCourse])
+    .then(response => res.send(response.rows))
+    .catch(err => res.sendStatus(500))
+});
+
 router.post('/', (req, res) => {
     console.log(req.body);
     res.sendStatus(200);

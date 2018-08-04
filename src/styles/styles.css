@@ -27,9 +27,7 @@ input[type=password] {
     padding-right: 7px;
 }
 
-/*-------Links-------*/
-
-/*-------Buttons-------*/
+/*-------Buttons/Links-------*/
 
 button:link,
 button:visited,
@@ -217,9 +215,13 @@ input[type=submit]:active,
 }
 
 .courseDiv {
-    height: 350px;
-    width: 250px;
+    height: 250px;
+    width: 200px;
     display: inline-block;
+    background-color: #999;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 8px;
 }
 
 
