@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import NavBar from './../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
@@ -29,7 +28,7 @@ class MyCourses extends Component {
     getCourses = () => {
         axios({
             method: 'GET',
-            url: '/api/course/mycourses'
+            url: '/api/course/courses'
         })
         .then(response=>this.setState({myCourses: response.data}))
         .catch(err=>console.log(err));
@@ -55,8 +54,10 @@ class MyCourses extends Component {
             content = (
             <div id="myCoursesDiv">
                 <h1>My Courses</h1>
-                {courseDivs}
-                <Link to="/newcourse">Add New Course</Link>
+                <div>
+                    {courseDivs}
+                </div>
+                <a href="/newcourse">Add New Course</a>
             </div>
             )
         }

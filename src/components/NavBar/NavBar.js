@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import USER_ACTIONS from '../../redux/actions/userActions';
 
@@ -19,10 +18,10 @@ const NavBar = (props) => {
             <div id="navbar">
                 <h1>Hello {props.user.username}</h1>
                 <ul id="navbarList">
-                    <li><Link to='/home'>Dashboard</Link></li>
-                    <li><Link to='/newscore'>Add New Score</Link></li>
-                    <li><Link to='/courses'>My Courses</Link></li>
-                    <li><Link to='/login' onClick={logout}>Log Out</Link></li>
+                    <li><a href='/home'>Dashboard</a></li>
+                    <li><a href='/scores'>My Scores</a></li>
+                    <li><a href='/courses'>My Courses</a></li>
+                    <li><a href='/login' onClick={logout}>Log Out</a></li>
                 </ul>
             </div>
         )

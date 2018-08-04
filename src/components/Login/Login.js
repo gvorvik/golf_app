@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import USER_ACTIONS from '../../redux/actions/userActions';
 
@@ -65,7 +64,7 @@ class Login extends Component {
                     </label>
                 </div>
                 <input type="submit"/>
-                <Link to="/register">Register</Link>
+                <a href="/register">Register</a>
             </form>
         </div>
     )

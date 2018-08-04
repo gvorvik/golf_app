@@ -3,9 +3,9 @@ import React from 'react';
 const CourseDiv = (props) => {
     return (
         <div className="courseDiv">
-            <h3>{props.course.name}</h3>
-            <p>{props.course.city}</p>
-            <p>{props.course.holes}</p>
+            <h2>{props.course.name}</h2>
+            <p>City: {props.course.city}</p>
+            <p>{props.course.holes} holes</p>
             <button onClick={() => props.getCourseInformation(props.course.id)} className="btn">Course Details</button>
         </div>
     )

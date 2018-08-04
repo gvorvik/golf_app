@@ -4,11 +4,11 @@ const bcrypt = require('bcryptjs');
 const pool = require('../modules/pool');
 
 
-router.post('/', passport.authenticate('local'),(req, res) => {
-        console.log('is authenticated?', req.isAuthenticated());
+router.post('/', passport.authenticate('local'), (req, res) => {
         if (req.isAuthenticated()) {
-            
             res.send(req.user);
+        } else {
+            res.sendStatus(403);
         }
     }
 );
@@ -44,7 +44,6 @@ router.get('/current', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.logout();
-    console.log('is authenitacted logout?', req.isAuthenticated());
     res.sendStatus(200);
 })
 
