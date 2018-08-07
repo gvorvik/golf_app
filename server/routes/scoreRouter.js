@@ -14,9 +14,10 @@ router.get('/recentscores', authenticate, (req, res) => {
 });
 
 router.get('/coursescores/:selectedCourse', (req, res) => {
-    let queryText = `SELECT * FROM "round" 
-                    JOIN "course" ON "round"."course_id"="course"."id"
-                    WHERE "course"."name" = $1;`;
+    let queryText = `SELECT "round"."id", "round"."date_played", "round"."total_score", "course"."name", "course"."city", "course"."holes" 
+                    FROM "course"
+                    JOIN "round" ON "round"."course_id"="course"."id"
+                    WHERE "course"."name"=$1;`;
     pool.query(queryText, [req.params.selectedCourse])
     .then(response => res.send(response.rows))
     .catch(err => res.sendStatus(500))
