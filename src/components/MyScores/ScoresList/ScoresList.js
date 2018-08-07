@@ -1,8 +1,14 @@
 import React from 'react';
+import axios from 'axios';
 
 const ScoreList = (props) => {
     const getScoreDetails = (id) => {
-        console.log('button click', id);
+        axios({
+            method: 'GET',
+            url: `/api/score/scoredetails/${id}`
+        })
+        .then(response=>console.log(response.data))
+        .catch(err=>console.log(err));
     }
 
     let scores = props.searchResults.map(score => {

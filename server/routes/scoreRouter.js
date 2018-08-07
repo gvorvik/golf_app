@@ -23,6 +23,13 @@ router.get('/coursescores/:selectedCourse', (req, res) => {
     .catch(err => res.sendStatus(500))
 });
 
+router.get('/scoredetails/:id', (req, res) => {
+    let queryText = `SELECT * FROM "scores" WHERE "round_id"=$1;`;
+    pool.query(queryText, [req.params.id])
+    .then(response => res.send(response.rows))
+    .catch(err => res.send(err));
+});
+
 router.post('/', (req, res) => {
     console.log(req.body);
     res.sendStatus(200);
