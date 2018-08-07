@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import NavBar from '../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
+import ScoreList from './ScoresList/ScoresList';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -66,6 +67,9 @@ class MyScores extends Component {
                         </label>
                         <input onClick={this.submitSearch} type="submit"/>
                     </form>
+                    <ScoreList 
+                        searchResults={this.state.searchResults}
+                    />
                     <a href="/newscore">Add New Score</a>
                 </div>
             )
