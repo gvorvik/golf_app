@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import NavBar from '../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import ScoreList from './ScoresList/ScoresList';
+import ScoreSearchForm from './ScoreSearchForm/ScoreSearchForm';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -52,21 +53,14 @@ class MyScores extends Component {
 
     render() {
         let content = null;
-        let courses = this.state.courses.map(course => <option key={course.id}>{course.name}</option>);
         if(this.props.user.username) {
             content = (
                 <div id="myScoresDiv">
-                    <form id="scoreSearchForm">
-                        <h2>Search Scores</h2>
-                        <label htmlFor="scoreByCourse">
-                            Course:
-                            <select onChange={this.handleChange} id="scoreByCourse" defaultValue="default" name="selectedCourse">
-                                <option disabled value="default">-Select An Option-</option>
-                                {courses}
-                            </select>
-                        </label>
-                        <input onClick={this.submitSearch} type="submit"/>
-                    </form>
+                    <ScoreSearchForm 
+                        handleChange={this.handleChange}
+                        submitSearch={this.submitSearch}
+                        courses={this.state.courses}
+                    />
                     <ScoreList 
                         searchResults={this.state.searchResults}
                     />
