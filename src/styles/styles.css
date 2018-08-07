@@ -90,8 +90,6 @@ input[type=submit]:active,
 }
 
 
-
-
 /* ------------------------------ */
 /* Navbar Styling */
 /* ------------------------------ */
@@ -224,7 +222,19 @@ input[type=submit]:active,
     border-radius: 8px;
 }
 
+/* ------------------------------ */
+/* My Scores Styling */
+/* ------------------------------ */
 
+.scoreSearchDiv {
+    height: 250px;
+    width: 200px;
+    display: inline-block;
+    background-color: #999;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 8px;
+}
 
 
 

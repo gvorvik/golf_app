@@ -6,7 +6,7 @@ const ScoreList = (props) => {
     }
 
     let scores = props.searchResults.map(score => {
-        return <div key={score.id}>
+        return <div className="scoreSearchDiv" key={score.id}>
             <h2>{score.date_played}</h2>
             <p>{score.total_score}</p>
             <button onClick={() => getScoreDetails(score.id)}>Score Details</button>
@@ -15,8 +15,6 @@ const ScoreList = (props) => {
 
     return (
         <div>
-            <h1>YO</h1>
-            {JSON.stringify(props.searchResults)}
             {scores}
         </div>
     )
