@@ -24,7 +24,10 @@ router.get('/coursescores/:selectedCourse', (req, res) => {
 });
 
 router.get('/scoredetails/:id', (req, res) => {
-    let queryText = `SELECT * FROM "scores" WHERE "round_id"=$1;`;
+    let queryText = `SELECT "scores"."score", "hole"."holenumber", "hole"."par", "hole"."yardage", "hole"."handicap"
+                    FROM "scores"
+                    JOIN "hole" ON "scores"."hole_id"="hole"."id"
+                    WHERE "round_id"=$1;`;
     pool.query(queryText, [req.params.id])
     .then(response => res.send(response.rows))
     .catch(err => res.send(err));
