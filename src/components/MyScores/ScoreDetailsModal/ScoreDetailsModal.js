@@ -29,7 +29,7 @@ const ScoreDetailsModal = (props) => {
     return <div style={backDropStyle}>
         <div style={modalStyle}>
             <h1>Test</h1>
-            <button>Close</button>
+            <button onClick={props.closeScoreModal}>Close</button>
         </div>
     </div>
 }
