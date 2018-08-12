@@ -6,6 +6,7 @@ import NavBar from '../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import ScoreList from './ScoresList/ScoresList';
 import ScoreSearchForm from './ScoreSearchForm/ScoreSearchForm';
+import ScoreDetailsModal from './ScoreDetailsModal/ScoreDetailsModal';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -18,6 +19,9 @@ class MyScores extends Component {
             courses: [],
             searchResults: [],
             scoreDetails: [],
+            scoreModal: {
+                open: false,
+            }
         }
     }
 
@@ -60,9 +64,20 @@ class MyScores extends Component {
             this.setState({
                 scoreDetails: response.data,
             });
+            this.openScoreModal();
         })
         .catch(err=>console.log(err));
     }
+
+    openScoreModal = () => {
+        this.setState({
+            scoreModal: {
+                open: true,
+            }
+        });
+    }
+
+    
 
 
     render() {
@@ -78,6 +93,10 @@ class MyScores extends Component {
                     <ScoreList 
                         searchResults={this.state.searchResults}
                         getScoreDetails={this.getScoreDetails}
+                    />
+                    <ScoreDetailsModal
+                        scoreDetails={this.state.scoreDetails} 
+                        showModal={this.state.scoreModal.open}
                     />
                     <a href="/newscore">Add New Score</a>
                 </div>
