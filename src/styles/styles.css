@@ -226,6 +226,11 @@ input[type=submit]:active,
 /* My Scores Styling */
 /* ------------------------------ */
 
+#scoreSearchForm {
+    text-align: center;
+    margin: 20px auto 40px;
+}
+
 .scoreSearchDiv {
     height: 250px;
     width: 200px;

@@ -17,6 +17,7 @@ class MyScores extends Component {
         this.state = {
             courses: [],
             searchResults: [],
+            scoreDetails: [],
         }
     }
 
@@ -50,6 +51,19 @@ class MyScores extends Component {
         .catch( err => console.log(err));
     }
 
+    getScoreDetails = (id) => {
+        axios({
+            method: 'GET',
+            url: `/api/score/scoredetails/${id}`
+        })
+        .then(response=>{
+            this.setState({
+                scoreDetails: response.data,
+            });
+        })
+        .catch(err=>console.log(err));
+    }
+
 
     render() {
         let content = null;
@@ -63,6 +77,7 @@ class MyScores extends Component {
                     />
                     <ScoreList 
                         searchResults={this.state.searchResults}
+                        getScoreDetails={this.getScoreDetails}
                     />
                     <a href="/newscore">Add New Score</a>
                 </div>
