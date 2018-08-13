@@ -30,6 +30,14 @@ class MyScores extends Component {
         this.getCourses();
     }
 
+    compare = (a,b) => {
+        if (a.holenumber < b.holenumber)
+          return -1;
+        if (a.holenumber > b.holenumber)
+          return 1;
+        return 0;
+      }
+
     getCourses = () => {
         axios({
             method: 'GET',
@@ -61,6 +69,7 @@ class MyScores extends Component {
             url: `/api/score/scoredetails/${id}`
         })
         .then(response=>{
+            response.data.sort(this.compare);
             this.setState({
                 scoreDetails: response.data,
             });
