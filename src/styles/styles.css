@@ -241,6 +241,12 @@ input[type=submit]:active,
     border-radius: 8px;
 }
 
+.scoreDetailsByHole {
+    display: inline-block;
+    width: 250px;
+    margin-top: 30px;
+}
+
 
 
 
