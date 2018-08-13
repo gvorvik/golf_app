@@ -53,6 +53,7 @@ router.post('/holes', authenticate, (req, res) => {
         .then(response => console.log('yay'))
         .catch(err => console.log(err));
     }
+    
     res.sendStatus(200);
 })
 

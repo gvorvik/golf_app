@@ -13,14 +13,22 @@ const backDropStyle = {
 const modalStyle = {
     backgroundColor: '#fff',
     borderRadius: 5,
-    maxWidth: 600,
-    minHeight: 500,
+    maxWidth: 800,
+    minHeight: 800,
     margin: '0 auto',
     padding: 30,
     position: 'relative'
 }
 
 const ScoreDetailsModal = (props) => {
+    let scoreDetails = props.scoreDetails.map(score=>{
+        return <div key={score.holenumber} className="scoreDetailsByHole">
+        <h3>Hole {score.holenumber}</h3>
+        <p>{score.yardage} yards</p>
+        <p>Par {score.par}</p>
+        <p>Score: {score.score}</p>
+        </div>
+    });
 
     if (!props.showModal) {
         return null;
@@ -29,6 +37,7 @@ const ScoreDetailsModal = (props) => {
     return <div style={backDropStyle}>
         <div style={modalStyle}>
             <h1>Test</h1>
+            {scoreDetails}
             <button onClick={props.closeScoreModal}>Close</button>
         </div>
     </div>
