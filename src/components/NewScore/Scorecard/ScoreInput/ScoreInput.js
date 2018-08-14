@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SCORE_ACTIONS from '../../../../redux/actions/scoreActions';
+import '../../../../styles/styles.css';
 
 
 const mapStateToProps = (state) => ({
@@ -39,11 +40,11 @@ class ScoreInput extends Component {
 
         if (this.props.holeInfo) {
             holeScores = this.props.holeInfo.map((hole, i) => {
-                return <td key={i}>
+                return <td className="score-cell" key={i}>
                     <input onChange={this.handleChange} name={hole.id} type="number" />
                 </td>
             });
-            holeScores = <tr><td>Score</td>{holeScores}<td>{totalScore}</td></tr>
+            holeScores = <tr><th scope="row">Score</th>{holeScores}<td>{totalScore}</td></tr>
             return holeScores;
         } else {
             return null;

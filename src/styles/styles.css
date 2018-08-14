@@ -27,6 +27,8 @@ input[type=password] {
     padding-right: 7px;
 }
 
+
+
 /*-------Buttons/Links-------*/
 
 button:link,
@@ -203,6 +205,31 @@ input[type=submit]:active,
     text-align: center;
 }
 
+#newScoreTable {
+    table-layout: fixed;
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#newScoreTable thead th {
+    width: 50px;
+}
+
+#newScoreTable thead th:nth-child(1) {
+    width: 100px;
+}
+
+#newScoreTable th,
+#newScoreTable td {
+    border: 1px solid #555;
+    padding: 3px;
+}
+
+#newScoreTable input {
+    width: 95%;
+}
+
 
 /* ------------------------------ */
 /* My Courses Styling */
@@ -245,20 +272,4 @@ input[type=submit]:active,
     display: inline-block;
     width: 250px;
     margin-top: 30px;
-}
-
-
-
-
-
-
-
-
-#scorecardDiv td {
-    min-width: 30px;
-    padding: 3px;
-}
-
-#scorecardDiv input[type="text"] {
-    width: 30px;
 }
