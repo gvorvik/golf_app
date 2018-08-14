@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import NavBar from './../NavBar/NavBar';
-import USER_ACTIONS from '../../redux/actions/userActions';
 import CourseDiv from './CourseDiv/CourseDiv';
+import CourseDetailsModal from './CourseDetailsModal/CourseDetailsModal';
+
+import USER_ACTIONS from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -17,6 +19,9 @@ class MyCourses extends Component {
         this.state = {
             myCourses: [],
             selectedCourseInfo: [],
+            courseModal: {
+                open: false,
+            }
         }
     }
 
@@ -39,8 +44,27 @@ class MyCourses extends Component {
             method: 'GET',
             url: `/api/course/selectedcourse/${id}`
         })
-        .then(response=>this.setState({selectedCourseInfo: response.data}))
+        .then(response=>{
+            this.setState({selectedCourseInfo: response.data});
+            this.openCourseModal();
+    })
         .catch(err=>console.log(err));
+    }
+
+    openCourseModal = () => {
+        this.setState({
+            courseModal: {
+                open: true,
+            }
+        });
+    }
+
+    closeCourseModal = () => {
+        this.setState({
+            courseModal: {
+                open: false,
+            }
+        });
     }
 
     render() {
@@ -57,6 +81,11 @@ class MyCourses extends Component {
                 <div>
                     {courseDivs}
                 </div>
+                <CourseDetailsModal 
+                    selectedCourseInfo={this.state.selectedCourseInfo}
+                    closeCourseModal={this.closeCourseModal}
+                    showModal={this.state.courseModal.open}
+                />
                 <a href="/newcourse">Add New Course</a>
             </div>
             )

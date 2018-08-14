@@ -10,7 +10,7 @@ router.get('/courses', authenticate, (req, res) => {
 });
 
 router.get('/selectedcourse/:id', authenticate, (req, res) => {
-    let queryText = `SELECT * FROM "hole" WHERE "course_id"=$1`;
+    let queryText = `SELECT * FROM "hole" WHERE "course_id"=$1 ORDER BY "holenumber"`;
     pool.query(queryText, [req.params.id])
     .then(response=>res.send(response.rows))
     .catch(err=>res.sendStatus(500));

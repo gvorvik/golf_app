@@ -2,9 +2,19 @@
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+h1,
+h2 {
+    margin-bottom: 20px;
 }
 
 /*-------Inputs-------*/
+
+input {
+    text-align: left;
+}
 
 input[type=date] {
     border: 3px solid #777;
@@ -62,6 +72,40 @@ input[type=submit]:active,
 #new-score-div button  {
     background-color: #555;
     color: #fff;
+}
+
+/*-------Tables-------*/
+
+#newScoreTable,
+#scoreDetailsTable,
+.course-table {
+    table-layout: fixed;
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#newScoreTable thead th,
+#scoreDetailsTable thead th,
+.course-table thead th {
+    width: 50px;
+}
+
+#newScoreTable thead th:nth-child(1),
+#scoreDetailsTable thead th:nth-child(1),
+.course-table thead th:nth-child(1)
+ {
+    width: 100px;
+}
+
+#newScoreTable th,
+#newScoreTable td,
+#scoreDetailsTable th,
+#scoreDetailsTable td,
+.course-table th,
+.course-table td {
+    border: 1px solid #555;
+    padding: 3px;
 }
 
 /* ------------------------------ */
@@ -205,27 +249,6 @@ input[type=submit]:active,
 
 #new-score-div {
     text-align: center;
-}
-
-#newScoreTable {
-    table-layout: fixed;
-    width: 90%;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-
-#newScoreTable thead th {
-    width: 50px;
-}
-
-#newScoreTable thead th:nth-child(1) {
-    width: 100px;
-}
-
-#newScoreTable th,
-#newScoreTable td {
-    border: 1px solid #555;
-    padding: 3px;
 }
 
 #newScoreTable input {

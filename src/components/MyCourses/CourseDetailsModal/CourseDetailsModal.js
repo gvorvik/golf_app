@@ -20,7 +20,7 @@ const modalStyle = {
     position: 'relative'
 }
 
-const ScoreDetailsModal = (props) => {
+const CourseDetailsModal = (props) => {
     if (!props.showModal) {
         return null;
     }
@@ -29,51 +29,43 @@ const ScoreDetailsModal = (props) => {
     let holePars;
     let holeYardages;
     let holeHandicaps;
-    let holeScores;
     let totalPar = 0;
     let totalYardage = 0;
-    let totalScore = 0;
 
-    holeNumbers = props.scoreDetails.map((hole, i) => {
+    holeNumbers = props.selectedCourseInfo.map((hole, i) => {
         return <th className="score-cell" scope="col" key={i}>
                 {hole.holenumber}
         </th>
     });
 
-    holePars = props.scoreDetails.map((hole, i) => {
+    holePars = props.selectedCourseInfo.map((hole, i) => {
         return <td className="score-cell" key={i}>
             {hole.par}
         </td>
     });
 
-    holeYardages = props.scoreDetails.map((hole, i) => {
+    holeYardages = props.selectedCourseInfo.map((hole, i) => {
         return <td className="score-cell" key={i}>
             {hole.yardage}
         </td>
     });
 
-    holeHandicaps = props.scoreDetails.map((hole, i) => {
+    holeHandicaps = props.selectedCourseInfo.map((hole, i) => {
         return <td className="score-cell" key={i}>
             {hole.handicap}
         </td>
     });
 
-    holeScores = props.scoreDetails.map((hole, i) => {
-        return <td className="score-cell" key={i}>
-                {hole.score}
-        </td>
-    });
 
-    props.scoreDetails.forEach((hole) => {
+    props.selectedCourseInfo.forEach((hole) => {
         totalPar = totalPar + hole.par;
         totalYardage = totalYardage + hole.yardage;
-        totalScore = totalScore +hole.score;
     });
 
     return <div style={backDropStyle}>
         <div style={modalStyle}>
             <h1>Score Details</h1>
-            <table id="scoreDetailsTable">
+            <table className="course-table">
                 <thead>
                     <tr>
                         <th scope="row">Hole</th>
@@ -88,11 +80,6 @@ const ScoreDetailsModal = (props) => {
                         <td>{totalPar}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Score</th>
-                        {holeScores}
-                        <td>{totalScore}</td>
-                    </tr>
-                    <tr>
                         <th scope="row">Yardage</th>
                         {holeYardages}
                         <td>{totalYardage}</td>
@@ -104,9 +91,9 @@ const ScoreDetailsModal = (props) => {
                     </tr>
                 </tbody>
             </table>
-            <button onClick={props.closeScoreModal}>Close</button>
+            <button onClick={props.closeCourseModal}>Close</button>
         </div>
     </div>
 }
 
-export default ScoreDetailsModal;
+export default CourseDetailsModal;
