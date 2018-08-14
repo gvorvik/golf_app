@@ -37,7 +37,8 @@ input[type=submit],
 #logInForm a,
 #registerForm a,
 #myScoresDiv a,
-#myCoursesDiv a
+#myCoursesDiv a,
+#new-score-div button
  {
     display: inline-block;
     padding: 10px 30px;
@@ -57,7 +58,8 @@ button:active,
 input[type=submit]:hover,
 input[type=submit]:active,
 #myScoresDiv a,
-#myCoursesDiv a  {
+#myCoursesDiv a,
+#new-score-div button  {
     background-color: #555;
     color: #fff;
 }

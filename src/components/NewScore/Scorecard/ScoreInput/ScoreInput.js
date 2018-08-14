@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SCORE_ACTIONS from '../../../../redux/actions/scoreActions';
-import '../../../../styles/styles.css';
 
 
 const mapStateToProps = (state) => ({
