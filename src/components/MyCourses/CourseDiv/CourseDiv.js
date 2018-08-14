@@ -6,7 +6,7 @@ const CourseDiv = (props) => {
             <h2>{props.course.name}</h2>
             <p>City: {props.course.city}</p>
             <p>{props.course.holes} holes</p>
-            <button onClick={() => props.getCourseInformation(props.course.id)} className="btn">Course Details</button>
+            <button onClick={() => props.getCourseInformation(props.course.id)} className="courseDetailsBtn">Course Details</button>
         </div>
     )
 }

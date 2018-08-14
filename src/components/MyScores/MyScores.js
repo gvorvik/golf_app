@@ -107,7 +107,7 @@ class MyScores extends Component {
                         showModal={this.state.scoreModal.open}
                         closeScoreModal={this.closeScoreModal}
                     />
-                    <a href="/newscore">Add New Score</a>
+                    <a className="addBtn" href="/newscore">Add New Score</a>
                 </div>
             )
         }
