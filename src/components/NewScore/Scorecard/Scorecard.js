@@ -47,8 +47,6 @@ const Scorecard = (props) => {
 
         props.holeInfo.forEach((hole) => {
             totalPar = totalPar += hole.par;
-        });
-        props.holeInfo.forEach((hole) => {
             totalYardage = totalYardage += hole.yardage;
         });
 

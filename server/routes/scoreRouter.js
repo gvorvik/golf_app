@@ -18,8 +18,9 @@ router.get('/coursescores/:selectedCourse', (req, res) => {
                     FROM "course"
                     JOIN "round" ON "round"."course_id"="course"."id"
                     WHERE "course"."name"=$1
+                    AND "round"."person_id" = $2
                     ORDER BY "date_played" DESC;`;
-    pool.query(queryText, [req.params.selectedCourse])
+    pool.query(queryText, [req.params.selectedCourse, req.user.id])
     .then(response => res.send(response.rows))
     .catch(err => res.sendStatus(500))
 });
