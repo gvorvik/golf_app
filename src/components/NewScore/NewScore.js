@@ -13,6 +13,7 @@ import SCORE_ACTIONS from '../../redux/actions/scoreActions';
 const mapStateToProps = state => ({
     user: state.user.userReducer,
     scoreReducer: state.score.scoreReducer,
+    holeInfo: state.score.holeInfo,
 });
 class NewScore extends Component {
     constructor(props) {
@@ -64,8 +65,14 @@ class NewScore extends Component {
 
     handleSubmit = () => {
         let totalScore = 0;
+        if(this.state.date === '') {
+            return alert('Please select a date');
+        }
+        if(Object.keys(this.props.scoreReducer).length !== this.props.holeInfo.length) {
+            return alert('You need a score for every hole');
+        }
         for (let score in this.props.scoreReducer) {
-            if (this.props.scoreReducer[score] <= 0) {
+            if (this.props.scoreReducer[score] <= 0 || this.props.scoreReducer[score] === null || this.props.scoreReducer[score] === undefined) {
                 return alert('You cannot have a score below 1 on a hole');
             }
             totalScore = totalScore + this.props.scoreReducer[score];
@@ -92,7 +99,7 @@ class NewScore extends Component {
                         setSelectedCourse={this.setSelectedCourse}
                         setDate={this.setDate}
                     />
-                    <Scorecard 
+                    <Scorecard
                         handleSubmit={this.handleSubmit}
                     />
                 </div>
