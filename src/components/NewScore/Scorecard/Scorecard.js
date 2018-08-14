@@ -59,7 +59,7 @@ const Scorecard = (props) => {
     return (
         <div>
             <h1>Scorecard</h1>
-            <table id="newScoreTable">
+            <table className="course-table">
                 <thead>
                     {holeNumbers}
                 </thead>

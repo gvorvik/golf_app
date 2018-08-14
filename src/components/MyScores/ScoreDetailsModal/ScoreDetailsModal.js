@@ -73,7 +73,7 @@ const ScoreDetailsModal = (props) => {
     return <div style={backDropStyle}>
         <div style={modalStyle}>
             <h1>Score Details</h1>
-            <table id="scoreDetailsTable">
+            <table className="course-table">
                 <thead>
                     <tr>
                         <th scope="row">Hole</th>

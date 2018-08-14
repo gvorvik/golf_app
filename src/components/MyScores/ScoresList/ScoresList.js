@@ -6,7 +6,7 @@ const ScoreList = (props) => {
         return <div className="scoreSearchDiv" key={score.id}>
             <h2>{score.date_played}</h2>
             <p>{score.total_score}</p>
-            <button onClick={() => props.getScoreDetails(score.id)}>Score Details</button>
+            <button onClick={() => props.getScoreDetails(score.id)} className="scoreDetailsBtn">Score Details</button>
         </div>
     });
 

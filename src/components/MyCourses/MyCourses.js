@@ -86,7 +86,7 @@ class MyCourses extends Component {
                     closeCourseModal={this.closeCourseModal}
                     showModal={this.state.courseModal.open}
                 />
-                <a href="/newcourse">Add New Course</a>
+                <a className="addBtn" href="/newcourse">Add New Course</a>
             </div>
             )
         }

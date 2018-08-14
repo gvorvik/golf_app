@@ -48,7 +48,9 @@ input[type=submit],
 #registerForm a,
 #myScoresDiv a,
 #myCoursesDiv a,
-#new-score-div button
+#new-score-div button,
+.courseDetailsBtn,
+.scoreDetailsBtn
  {
     display: inline-block;
     padding: 10px 30px;
@@ -74,10 +76,18 @@ input[type=submit]:active,
     color: #fff;
 }
 
+.courseDetailsBtn,
+.scoreDetailsBtn {
+    background-color: #fff;
+    color: #333;
+    margin-top: 120px;
+}
+
+.addBtn {
+    margin-top: 30px;
+}
 /*-------Tables-------*/
 
-#newScoreTable,
-#scoreDetailsTable,
 .course-table {
     table-layout: fixed;
     width: 90%;
@@ -85,23 +95,15 @@ input[type=submit]:active,
     border-collapse: collapse;
 }
 
-#newScoreTable thead th,
-#scoreDetailsTable thead th,
 .course-table thead th {
     width: 50px;
 }
 
-#newScoreTable thead th:nth-child(1),
-#scoreDetailsTable thead th:nth-child(1),
 .course-table thead th:nth-child(1)
  {
     width: 100px;
 }
 
-#newScoreTable th,
-#newScoreTable td,
-#scoreDetailsTable th,
-#scoreDetailsTable td,
 .course-table th,
 .course-table td {
     border: 1px solid #555;
@@ -251,7 +253,7 @@ input[type=submit]:active,
     text-align: center;
 }
 
-#newScoreTable input {
+.course-table input {
     width: 95%;
 }
 
@@ -268,7 +270,7 @@ input[type=submit]:active,
     height: 250px;
     width: 200px;
     display: inline-block;
-    background-color: #999;
+    background-color:  rgb(74, 199, 112);
     padding: 10px;
     margin: 0 10px;
     border-radius: 8px;
@@ -287,7 +289,7 @@ input[type=submit]:active,
     height: 250px;
     width: 200px;
     display: inline-block;
-    background-color: #999;
+    background-color: rgb(74, 199, 112);
     padding: 10px;
     margin: 0 10px;
     border-radius: 8px;
