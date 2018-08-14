@@ -69,7 +69,7 @@ class MyScores extends Component {
             url: `/api/score/scoredetails/${id}`
         })
         .then(response=>{
-            response.data.sort(this.compare);
+            // response.data.sort(this.compare);
             this.setState({
                 scoreDetails: response.data,
             });

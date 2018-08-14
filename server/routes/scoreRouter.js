@@ -17,7 +17,8 @@ router.get('/coursescores/:selectedCourse', (req, res) => {
     let queryText = `SELECT "round"."id", "round"."date_played", "round"."total_score", "course"."name", "course"."city", "course"."holes" 
                     FROM "course"
                     JOIN "round" ON "round"."course_id"="course"."id"
-                    WHERE "course"."name"=$1;`;
+                    WHERE "course"."name"=$1
+                    ORDER BY "date_played" DESC;`;
     pool.query(queryText, [req.params.selectedCourse])
     .then(response => res.send(response.rows))
     .catch(err => res.sendStatus(500))
@@ -27,7 +28,8 @@ router.get('/scoredetails/:id', (req, res) => {
     let queryText = `SELECT "scores"."score", "hole"."holenumber", "hole"."par", "hole"."yardage", "hole"."handicap"
                     FROM "scores"
                     JOIN "hole" ON "scores"."hole_id"="hole"."id"
-                    WHERE "round_id"=$1;`;
+                    WHERE "round_id"=$1
+                    ORDER BY "holenumber";`;
     pool.query(queryText, [req.params.id])
     .then(response => res.send(response.rows))
     .catch(err => res.send(err));

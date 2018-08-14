@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
     scoreReducer: state.score.scoreReducer,
 });
 
+
 const Scorecard = (props) => {
     let holeNumbers;
     let holePars;
@@ -18,25 +19,25 @@ const Scorecard = (props) => {
 
     if (props.holeInfo) {
         holeNumbers = props.holeInfo.map((hole, i) => {
-            return <td key={i}>
-                {hole.holenumber}
-            </td>
+            return <th className="score-cell" scope="col" key={i}>
+                    {hole.holenumber}
+            </th>
         });
 
         holePars = props.holeInfo.map((hole, i) => {
-            return <td key={i}>
+            return <td className="score-cell" key={i}>
                 {hole.par}
             </td>
         });
 
         holeYardages = props.holeInfo.map((hole, i) => {
-            return <td key={i}>
+            return <td className="score-cell" key={i}>
                 {hole.yardage}
             </td>
         });
 
         holeHandicaps = props.holeInfo.map((hole, i) => {
-            return <td key={i}>
+            return <td className="score-cell" key={i}>
                 {hole.handicap}
             </td>
         });
@@ -48,16 +49,16 @@ const Scorecard = (props) => {
             totalYardage = totalYardage += hole.yardage;
         });
 
-        holeNumbers = <tr><td>Hole</td>{holeNumbers}<td>Total</td></tr>;
-        holePars = <tr><td>Par</td>{holePars}<td>{totalPar}</td></tr>;
-        holeYardages = <tr><td>Yardage</td>{holeYardages}<td>{totalYardage}</td></tr>;
-        holeHandicaps = <tr><td>Handicap</td>{holeHandicaps}<td>X</td></tr>;
+        holeNumbers = <tr><th scope="row">Hole</th>{holeNumbers}<th scope="col">Total</th></tr>;
+        holePars = <tr><th scope="row">Par</th>{holePars}<td>{totalPar}</td></tr>;
+        holeYardages = <tr><th scope="row">Yardage</th>{holeYardages}<td>{totalYardage}</td></tr>;
+        holeHandicaps = <tr><th scope="row">Handicap</th>{holeHandicaps}<td>X</td></tr>;
     }
 
     return (
-        <div id="scorecardDiv">
+        <div>
             <h1>Scorecard</h1>
-            <table>
+            <table id="newScoreTable">
                 <thead>
                     {holeNumbers}
                 </thead>
