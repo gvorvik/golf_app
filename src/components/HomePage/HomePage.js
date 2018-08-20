@@ -17,12 +17,14 @@ class HomePage extends Component {
 
         this.state = {
             recentScores: [],
+            totalRounds: 0,
         }
     }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
         this.getRecentScores();
+        this.getDashboardInfo();
     }
 
     getRecentScores = () => {
@@ -32,6 +34,10 @@ class HomePage extends Component {
         })
         .then(response => this.setState({recentScores: response.data}))
         .catch(err=>console.log(err));
+    }
+
+    getDashboardInfo = () => {
+        console.log('get dashboard info ran')
     }
 
     render() {
