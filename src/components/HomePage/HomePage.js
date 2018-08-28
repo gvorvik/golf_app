@@ -37,7 +37,12 @@ class HomePage extends Component {
     }
 
     getDashboardInfo = () => {
-        console.log('get dashboard info ran')
+        axios({
+            method: 'GET',
+            url: '/api/score/dashboard'
+        })
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
     }
 
     render() {
