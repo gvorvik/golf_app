@@ -36,6 +36,10 @@ router.get('/scoredetails/:id', (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.get('/dashboard', (req, res) => {
+    res.send('Get Got Got');
+})
+
 router.post('/', (req, res) => {
     console.log(req.body);
     res.sendStatus(200);
