@@ -41,7 +41,7 @@ class HomePage extends Component {
             method: 'GET',
             url: '/api/score/dashboard'
         })
-        .then(response => console.log(response))
+        .then(response => this.setState({totalRounds: response.data.count}))
         .catch(err => console.log(err))
     }
 
@@ -54,7 +54,9 @@ class HomePage extends Component {
                 <RecentScores
                     recentScores={this.state.recentScores}
                 />
-                <DashboardInfo/>
+                <DashboardInfo
+                    totalRounds={this.state.totalRounds}
+                />
             </div>
             )
         }

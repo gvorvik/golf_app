@@ -37,8 +37,13 @@ router.get('/scoredetails/:id', (req, res) => {
 });
 
 router.get('/dashboard', (req, res) => {
-    res.send('Get Got Got');
-})
+    let queryText = `SELECT COUNT(*) FROM "round";`;
+    pool.query(queryText, [])
+    .then(response => {
+        res.send(response.rows[0]);
+    })
+    .catch(err => res.send(err));
+});
 
 router.post('/', (req, res) => {
     console.log(req.body);

@@ -8,7 +8,9 @@ const DashboardInfo = (props) => {
     <div id="dashboard-main">
         <h1>My Profile</h1>
         <div className="dashboard-info-div">
-            <RoundsPlayed />
+            <RoundsPlayed 
+                totalRounds={props.totalRounds}
+            />
             <TopCourses />
             <Test />
         </div>
