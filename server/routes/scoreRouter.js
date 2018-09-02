@@ -7,7 +7,7 @@ router.get('/recentscores', authenticate, (req, res) => {
                     FROM "round"
                     JOIN "course" ON "round"."course_id"="course"."id"
                     WHERE "round"."person_id" = $1
-                    ORDER BY "date_played" DESC LIMIT 10;`
+                    ORDER BY "date_played" DESC LIMIT 5;`
     pool.query(queryText, [req.user.id])
     .then(response => res.send(response.rows))
     .catch(err => res.sendStatus(500))
@@ -36,19 +36,27 @@ router.get('/scoredetails/:id', (req, res) => {
     .catch(err => res.send(err));
 });
 
-router.get('/dashboard', (req, res) => {
-    let queryText = `SELECT COUNT(*) FROM "round";`;
-    pool.query(queryText, [])
+router.get('/totalrounds', (req, res) => {
+    let queryText = `SELECT COUNT(*) FROM "round" WHERE "person_id" = $1;`;
+    pool.query(queryText, [req.user.id])
     .then(response => {
         res.send(response.rows[0]);
     })
     .catch(err => res.send(err));
 });
 
-router.post('/', (req, res) => {
-    console.log(req.body);
-    res.sendStatus(200);
-});
+router.get('/topcourses', (req, res) => {
+    let queryText = `SELECT "course"."name", COUNT(*)
+    FROM "round" JOIN "course" ON "round"."course_id"="course"."id"
+    WHERE "round"."person_id" = $1
+    GROUP BY "course"."name"
+    LIMIT 5`;
+    pool.query(queryText, [req.user.id])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => res.send(err));
+})
 
 router.post('/newround', authenticate, (req, res) => {
     let round = req.body;
@@ -67,7 +75,6 @@ router.post('/recordscore', authenticate, (req, res) => {
     let scores = req.body.scores;
     let queryText = `INSERT INTO "scores" ("score", "hole_id", "round_id")
                     VALUES ($1, $2, $3);`;
-    console.log(roundID);
     for(let i in scores) {
         pool.query(queryText, [scores[i], Number(i), roundID])
         .then(response=>console.log(response))

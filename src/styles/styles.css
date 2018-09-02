@@ -221,16 +221,9 @@ input[type=submit]:active,
 }
 
 .dashboard-info-div {
-    width: 100%;
-    height: 300px;
     margin-top: 35px;
 }
 
-.dashboard-info-div-child {
-    display: inline-block;
-    height: 100%;
-    width: 30%;
-}
 
 /* ------------------------------ */
 /* New Score Styling */

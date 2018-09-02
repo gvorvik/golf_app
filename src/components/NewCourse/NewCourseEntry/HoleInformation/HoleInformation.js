@@ -1,5 +1,6 @@
 import React from 'react';
-import HoleCard from './HoleCard/HoleCard'
+import HoleCard from './HoleCard/HoleCard';
+import NewCourseSummary from './../NewCourseSummary/NewCourseSummary';
 
 const HoleInformation = (props) => {
 
@@ -30,10 +31,13 @@ const HoleInformation = (props) => {
             case 9:
                 return holeList[8];
             default:
-                return <div>
-                    <button onClick={props.previousStep}>Previous</button>
-                    <button onClick={props.nextStep}>Next</button>
-                </div>;
+                return <NewCourseSummary 
+                courseName={props.courseName}
+                courseCity={props.courseCity}
+                numberOfHoles={props.numberOfHoles}
+                holeInformation={props.holeInformation}
+                submitCourse={props.submitCourse}
+            />;
         }
     } else {
         switch (props.holeStep) {
@@ -74,10 +78,13 @@ const HoleInformation = (props) => {
             case 18:
                 return holeList[17];
             default:
-                return <div>
-                    <button onClick={props.previousStep}>Previous</button>
-                    <button onClick={props.nextStep}>Next</button>
-                </div>;
+                return <NewCourseSummary 
+                courseName={props.courseName}
+                courseCity={props.courseCity}
+                numberOfHoles={props.numberOfHoles}
+                holeInformation={props.holeInformation}
+                submitCourse={props.submitCourse}
+            />;
         }
     }
 }
