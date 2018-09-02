@@ -18,13 +18,15 @@ class HomePage extends Component {
         this.state = {
             recentScores: [],
             totalRounds: 0,
+            topCourses: [],
         }
     }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
         this.getRecentScores();
-        this.getDashboardInfo();
+        this.getTotalRounds();
+        this.getTopCourses();
     }
 
     getRecentScores = () => {
@@ -36,13 +38,22 @@ class HomePage extends Component {
         .catch(err=>console.log(err));
     }
 
-    getDashboardInfo = () => {
+    getTotalRounds = () => {
         axios({
             method: 'GET',
-            url: '/api/score/dashboard'
+            url: '/api/score/totalrounds'
         })
         .then(response => this.setState({totalRounds: response.data.count}))
         .catch(err => console.log(err))
+    }
+
+    getTopCourses = () => {
+        axios({
+            method: 'GET',
+            url: '/api/score/topcourses'
+        })
+        .then(response => this.setState({topCourses: response.data}))
+        .catch(err => console.log(err));
     }
 
     render() {
@@ -56,6 +67,7 @@ class HomePage extends Component {
                 />
                 <DashboardInfo
                     totalRounds={this.state.totalRounds}
+                    topCourses={this.state.topCourses}
                 />
             </div>
             )

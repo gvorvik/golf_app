@@ -115,12 +115,8 @@ class NewCourseEntry extends Component {
                             nextHole={this.nextHole}
                             previousHole={this.previousHole}
                             numberOfHoles={Number(this.state.numberOfHoles)}
-                        />
-            case 3:
-                return <SummaryOfNewCourse 
                             courseName={this.state.courseName}
                             courseCity={this.state.courseCity}
-                            numberOfHoles={this.state.numberOfHoles}
                             holeInformation={this.state.holeInformation}
                             submitCourse={this.submitCourse}
                         />

@@ -17,7 +17,7 @@ const SummaryOfNewCourse = (props) => {
     }
 
     return <div>
-        <h1>Hello Summary</h1>
+        <h1>Summary</h1>
         <h2>Course Name: {props.courseName}</h2>
         <h2>Course City: {props.courseCity}</h2>
         <h2>Number of Holes: {props.numberOfHoles}</h2>
