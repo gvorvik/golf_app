@@ -70,7 +70,8 @@ class MyCourses extends Component {
     render() {
         let content = null;
         let courseDivs = this.state.myCourses.map(course => <CourseDiv 
-            key={course.id} course={course} 
+            key={course.id} 
+            course={course} 
             getCourseInformation={this.getCourseInformation}
         />);
 

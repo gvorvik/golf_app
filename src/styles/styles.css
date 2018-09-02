@@ -269,6 +269,10 @@ input[type=submit]:active,
     border-radius: 8px;
 }
 
+.course-table {
+    margin-bottom: 30px;
+}
+
 /* ------------------------------ */
 /* My Scores Styling */
 /* ------------------------------ */
