@@ -77,8 +77,8 @@ router.post('/recordscore', authenticate, (req, res) => {
                     VALUES ($1, $2, $3);`;
     for(let i in scores) {
         pool.query(queryText, [scores[i], Number(i), roundID])
-        .then(response=>console.log(response))
-        .catch(err=>console.log(err));
+        .then(response=>{})
+        .catch(err=>{});
     }
     res.sendStatus(200);
 })

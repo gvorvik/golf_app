@@ -50,8 +50,8 @@ router.post('/holes', authenticate, (req, res) => {
     for(let i in holes) {
         let hole = holes[i];
         pool.query(queryText, [hole.holeNumber, hole.par, hole.yardage, hole.handicap, id])
-        .then(response => console.log('yay'))
-        .catch(err => console.log(err));
+        .then(response => {})
+        .catch(err => {});
     }
     
     res.sendStatus(200);
