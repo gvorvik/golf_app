@@ -50,6 +50,8 @@ router.get('/topcourses', (req, res) => {
     FROM "round" JOIN "course" ON "round"."course_id"="course"."id"
     WHERE "round"."person_id" = $1
     GROUP BY "course"."name"
+    ORDER BY "count"
+    DESC
     LIMIT 5`;
     pool.query(queryText, [req.user.id])
     .then(response => {
