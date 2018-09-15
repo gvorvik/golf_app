@@ -5,14 +5,12 @@ const SummaryOfNewCourse = (props) => {
 
     for (let i in props.holeInformation) {
         let hole = props.holeInformation[i];
-        let listItem = <div key={hole.holeNumber}>
-            <h2>Hole {hole.holeNumber}</h2>
-            <ul>
-                <li>Par: {hole.par}</li>
-                <li>Yards: {hole.yardage}</li>
-                <li>Handicap: {hole.handicap}</li>
-            </ul>
-        </div>
+        let listItem = <tr key={hole.holeNumber}>
+            <th scope='row'>{hole.holeNumber}</th>
+            <td>{hole.par}</td>
+            <td>{hole.yardage}</td>
+            <td>{hole.handicap}</td>
+        </tr>
         holeInfo = [...holeInfo, listItem]
     }
 
@@ -22,7 +20,17 @@ const SummaryOfNewCourse = (props) => {
         <h2>Course City: {props.courseCity}</h2>
         <h2>Number of Holes: {props.numberOfHoles}</h2>
         <div>
-            {holeInfo}
+            <table className='course-table'>
+                <thead>
+                    <th scope='col'>Hole</th>
+                    <th scope='col'>Yardage</th>
+                    <th scope='col'>Par</th>
+                    <th scope='col'>Handicap</th>
+                </thead>
+                <tbody>
+                    {holeInfo}
+                </tbody>
+            </table>
         </div>
         <button onClick={props.submitCourse}>Submit Course</button>
     </div>

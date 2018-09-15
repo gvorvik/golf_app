@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
-import SummaryOfNewCourse from './NewCourseSummary/NewCourseSummary';
 import COURSE_ACTIONS from '../../../redux/actions/courseActions';
 
 
