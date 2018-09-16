@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import HoleHistory from './HoleHistory/HoleHistory';
 
 class Search extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+    state = {
 
-        }
-    };
+    }
 
     render() {
         return <div>

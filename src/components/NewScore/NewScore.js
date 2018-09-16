@@ -16,12 +16,10 @@ const mapStateToProps = state => ({
     holeInfo: state.score.holeInfo,
 });
 class NewScore extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedCourseId: '',
-            date: '',
-        }
+
+    state = {
+        selectedCourseId: '',
+        date: '',
     }
 
     componentDidMount() {

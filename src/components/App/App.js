@@ -13,6 +13,7 @@ import Register from '../Login/Register/Register';
 import NewScore from '../NewScore/NewScore';
 import NewCourse from '../NewCourse/NewCourseTemplate';
 import MyScores from '../MyScores/MyScores';
+import Search from '../Search/Search';
 
 
 const App = () => {
@@ -27,6 +28,10 @@ const App = () => {
         <Route
           path="/register"
           component={Register}
+        />
+        <Route
+          path="/search"
+          component={Search}
         />
         <Route
           path="/home"

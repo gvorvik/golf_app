@@ -10,13 +10,7 @@ const mapStateToProps = state => ({
 });
 
 class NewCourseTemplate extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-
-        }
-    }
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     }

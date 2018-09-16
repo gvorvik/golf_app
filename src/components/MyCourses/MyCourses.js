@@ -13,15 +13,12 @@ const mapStateToProps = state => ({
 });
 
 class MyCourses extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            myCourses: [],
-            selectedCourseInfo: [],
-            courseModal: {
-                open: false,
-            }
+    state = {
+        myCourses: [],
+        selectedCourseInfo: [],
+        courseModal: {
+            open: false,
         }
     }
 
