@@ -7,17 +7,14 @@ import COURSE_ACTIONS from '../../../redux/actions/courseActions';
 
 
 class NewCourseEntry extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            step: 1,
-            holeStep: 1,
-            courseName: '',
-            courseCity: '',
-            numberOfHoles: '',
-            holeInformation: {},
-        }
+    state = {
+        step: 1,
+        holeStep: 1,
+        courseName: '',
+        courseCity: '',
+        numberOfHoles: '',
+        holeInformation: {},
     }
 
     nextStep = (event) => {

@@ -12,14 +12,11 @@ const mapStateToProps = state => ({
 });
 
 class HomePage extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            recentScores: [],
-            totalRounds: 0,
-            topCourses: [],
-        }
+    state = {
+        recentScores: [],
+        totalRounds: 0,
+        topCourses: [],
     }
 
     componentDidMount() {
