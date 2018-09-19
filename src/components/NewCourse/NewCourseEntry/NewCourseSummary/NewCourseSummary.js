@@ -1,17 +1,21 @@
 import React from 'react';
 
 const SummaryOfNewCourse = (props) => {
-    let holeInfo = [];
+    let holeNumbers = [];
+    let holeYardage = [];
+    let holePars = [];
+    let holeHandicap = [];
+    let yardageTotal = 0
+    let parTotal = 0;
 
     for (let i in props.holeInformation) {
         let hole = props.holeInformation[i];
-        let listItem = <tr key={hole.holeNumber}>
-            <th scope='row'>{hole.holeNumber}</th>
-            <td>{hole.par}</td>
-            <td>{hole.yardage}</td>
-            <td>{hole.handicap}</td>
-        </tr>
-        holeInfo = [...holeInfo, listItem]
+        holeNumbers = [...holeNumbers, <th scope='col' key={hole.holeNumber}>{hole.holeNumber}</th>];
+        holeYardage = [...holeYardage, <td key={hole.holeNumber}>{hole.yardage}</td>];
+        holePars = [...holePars, <td key={hole.holeNumber}>{hole.par}</td>];
+        holeHandicap = [...holeHandicap, <td key={hole.holeNumber}>{hole.handicap}</td>];
+        yardageTotal += hole.yardage;
+        parTotal += hole.par;
     }
 
     return <div>
@@ -22,13 +26,28 @@ const SummaryOfNewCourse = (props) => {
         <div>
             <table className='course-table'>
                 <thead>
-                    <th scope='col'>Hole</th>
-                    <th scope='col'>Yardage</th>
-                    <th scope='col'>Par</th>
-                    <th scope='col'>Handicap</th>
+                    <tr>
+                        <th scope='col'> </th>
+                        {holeNumbers}
+                        <th>Total</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    {holeInfo}
+                    <tr>
+                        <th scope='row'>Yardage</th>
+                        {holeYardage}
+                        <td>{yardageTotal}</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>Par</th>
+                        {holePars}
+                        <td>{parTotal}</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>Handicap</th>
+                        {holeHandicap}
+                        <td>X</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

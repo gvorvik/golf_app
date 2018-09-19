@@ -24,7 +24,7 @@ class HoleCard extends Component {
             <input onChange={this.handleChange} value={this.state.par} name="par" type="text" placeholder="par"/>
             <input onChange={this.handleChange} value={this.state.yardage} name="yardage" type="text" placeholder="yardage"/>
             <input onChange={this.handleChange} value={this.state.handicap} name="handicap" type="text" placeholder="handicap"/>
-            <button onClick={() => this.props.addHoleToList(this.state)}>Set Hole Info</button>
+            <button onClick={() => this.props.addHoleToList(this.state)}>Next</button>
             <button onClick={this.props.previousHole}>Previous</button>
         </div>
     }
