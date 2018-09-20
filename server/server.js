@@ -11,6 +11,7 @@ const sessionMiddleware = require('./modules/session_middleware');
 const scoreRouter = require('./routes/scoreRouter');
 const courseRouter = require('./routes/courseRouter');
 const loginRouter = require('./routes/loginRouter');
+const searchRouter = require('./routes/searchRouter');
 
 
 app.use(bodyParser.json());
@@ -25,6 +26,7 @@ app.use(express.static('build'));
 app.use('/api/login', loginRouter);
 app.use('/api/score', scoreRouter);
 app.use('/api/course', courseRouter);
+app.use('/api/search', searchRouter);
 
 
 app.listen(PORT, () => {

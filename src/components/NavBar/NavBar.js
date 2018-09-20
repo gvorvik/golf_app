@@ -19,6 +19,7 @@ const NavBar = (props) => {
                 <h1>Hello {props.user.username}</h1>
                 <ul id="navbarList">
                     <li><a href='/home'>Dashboard</a></li>
+                    <li><a href='/search'>Search</a></li>
                     <li><a href='/scores'>My Scores</a></li>
                     <li><a href='/courses'>My Courses</a></li>
                     <li><a href='/login' onClick={logout}>Log Out</a></li>

@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class HoleHistory extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+const HoleHistory = (props) => {
+        let holeScores = null;
 
+        if(props.holeScores) {
+            holeScores = props.holeScores.map(hole => {
+                return <div key={hole.id}>
+                    <p>Score: {hole.score}</p>
+                    <p>Date Played: {hole.date_played}</p>
+                </div>
+            });
         }
-    };
 
-    render() {
         return <div>
-            <h1>Hole History</h1>
+            {holeScores}
         </div>
-    }
 }
 
 export default HoleHistory;
