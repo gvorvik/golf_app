@@ -23,6 +23,8 @@ require('./modules/passport')(passport, pool);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('build'));
+
+
 app.use('/graphql', expressGraphql({
     graphiql: true,
     schema
