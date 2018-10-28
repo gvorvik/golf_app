@@ -2,9 +2,11 @@ const express = require('express');
 require('dotenv').config();
 
 const app = express();
+const expressGraphql = require('express-graphql');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const pool = require('./modules/pool');
+const schema = require('./schema/schema');
 const PORT = process.env.PORT || 5000;
 
 const sessionMiddleware = require('./modules/session_middleware');
@@ -21,6 +23,10 @@ require('./modules/passport')(passport, pool);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('build'));
+app.use('/graphql', expressGraphql({
+    graphiql: true,
+    schema
+}));
 
 
 app.use('/api/login', loginRouter);
