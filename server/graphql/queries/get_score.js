@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const { GraphQLInt, GraphQLNonNull } = graphql;
-const ScoreType = require('./../types/score_type');
-const pool = require('./../../modules/pool');
+const ScoreType = require('../types/score_type');
+const pool = require('../../modules/pool');
 
 module.exports = {
     type: ScoreType,

@@ -3,13 +3,13 @@ const pool = require('../modules/pool');
 const { GraphQLObjectType, GraphQLID, GraphQLNonNull } = graphql;
 
 const UserType = require('./types/user_type');
-const course = require('./queries/course');
-const courses = require('./queries/courses');
-const hole = require('./queries/hole');
-const holes = require('./queries/hole');
-const round = require('./queries/round');
-const rounds = require('./queries/rounds');
-const score = require('./queries/score');
+const getCourse = require('./queries/get_course');
+const getCourses = require('./queries/get_courses');
+const getHole = require('./queries/get_hole');
+const getHoles = require('./queries/get_holes');
+const getRound = require('./queries/get_round');
+const getRounds = require('./queries/get_rounds');
+const getScore = require('./queries/get_score');
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -24,13 +24,13 @@ const RootQuery = new GraphQLObjectType({
                 .catch(err => err);              
             }
         },
-        course,
-        courses,
-        hole,
-        holes,
-        round,
-        rounds,
-        score
+        getCourse,
+        getCourses,
+        getHole,
+        getHoles,
+        getRound,
+        getRounds,
+        getScore
     })
 })
 

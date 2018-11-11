@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const { GraphQLInt, GraphQLNonNull, GraphQLList } = graphql;
-const HoleType = require('./../types/hole_type');
-const pool = require('./../../modules/pool');
+const HoleType = require('../types/hole_type');
+const pool = require('../../modules/pool');
 
 module.exports = {
     type: new GraphQLList(HoleType),

@@ -13,7 +13,7 @@ const HoleType = new GraphQLObjectType({
         yardage: { type: GraphQLInt },
         handicap: { type: GraphQLInt },
         par: { type: GraphQLInt },
-        // course_id: { type: GraphQLInt },
+        course_id: { type: GraphQLInt },
         course: {
             type: CourseType,
             resolve: async (parentValue, args) => {

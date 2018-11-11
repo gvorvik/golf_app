@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const { GraphQLInt, GraphQLNonNull, GraphQLList } = graphql;
-const RoundType = require('./../types/round_type');
-const pool = require('./../../modules/pool');
+const RoundType = require('../types/round_type');
+const pool = require('../../modules/pool');
 
 module.exports = {
     type: new GraphQLList(RoundType),

@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const { GraphQLID, GraphQLNonNull } = graphql;
-const CourseType = require('./../types/course_type');
-const pool = require('./../../modules/pool');
+const CourseType = require('../types/course_type');
+const pool = require('../../modules/pool');
 
 module.exports = {
     type: CourseType,
