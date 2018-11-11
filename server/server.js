@@ -6,7 +6,7 @@ const expressGraphql = require('express-graphql');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const pool = require('./modules/pool');
-const schema = require('./schema/schema');
+const schema = require('./graphql/schema');
 const PORT = process.env.PORT || 5000;
 
 const sessionMiddleware = require('./modules/session_middleware');

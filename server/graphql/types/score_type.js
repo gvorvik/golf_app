@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLInt, GraphQLID, GraphQ } = graphql;
+const { GraphQLObjectType, GraphQLInt, GraphQLID } = graphql;
 const pool = require('./../../modules/pool');
 
 const ScoreType = new GraphQLObjectType({
