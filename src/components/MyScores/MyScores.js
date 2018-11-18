@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import {graphql, withApollo} from 'react-apollo';
 
 import NavBar from '../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import ScoreList from './ScoresList/ScoresList';
 import ScoreSearchForm from './ScoreSearchForm/ScoreSearchForm';
 import ScoreDetailsModal from './ScoreDetailsModal/ScoreDetailsModal';
+import myScoresQuery from '../../queries/MyScoresQuery';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -25,16 +27,6 @@ class MyScores extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-        this.getCourses();
-    }
-
-    getCourses = () => {
-        axios({
-            method: 'GET',
-            url: '/api/course/courses'
-        })
-        .then( response => this.setState({courses: response.data}))
-        .catch( err => console.log(err));
     }
 
     handleChange = (event) => {
@@ -83,10 +75,11 @@ class MyScores extends Component {
         });
     }
 
-    
-
-
     render() {
+        if(this.props.data.loading) {
+            return <div></div>
+        }
+        console.log(this.props);
         let content = null;
         if(this.props.user.username) {
             content = (
@@ -94,7 +87,7 @@ class MyScores extends Component {
                     <ScoreSearchForm 
                         handleChange={this.handleChange}
                         submitSearch={this.submitSearch}
-                        courses={this.state.courses}
+                        courses={this.props.data.getCourses}
                     />
                     <ScoreList 
                         searchResults={this.state.searchResults}
@@ -119,4 +112,6 @@ class MyScores extends Component {
     }
 }
 
-export default connect(mapStateToProps)(MyScores);
+export default withApollo(graphql(myScoresQuery, {
+    options: () => { return { variables: {id: 1} } }
+})(connect(mapStateToProps)(MyScores)));
