@@ -25,7 +25,7 @@ app.use(express.static('build'));
 
 app.use('/graphql', authenticate, expressGraphql(req => ({
     graphiql: true,
-    schema,
+    schema
 })));
 
 

@@ -8,8 +8,10 @@ const getCourses = require('./queries/get_courses');
 const getHole = require('./queries/get_hole');
 const getHoles = require('./queries/get_holes');
 const getRound = require('./queries/get_round');
-const getRounds = require('./queries/get_rounds');
+const getAllRounds = require('./queries/get_all_rounds');
+const getRoundsByCourse = require('./queries/get_rounds_by_course');
 const getScore = require('./queries/get_score');
+const getSumRoundsPerCourse = require('./queries/get_sum_rounds_per_course')
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -28,9 +30,11 @@ const RootQuery = new GraphQLObjectType({
         getCourses,
         getHole,
         getHoles,
+        getAllRounds,
         getRound,
-        getRounds,
-        getScore
+        getRoundsByCourse,
+        getScore,
+        getSumRoundsPerCourse
     })
 })
 

@@ -3,7 +3,7 @@ import React from 'react';
 const TopCourses = (props) => {
     let topCourses = props.topCourses.map((course, i) => {
         return <div key={i} className="topCourseDiv">
-            <h4>{course.name}</h4>
+            <h4>{course.course_name}</h4>
             <p>{course.count} rounds played</p>
         </div>
     });
