@@ -25,16 +25,16 @@ class MyCourses extends Component {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     }
 
-    getCourseInformation = async (id) => {
-        // this.props.client.query({
-        //     query: getHoles,
-        //     variables: {course_id: Number(id)}
-        // })
-        // .then( response => {
-        //     this.setState({selectedCourseInfo: response.data.getHoles});
-        //     this.openCourseModal();
-        // })
-        // .catch(e => console.log(e));
+    getCourseInformation = (id) => {
+        this.props.client.query({
+            query: myCoursesQuery,
+            variables: {course_id: Number(id)}
+        })
+        .then( response => {
+            this.setState({selectedCourseInfo: response.data.getHoles});
+            this.openCourseModal();
+        })
+        .catch(e => console.log(e));
     }
 
     openCourseModal = () => {

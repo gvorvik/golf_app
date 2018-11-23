@@ -11,7 +11,8 @@ const getRound = require('./queries/get_round');
 const getAllRounds = require('./queries/get_all_rounds');
 const getRoundsByCourse = require('./queries/get_rounds_by_course');
 const getScore = require('./queries/get_score');
-const getSumRoundsPerCourse = require('./queries/get_sum_rounds_per_course')
+const getSumRoundsPerCourse = require('./queries/get_sum_rounds_per_course');
+const getRoundScores = require('./queries/get_round_scores');
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -34,7 +35,8 @@ const RootQuery = new GraphQLObjectType({
         getRound,
         getRoundsByCourse,
         getScore,
-        getSumRoundsPerCourse
+        getSumRoundsPerCourse,
+        getRoundScores
     })
 })
 

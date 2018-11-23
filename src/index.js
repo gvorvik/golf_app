@@ -20,8 +20,7 @@ const store = createStore(
 );
 
 const client = new ApolloClient({
-    dataIdFromObject: o => o.id,
-    uri: "/graphql"
+    uri: "/graphql",
 });
 
 sagaMiddleware.run(rootSaga);

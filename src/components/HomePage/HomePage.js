@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import {graphql} from 'react-apollo';
 
 import NavBar from './../NavBar/NavBar';
@@ -20,7 +19,7 @@ class HomePage extends Component {
     }
 
     render() {
-        
+        console.log(this.props)
         let content = null;
 
         if(this.props.data.loading) {
