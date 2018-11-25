@@ -8,13 +8,12 @@ module.exports = {
     args: {
       name: { type: new GraphQLNonNull(GraphQLString) },
       city: {type: new GraphQLNonNull(GraphQLString)},
-      holes: {type: new GraphQLNonNull(GraphQLInt)},
-      person_id: {type: new GraphQLNonNull(GraphQLInt)},
+      holes: {type: new GraphQLNonNull(GraphQLInt)}
     },
-    resolve(parentValue, { name, city, holes, person_id }) {
+    resolve(parentValue, { name, city, holes, person_id }, context) {
         let queryText = `INSERT INTO "course" ("name", "city", "holes", "person_id")
                         VALUES ($1, $2, $3, $4)`
-        pool.query(queryText, [name, city, holes, person_id])
+        pool.query(queryText, [name, city, holes, context.user.id])
         .then(response => {
             console.log(response);
         })
