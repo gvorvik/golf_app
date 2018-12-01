@@ -1,4 +1,4 @@
-import gql from 'graphql';
+import gql from 'graphql-tag';
 
 export default gql`
 mutation AddRound($date_played: String, $total_score: Int, $person_id: Int, $course_id: Int){

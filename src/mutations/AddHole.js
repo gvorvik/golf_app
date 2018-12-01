@@ -1,4 +1,4 @@
-import gql from 'graphql';
+import gql from 'graphql-tag';
 
 export default gql`
 mutation AddHole($holenumber: Int, $yardage: Int, $handicap: Int, $par: Int){

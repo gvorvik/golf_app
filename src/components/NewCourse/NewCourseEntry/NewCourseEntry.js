@@ -100,6 +100,9 @@ class NewCourseEntry extends Component {
                             nextStep={this.nextStep}
                             handleChange={this.handleChange}
                             parentState={this.state}
+                            courseName={this.state.courseName}
+                            courseCity={this.state.courseCity}
+                            courseHoles={this.state.numberOfHoles}
                         />
             case 2:
                 return <HoleInformation 

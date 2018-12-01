@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql;
+const { GraphQLObjectType } = graphql;
 
 const addRound = require('./mutations/add_round');
 const addCourse = require('./mutations/add_course');
