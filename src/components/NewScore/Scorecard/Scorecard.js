@@ -22,7 +22,7 @@ const Scorecard = (props) => (
             let {getHoles} = data;
 
             if (getHoles) {
-                holeButton = <button onClick={props.handleSubmit}>Submit Score</button>;
+                holeButton = <button onClick={() => props.handleSubmit(getHoles.length)}>Submit Score</button>;
 
                 holeNumbers = getHoles.map((hole, i) => {
                     return <th className="score-cell" scope="col" key={i}>
@@ -72,6 +72,8 @@ const Scorecard = (props) => (
                             {holeHandicaps}
                             <ScoreInput 
                                 getHoles={getHoles}
+                                handleScoreChange={props.handleScoreChange}
+                                scores={props.scores}
                             />
                         </tbody>
                     </table>

@@ -2,17 +2,6 @@ const router = require('express').Router();
 const pool = require('./../modules/pool');
 const {authenticate} = require('./../modules/rejectUnauthenticated');
 
-router.get('/recentscores', authenticate, (req, res) => {
-    let queryText = `SELECT "round"."date_played", "round"."total_score", "course"."name"
-                    FROM "round"
-                    JOIN "course" ON "round"."course_id"="course"."id"
-                    WHERE "round"."person_id" = $1
-                    ORDER BY "date_played" DESC LIMIT 5;`
-    pool.query(queryText, [req.user.id])
-    .then(response => res.send(response.rows))
-    .catch(err => res.sendStatus(500))
-});
-
 router.post('/newround', authenticate, (req, res) => {
     let round = req.body;
     let queryText = `INSERT INTO "round" ("date_played", "total_score", "course_id", "person_id")

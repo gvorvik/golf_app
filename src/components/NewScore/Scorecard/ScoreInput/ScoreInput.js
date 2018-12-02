@@ -1,32 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ScoreInput extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
+const ScoreInput = (props) => {
+    if (!props.getHoles) {return null;}
 
-    handleChange = (event) => {
-        console.log('yooo');
-    }
+    let totalScore = Object.keys(props.scores).reduce((a, b) => {
+        return a + Number(props.scores[b]);
+    }, 0);
 
-    render() {
-        console.log(this.props);
-        let totalScore = 0;
-        let holeScores;
+    let holeScores;
 
-        if (this.props.getHoles) {
-            holeScores = this.props.getHoles.map((hole, i) => {
-                return <td className="score-cell" key={i}>
-                    <input onChange={this.handleChange} name={hole.id} type="number" />
-                </td>
-            })
-            holeScores = <tr><th scope="row">Score</th>{holeScores}<td>{totalScore}</td></tr>
-            return holeScores;
-        }
-        
-        return null;
-    }
+    holeScores = props.getHoles.map((hole, i) => {
+        return <td className="score-cell" key={i}>
+            <input onChange={props.handleScoreChange} name={hole.id} type="number" />
+        </td>
+    });
+
+    holeScores = <tr><th scope="row">Score</th>{holeScores}<td>{totalScore}</td></tr>
+
+    return holeScores;
 }
 
 export default ScoreInput;

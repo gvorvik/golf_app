@@ -6,25 +6,20 @@ import NavBar from '../NavBar/NavBar';
 import Scorecard from './Scorecard/Scorecard';
 import NewScoreForm from './NewScoreForm/NewScoreForm';
 import USER_ACTIONS from '../../redux/actions/userActions';
-import COURSE_ACTIONS from '../../redux/actions/courseActions';
-import SCORE_ACTIONS from '../../redux/actions/scoreActions';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
-    scoreReducer: state.score.scoreReducer,
-    holeInfo: state.score.holeInfo,
 });
 class NewScore extends Component {
 
     state = {
         selectedCourseId: '',
         date: '',
+        scores: {}
     }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-        this.props.dispatch({ type: SCORE_ACTIONS.CLEAR_SCORES });
-        this.props.dispatch({ type: COURSE_ACTIONS.CLEAR_COURSE_INFO })
     }
 
     setSelectedCourse = (event) => {
@@ -40,41 +35,38 @@ class NewScore extends Component {
         })
     }
 
-    handleSubmit = () => {
+    handleScoreChange = (event) => {
+        this.setState({
+            scores: {...this.state.scores, [event.target.name]: Number(event.target.value)}
+        })
+    }
+
+    handleSubmit = (number) => {
         let totalScore = 0;
 
         if (this.state.date === '') {
             return alert('Please select a date');
         }
 
-        if (Object.keys(this.props.scoreReducer).length !== this.props.holeInfo.length) {
+        if (Object.keys(this.state.scores).length !== number) {
             return alert('You need a score for every hole');
         }
 
-        for (let score in this.props.scoreReducer) {
-            if (this.props.scoreReducer[score] <= 0 || this.props.scoreReducer[score] === null || this.props.scoreReducer[score] === undefined) {
+        for (let score in this.state.scores) {
+            console.log(this.state.scores[score])
+            if (this.state.scores[score] <= 0 || this.state.scores[score] === null || this.state.scores[score] === undefined) {
                 return alert('You cannot have a score below 1 on a hole');
             }
-            totalScore = totalScore + this.props.scoreReducer[score];
+            totalScore = totalScore + this.state.scores[score];
+            console.log(totalScore);
         }
 
-        let objectToSend = {
-            scores: this.props.scoreReducer,
-            courseID: this.state.selectedCourseId,
-            date: this.state.date,
-            totalScore,
-        }
-
-        this.props.dispatch({
-            type: SCORE_ACTIONS.SUBMIT_SCORE,
-            payload: objectToSend,
-        });
-
-        this.props.history.push('/home');
+        // this.props.history.push('/home');
     }
 
     render() {
         let content = null;
+
         if (this.props.user.username) {
             content = (
                 <div id="new-score-div">
@@ -86,6 +78,8 @@ class NewScore extends Component {
                     <Scorecard
                         handleSubmit={this.handleSubmit}
                         selectedCourseId={this.state.selectedCourseId}
+                        scores={this.state.scores}
+                        handleScoreChange={this.handleScoreChange}
                     />
                 </div>
             )
