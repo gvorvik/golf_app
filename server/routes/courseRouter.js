@@ -17,29 +17,4 @@ router.get('/:courseName', authenticate, (req, res) => {
     .catch(err => res.sendStatus(500));
 });
 
-router.post('/', authenticate, (req, res) => {
-    const newCourse = req.body;
-    let queryText = `INSERT INTO "course" ("name", "city", "holes", "person_id")
-                    VALUES ($1, $2, $3, $4)`
-    pool.query(queryText, [newCourse.name, newCourse.city, newCourse.numberOfHoles, req.user.id])
-    .then(response => res.sendStatus(200))
-    .catch(err => res.sendStatus(500));
-});
-
-router.post('/holes', authenticate, (req, res) => {
-    let holes = req.body.holeInformation;
-    let id = req.body.id;
-    let queryText = `INSERT INTO "hole" ("holenumber", "par", "yardage", "handicap", "course_id")
-                        VALUES ($1, $2, $3, $4, $5)`;
-    
-    for(let i in holes) {
-        let hole = holes[i];
-        pool.query(queryText, [hole.holeNumber, hole.par, hole.yardage, hole.handicap, id])
-        .then(response => {})
-        .catch(err => {});
-    }
-    
-    res.sendStatus(200);
-})
-
 module.exports = router;

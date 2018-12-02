@@ -63,7 +63,7 @@ const SummaryOfNewCourse = (props) => {
                     </div>
                     <button onClick={() => {
                         addCourse({variables: {name: props.courseName, city: props.courseCity, holes: Number(props.numberOfHoles), holeInformation: holesArray}})
-                        console.log('on submit ran')
+                        props.submitCourse();
                     }}>Submit Course</button>
                 </div>
             )}

@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
@@ -24,31 +23,11 @@ class NewScore extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-        this.props.dispatch({type: SCORE_ACTIONS.CLEAR_SCORES});
-        this.props.dispatch({type: COURSE_ACTIONS.CLEAR_COURSE_INFO})
-        this.getCourses();
-    }
-
-    getCourses = () => {
-        axios({
-            method: 'GET',
-            url: '/api/course/courses'
-        })
-        .then(response=>{
-            let courses = response.data;
-            this.props.dispatch({
-                type: COURSE_ACTIONS.ADD_MY_COURSES,
-                payload: courses,
-            });
-        })
-        .catch(err=>console.log(err))
+        this.props.dispatch({ type: SCORE_ACTIONS.CLEAR_SCORES });
+        this.props.dispatch({ type: COURSE_ACTIONS.CLEAR_COURSE_INFO })
     }
 
     setSelectedCourse = (event) => {
-        this.props.dispatch({
-            type: COURSE_ACTIONS.GET_HOLE_INFO,
-            payload: event.target.value
-        });
         this.setState({
             selectedCourseId: Number(event.target.value)
         })
@@ -64,11 +43,11 @@ class NewScore extends Component {
     handleSubmit = () => {
         let totalScore = 0;
 
-        if(this.state.date === '') {
+        if (this.state.date === '') {
             return alert('Please select a date');
         }
 
-        if(Object.keys(this.props.scoreReducer).length !== this.props.holeInfo.length) {
+        if (Object.keys(this.props.scoreReducer).length !== this.props.holeInfo.length) {
             return alert('You need a score for every hole');
         }
 
@@ -85,7 +64,7 @@ class NewScore extends Component {
             date: this.state.date,
             totalScore,
         }
-        
+
         this.props.dispatch({
             type: SCORE_ACTIONS.SUBMIT_SCORE,
             payload: objectToSend,
@@ -96,15 +75,17 @@ class NewScore extends Component {
 
     render() {
         let content = null;
-        if(this.props.user.username) {
+        if (this.props.user.username) {
             content = (
                 <div id="new-score-div">
                     <NewScoreForm
-                        setSelectedCourse={this.setSelectedCourse}
                         setDate={this.setDate}
+                        id={this.state.selectedCourseId}
+                        setSelectedCourse={this.setSelectedCourse}
                     />
                     <Scorecard
                         handleSubmit={this.handleSubmit}
+                        selectedCourseId={this.state.selectedCourseId}
                     />
                 </div>
             )
@@ -112,7 +93,7 @@ class NewScore extends Component {
 
         return (
             <div>
-                <NavBar/>
+                <NavBar />
                 {content}
             </div>
         )

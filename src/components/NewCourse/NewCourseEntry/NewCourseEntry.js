@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import NewCourseInformation from './NewCourseInformation/NewCourseInformation';
 import HoleInformation from './HoleInformation/HoleInformation';
-import COURSE_ACTIONS from '../../../redux/actions/courseActions';
 
 
 class NewCourseEntry extends Component {
@@ -71,17 +70,6 @@ class NewCourseEntry extends Component {
     }
 
     submitCourse = () => {
-        let action = {
-            type: COURSE_ACTIONS.ADD_COURSE,
-            payload: {
-                name: this.state.courseName,
-                city: this.state.courseCity,
-                numberOfHoles: this.state.numberOfHoles,
-                holeInformation: this.state.holeInformation
-            },
-        };
-        this.props.dispatch(action);
-
         this.setState({
             step: 1,
             holeStep: 1,

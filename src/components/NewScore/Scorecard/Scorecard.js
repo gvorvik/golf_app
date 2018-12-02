@@ -1,78 +1,85 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
+import CourseInfo from './../../../queries/CourseInfo';
 import ScoreInput from './ScoreInput/ScoreInput';
 
 
-const mapStateToProps = state => ({
-    holeInfo: state.score.holeInfo,
-    scoreReducer: state.score.scoreReducer,
-});
+const Scorecard = (props) => (
+    <Query
+        query={CourseInfo}
+        variables={{course_id: props.selectedCourseId}}
+        skip={!props.selectedCourseId}
+    >
+        {({ data = {}, loading }) => {
+            if (loading) { return null }
+            let holeNumbers;
+            let holePars;
+            let holeYardages;
+            let holeHandicaps;
+            let holeButton;
+            let totalPar = 0;
+            let totalYardage = 0;
+            let {getHoles} = data;
 
+            if (getHoles) {
+                holeButton = <button onClick={props.handleSubmit}>Submit Score</button>;
 
-const Scorecard = (props) => {
-    let holeNumbers;
-    let holePars;
-    let holeYardages;
-    let holeHandicaps;
-    let holeButton;
-    let totalPar = 0;
-    let totalYardage = 0;
+                holeNumbers = getHoles.map((hole, i) => {
+                    return <th className="score-cell" scope="col" key={i}>
+                        {hole.holenumber}
+                    </th>
+                });
 
-    if (props.holeInfo) {
-        holeButton=<button onClick={props.handleSubmit}>Submit Score</button>;
+                holePars = getHoles.map((hole, i) => {
+                    return <td className="score-cell" key={i}>
+                        {hole.par}
+                    </td>
+                });
 
-        holeNumbers = props.holeInfo.map((hole, i) => {
-            return <th className="score-cell" scope="col" key={i}>
-                    {hole.holenumber}
-            </th>
-        });
+                holeYardages = getHoles.map((hole, i) => {
+                    return <td className="score-cell" key={i}>
+                        {hole.yardage}
+                    </td>
+                });
 
-        holePars = props.holeInfo.map((hole, i) => {
-            return <td className="score-cell" key={i}>
-                {hole.par}
-            </td>
-        });
+                holeHandicaps = getHoles.map((hole, i) => {
+                    return <td className="score-cell" key={i}>
+                        {hole.handicap}
+                    </td>
+                });
 
-        holeYardages = props.holeInfo.map((hole, i) => {
-            return <td className="score-cell" key={i}>
-                {hole.yardage}
-            </td>
-        });
+                getHoles.forEach((hole) => {
+                    totalPar = totalPar += hole.par;
+                    totalYardage = totalYardage += hole.yardage;
+                });
 
-        holeHandicaps = props.holeInfo.map((hole, i) => {
-            return <td className="score-cell" key={i}>
-                {hole.handicap}
-            </td>
-        });
+                holeNumbers = <tr><th scope="row">Hole</th>{holeNumbers}<th scope="col">Total</th></tr>;
+                holePars = <tr><th scope="row">Par</th>{holePars}<td>{totalPar}</td></tr>;
+                holeYardages = <tr><th scope="row">Yardage</th>{holeYardages}<td>{totalYardage}</td></tr>;
+                holeHandicaps = <tr><th scope="row">Handicap</th>{holeHandicaps}<td>X</td></tr>;
+            }
 
-        props.holeInfo.forEach((hole) => {
-            totalPar = totalPar += hole.par;
-            totalYardage = totalYardage += hole.yardage;
-        });
+            return (
+                <div>
+                    <h1>Scorecard</h1>
+                    <table className="course-table">
+                        <thead>
+                            {holeNumbers}
+                        </thead>
+                        <tbody>
+                            {holePars}
+                            {holeYardages}
+                            {holeHandicaps}
+                            <ScoreInput 
+                                getHoles={getHoles}
+                            />
+                        </tbody>
+                    </table>
+                    {holeButton}
+                </div>
+            )
+        }}
+    </Query>
+)
 
-        holeNumbers = <tr><th scope="row">Hole</th>{holeNumbers}<th scope="col">Total</th></tr>;
-        holePars = <tr><th scope="row">Par</th>{holePars}<td>{totalPar}</td></tr>;
-        holeYardages = <tr><th scope="row">Yardage</th>{holeYardages}<td>{totalYardage}</td></tr>;
-        holeHandicaps = <tr><th scope="row">Handicap</th>{holeHandicaps}<td>X</td></tr>;
-    }
-
-    return (
-        <div>
-            <h1>Scorecard</h1>
-            <table className="course-table">
-                <thead>
-                    {holeNumbers}
-                </thead>
-                <tbody>
-                    {holePars}
-                    {holeYardages}
-                    {holeHandicaps}
-                    <ScoreInput />
-                </tbody>
-            </table>
-            {holeButton}
-        </div>
-    )
-}
-
-export default connect(mapStateToProps)(Scorecard);
+export default Scorecard;

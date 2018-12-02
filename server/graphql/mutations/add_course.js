@@ -19,16 +19,13 @@ module.exports = {
         VALUES ($1, $2, $3, $4, $5)`;
         pool.query(courseQueryText, [name, city, holes, context.user.id])
         .then(response => {
-            console.log(holeInformation);
             let courseId=response.rows[0].id;
             holeInformation.forEach(hole => {
-                console.log(hole);
                 let {holeNumber, par, handicap, yardage} = hole
                 pool.query(holeQueryText, [holeNumber, par, handicap, yardage, courseId])
                 .then(response => console.log(response))
                 .catch(err => err)
             })
-            console.log('made it through foreach')
         })
         .catch(err => err);
     }
