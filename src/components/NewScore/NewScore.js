@@ -24,6 +24,7 @@ class NewScore extends Component {
 
     setSelectedCourse = (event) => {
         this.setState({
+            scores: {},
             selectedCourseId: Number(event.target.value)
         })
     }
@@ -41,31 +42,9 @@ class NewScore extends Component {
         })
     }
 
-    handleSubmit = (number) => {
-        let totalScore = 0;
-
-        if (this.state.date === '') {
-            return alert('Please select a date');
-        }
-
-        if (Object.keys(this.state.scores).length !== number) {
-            return alert('You need a score for every hole');
-        }
-
-        for (let score in this.state.scores) {
-            console.log(this.state.scores[score])
-            if (this.state.scores[score] <= 0 || this.state.scores[score] === null || this.state.scores[score] === undefined) {
-                return alert('You cannot have a score below 1 on a hole');
-            }
-            totalScore = totalScore + this.state.scores[score];
-            console.log(totalScore);
-        }
-
-        // this.props.history.push('/home');
-    }
-
     render() {
         let content = null;
+
 
         if (this.props.user.username) {
             content = (
@@ -78,9 +57,12 @@ class NewScore extends Component {
                     <Scorecard
                         handleSubmit={this.handleSubmit}
                         selectedCourseId={this.state.selectedCourseId}
-                        scores={this.state.scores}
                         handleScoreChange={this.handleScoreChange}
+                        date={this.state.date}
+                        scores={this.state.scores}
+                        history={this.props.history}
                     />
+
                 </div>
             )
         }

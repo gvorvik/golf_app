@@ -2,12 +2,13 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import CourseInfo from './../../../queries/CourseInfo';
 import ScoreInput from './ScoreInput/ScoreInput';
+import SubmitScoreBtn from './SubmitScoreBtn/SubmitScoreBtn';
 
 
 const Scorecard = (props) => (
     <Query
         query={CourseInfo}
-        variables={{course_id: props.selectedCourseId}}
+        variables={{ course_id: props.selectedCourseId }}
         skip={!props.selectedCourseId}
     >
         {({ data = {}, loading }) => {
@@ -16,13 +17,11 @@ const Scorecard = (props) => (
             let holePars;
             let holeYardages;
             let holeHandicaps;
-            let holeButton;
             let totalPar = 0;
             let totalYardage = 0;
-            let {getHoles} = data;
+            let { getHoles } = data;
 
             if (getHoles) {
-                holeButton = <button onClick={() => props.handleSubmit(getHoles.length)}>Submit Score</button>;
 
                 holeNumbers = getHoles.map((hole, i) => {
                     return <th className="score-cell" scope="col" key={i}>
@@ -70,14 +69,21 @@ const Scorecard = (props) => (
                             {holePars}
                             {holeYardages}
                             {holeHandicaps}
-                            <ScoreInput 
+                            <ScoreInput
                                 getHoles={getHoles}
                                 handleScoreChange={props.handleScoreChange}
                                 scores={props.scores}
                             />
                         </tbody>
                     </table>
-                    {holeButton}
+                    <SubmitScoreBtn 
+                        getHoles={getHoles} 
+                        handleSubmit={props.handleSubmit} 
+                        selectedCourseId={props.selectedCourseId}
+                        date={props.date}
+                        scores={props.scores}
+                        history={props.history}
+                    />
                 </div>
             )
         }}
