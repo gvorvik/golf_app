@@ -12,15 +12,22 @@ module.exports = {
       course_id: {type: new GraphQLNonNull(GraphQLInt)},
       scores: {type: new GraphQLList(ScoreInputType)}
     },
-    resolve(parentValue, args, context) {
-        console.log(args);
-        // let queryText = `INSERT INTO "round" ("date_played", "total_score", "course_id", "person_id")
-        // VALUES ($1, $2, $3, $4)
-        // RETURNING "id";`;
-        // pool.query(queryText, [date_played, total_score, course_id, context.user.id])
-        // .then(response => {
-        //     console.log(response);
-        // })
-        // .catch(err => {});
+    resolve(parentValue, {date_played, total_score, course_id, scores}, context) {
+        let roundQueryText = `INSERT INTO "round" ("date_played", "total_score", "course_id", "person_id")
+        VALUES ($1, $2, $3, $4)
+        RETURNING "id";`;
+        let scoreQueryText = `INSERT INTO "scores" ("score", "hole_id", "round_id")
+        VALUES ($1, $2, $3)`;
+        pool.query(roundQueryText, [date_played, total_score, course_id, context.user.id])
+        .then(response => {
+            let round_id=response.rows[0].id;
+            scores.forEach(scoreObject => {
+                let {score, hole_id} = scoreObject
+                pool.query(scoreQueryText, [score, hole_id, round_id])
+                .then(response => console.log(response))
+                .catch(err => err)
+            })
+        })
+        .catch(err => {});
     }
 }
