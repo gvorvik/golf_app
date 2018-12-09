@@ -9,7 +9,7 @@ module.exports = {
     resolve: async (parentValue, {course_id}) => {
         let queryText = `SELECT * FROM "hole" WHERE "course_id" = $1 ORDER BY "holenumber"`;
         return await pool.query(queryText, [course_id])
-        .then(result=>result.rows)
-        .catch(err=>err)
+        .then(result => result.rows)
+        .catch(err => err)
     }
 }

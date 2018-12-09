@@ -19,7 +19,6 @@ class HomePage extends Component {
     }
 
     render() {
-        console.log(this.props)
         let content = null;
 
         if(this.props.data.loading) {

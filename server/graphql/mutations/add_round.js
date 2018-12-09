@@ -24,7 +24,7 @@ module.exports = {
             scores.forEach(scoreObject => {
                 let {score, hole_id} = scoreObject
                 pool.query(scoreQueryText, [score, hole_id, round_id])
-                .then(response => console.log(response))
+                .then(response => response)
                 .catch(err => err)
             })
         })

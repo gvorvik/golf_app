@@ -34,7 +34,7 @@ class MyCourses extends Component {
             this.setState({selectedCourseInfo: response.data.getHoles});
             this.openCourseModal();
         })
-        .catch(e => console.log(e));
+        .catch(err => err);
     }
 
     openCourseModal = () => {

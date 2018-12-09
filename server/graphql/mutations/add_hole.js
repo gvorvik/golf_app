@@ -17,7 +17,7 @@ module.exports = {
                             VALUES ($1, $2, $3, $4, $5)`;
 
         pool.query(queryText, [hole_number, par, yardage, handicap, course_id])
-        .then(response => {})
-        .catch(err => {});
+        .then(response => response)
+        .catch(err => err);
     }
 }

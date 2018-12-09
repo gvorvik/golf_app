@@ -18,7 +18,6 @@ const SubmitScore = (props) => (
                     }
                     ];
             }, []);
-            console.log(scoresArray);
 
             let handleSubmit = (number) => {
                 let totalScore = 0;
@@ -44,7 +43,6 @@ const SubmitScore = (props) => (
                 });
                 props.history.push('/home');
             }
-            console.log(props);
 
             return props.getHoles 
                 ? 

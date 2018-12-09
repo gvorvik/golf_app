@@ -40,7 +40,6 @@ const ScoreDetailsModal = (props) => (
                     return 0;
                 });
             }
-            console.log(data);
 
             let holeNumbers;
             let holePars;

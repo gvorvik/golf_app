@@ -13,7 +13,7 @@ module.exports = {
       let queryText = `INSERT INTO "scores" ("score", "hole_id", "round_id")
       VALUES ($1, $2, $3);`;
       pool.query(queryText, [score, hole_id, round_id])
-      .then(response=>{})
-      .catch(err=>{});
+      .then(response => response)
+      .catch(err => err);
     }
 }

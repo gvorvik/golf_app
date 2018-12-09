@@ -9,7 +9,7 @@ module.exports = {
     resolve: async (parentValue, args, context) => {
         let queryText = `SELECT * FROM "round" WHERE "person_id" = $1 ORDER BY "date_played" DESC`;
         return await pool.query(queryText, [context.user.id])
-        .then(result=>result.rows)
-        .catch(err=>err)
+        .then(result => result.rows)
+        .catch(err => err)
     }
 }

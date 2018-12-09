@@ -23,7 +23,7 @@ module.exports = {
             holeInformation.forEach(hole => {
                 let {holeNumber, par, handicap, yardage} = hole
                 pool.query(holeQueryText, [holeNumber, par, handicap, yardage, courseId])
-                .then(response => console.log(response))
+                .then(response => response)
                 .catch(err => err)
             })
         })

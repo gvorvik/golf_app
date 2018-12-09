@@ -11,7 +11,7 @@ module.exports = {
     resolve: async (parentValue, {course_id}, context) => {
         let queryText = `SELECT * FROM "round" WHERE "course_id" = $1 AND "person_id" = $2 ORDER BY "date_played" DESC`;
         return await pool.query(queryText, [course_id, context.user.id])
-        .then(result=>result.rows)
-        .catch(err=>err)
+        .then(result => result.rows)
+        .catch(err => err)
     }
 }
