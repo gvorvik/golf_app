@@ -22,7 +22,6 @@ class Register extends Component {
 
     registerUser = (event) => {
         event.preventDefault();
-        console.log('user submitted!');
         axios({
             method:'POST',
             url:'/api/login/register',

@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 
 router.post('/', passport.authenticate('local'), (req, res) => {
         if (req.isAuthenticated()) {
-            res.send(req.user);
+            res.sendStatus(200);
         } else {
             res.sendStatus(403);
         }
@@ -39,7 +39,12 @@ router.post('/register', (req, res) => {
 });
 
 router.get('/current', (req, res) => {
-    res.send(req.user);
+    res.send({
+        id: req.user.id,
+        username: req.user.username,
+        first: req.user.first,
+        last: req.user.last
+    });
 });
 
 router.get('/logout', (req, res) => {

@@ -1,20 +1,15 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 const HoleHistory = (props) => {
-        let holeScores = null;
-
-        if(props.holeScores) {
-            holeScores = props.holeScores.map(hole => {
-                return <div key={hole.id}>
-                    <p>Score: {hole.score}</p>
-                    <p>Date Played: {hole.date_played}</p>
+        let holeScores = props.showHoleScores && props.holeScores.map(score => {
+                return <div key={score.id}>
+                    <p>Score: {score.score}</p>
+                    <p>Date Played: {score.round_info.date_played}</p>
                 </div>
             });
-        }
-
-        return <div>
+        return <Fragment>
             {holeScores}
-        </div>
+        </Fragment>
 }
 
 export default HoleHistory;

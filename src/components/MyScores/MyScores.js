@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import {graphql, withApollo} from 'react-apollo';
 
 import NavBar from '../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import ScoreList from './ScoresList/ScoresList';
 import ScoreSearchForm from './ScoreSearchForm/ScoreSearchForm';
 import ScoreDetailsModal from './ScoreDetailsModal/ScoreDetailsModal';
+import myScoresQuery from '../../queries/MyScoresQuery';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -18,91 +19,58 @@ class MyScores extends Component {
         courses: [],
         searchResults: [],
         scoreDetails: [],
-        scoreModal: {
-            open: false,
-        }
+        scoreModal: false
     }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-        this.getCourses();
-    }
-
-    getCourses = () => {
-        axios({
-            method: 'GET',
-            url: '/api/course/courses'
-        })
-        .then( response => this.setState({courses: response.data}))
-        .catch( err => console.log(err));
     }
 
     handleChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value,
+            [event.target.name]: Number(event.target.value),
         })
-    }
-
-    submitSearch = (event) => {
-        event.preventDefault();
-        axios({
-            method: 'GET',
-            url: `/api/score/coursescores/${this.state.selectedCourse}`
-        })
-        .then( response => this.setState({searchResults: response.data}))
-        .catch( err => console.log(err));
     }
 
     getScoreDetails = (id) => {
-        axios({
-            method: 'GET',
-            url: `/api/score/scoredetails/${id}`
-        })
-        .then(response=>{
-            this.setState({
-                scoreDetails: response.data,
-            });
-            this.openScoreModal();
-        })
-        .catch(err=>console.log(err));
+        this.setState({selectedRoundID: Number(id)});
+        this.openScoreModal();
     }
 
     openScoreModal = () => {
         this.setState({
-            scoreModal: {
-                open: true,
-            }
+            scoreModal: true
         });
     }
 
     closeScoreModal = () => {
         this.setState({
-            scoreModal: {
-                open: false,
-            }
+            scoreModal: false
         });
     }
 
-    
-
-
     render() {
+        if(this.props.data.loading) {
+            return <div></div>
+        }
         let content = null;
         if(this.props.user.username) {
             content = (
                 <div id="myScoresDiv">
                     <ScoreSearchForm 
                         handleChange={this.handleChange}
-                        submitSearch={this.submitSearch}
-                        courses={this.state.courses}
+                        courses={this.props.data.getCourses}
                     />
                     <ScoreList 
+                        selectedCourseID={this.state.selectedCourseID || null}
                         searchResults={this.state.searchResults}
                         getScoreDetails={this.getScoreDetails}
+                        handleChange={this.handleChange}
                     />
                     <ScoreDetailsModal
+                        selectedRoundID={this.state.selectedRoundID || null}
                         scoreDetails={this.state.scoreDetails} 
-                        showModal={this.state.scoreModal.open}
+                        showModal={this.state.scoreModal}
                         closeScoreModal={this.closeScoreModal}
                     />
                     <a className="addBtn" href="/newscore">Add New Score</a>
@@ -119,4 +87,6 @@ class MyScores extends Component {
     }
 }
 
-export default connect(mapStateToProps)(MyScores);
+export default withApollo(graphql(myScoresQuery, {
+    options: () => { return { variables: {id: 1} } }
+})(connect(mapStateToProps)(MyScores)));

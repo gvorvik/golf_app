@@ -1,49 +1,59 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { Query } from 'react-apollo';
+import HoleInfoQuery from './../../../queries/HoleInfoQuery';
+import HoleHistory from './../HoleHistory/HoleHistory';
 
-const mapStateToProps = state => ({
-    courses: state.course.myCourses,
-});
+const HoleSearch = (props) => (
+    <Query
+        query={HoleInfoQuery}
+        variables={{course_id: props.course_id}}
+        skip={!props.course_id}
+    >
+        { ({data = {}}) => {
+            let courseChoices = props.getCourses && props.getCourses.map(course => {
+                return <option key={course.id} value={course.id}>{course.name}</option>
+            });
 
-const HoleSearch = (props) => {
+            let holes = data.getHoles && data.getHoles.map((hole, i) => <option key={i} value={i}>{hole.holenumber}</option>)
 
-    let courseChoices = props.courses.map(course => {
-        return <option key={course.id} value={course.id}>{course.name}</option>
-    });
+            let holeChoices = holes && (
+                <div>
+                    <select onChange={props.selectHole} defaultValue=' '>
+                        <option value=' ' disabled> </option>
+                        {holes}
+                    </select>
+                </div>
+            );
 
-    let holeChoices = null;
-    let selectedHole = null;
-
-    if(props.holeInfo) {
-        let holes = props.holeInfo.map(hole => <option key={hole.id} value={hole.id}>{hole.holenumber}</option>)
-        holeChoices = (<select onChange={props.selectHole} defaultValue=' '>
-            <option value=' ' disabled> </option>
-            {holes}
-        </select>);
-    } 
-
-    if(props.selectedHole) {
-        selectedHole = <div>
-            <p>Hole {props.selectedHole.holenumber}</p>
-            <p>Par {props.selectedHole.par}</p>
-            <p>{props.selectedHole.yardage} yards</p>
-            <p>{props.selectedHole.handicap} Handicap</p>
-            <button onClick={props.getHoleScores}>Get Hole Scores</button>
-        </div>;
-    }
+            let selectedHole = (props.selectedHoleIndex || props.selectedHoleIndex === 0) && (
+                <div>
+                    <p>Hole {data.getHoles[props.selectedHoleIndex].holenumber}</p>
+                    <p>Par {data.getHoles[props.selectedHoleIndex].par}</p>
+                    <p>{data.getHoles[props.selectedHoleIndex].yardage} yards</p>
+                    <p>{data.getHoles[props.selectedHoleIndex].handicap} Handicap</p>
+                    <button onClick={props.showHoleScoresToggle}>Hole Scores</button>
+                </div>
+            );
     
-    return (
-        <div>
-            <select onChange={props.selectCourse} defaultValue=' '>
-                <option value=' ' disabled> </option>
-                {courseChoices}
-            </select>
-            <div>
-                {holeChoices}
-            </div>
-            {selectedHole}
-        </div>
-    );
-}
+            return (
+                <div>
+                    <select onChange={props.selectCourse} defaultValue=' '>
+                        <option value=' ' disabled> </option>
+                        {courseChoices}
+                    </select>
+                    {holeChoices}
+                    {selectedHole}
+                    <HoleHistory 
+                        showHoleScores = { props.showHoleScores }
+                        holeScores = {props.selectedHoleIndex || props.selectedHoleIndex === 0
+                            ? data.getHoles[props.selectedHoleIndex].scores 
+                            : null}
+                        selectedHoleIndex = {props.selectedHoleIndex}
+                    />
+                </div>
+            );
+        }}
+    </Query>
+)
 
-export default connect(mapStateToProps) (HoleSearch);
+export default HoleSearch;

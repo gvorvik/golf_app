@@ -18,7 +18,6 @@ module.exports = (passport, pool) => {
                     });
                 })
                 .catch((err) => {
-                    console.log(err);
                     return done(null, false, { message: 'Wrong user name or password' });
                 });
         }));
