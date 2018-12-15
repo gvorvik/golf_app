@@ -5,7 +5,7 @@ import {graphql} from 'react-apollo';
 import USER_ACTIONS from '../../redux/actions/userActions';
 import HoleSearch from './HoleSearch/HoleSearch';
 import NavBar from '../NavBar/NavBar';
-import SearchPageQuery from '../../queries/SearchPageQuery';
+import GetCourses from './../../queries/GetCourses';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -63,4 +63,4 @@ class Search extends Component {
     }
 }
 
-export default graphql(SearchPageQuery)(connect(mapStateToProps)(Search));
+export default graphql(GetCourses)(connect(mapStateToProps)(Search));

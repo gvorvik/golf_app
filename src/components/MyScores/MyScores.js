@@ -7,7 +7,7 @@ import USER_ACTIONS from '../../redux/actions/userActions';
 import ScoreList from './ScoresList/ScoresList';
 import ScoreSearchForm from './ScoreSearchForm/ScoreSearchForm';
 import ScoreDetailsModal from './ScoreDetailsModal/ScoreDetailsModal';
-import myScoresQuery from '../../queries/MyScoresQuery';
+import GetCourses from './../../queries/GetCourses';
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -16,8 +16,6 @@ const mapStateToProps = state => ({
 class MyScores extends Component {
 
     state = {
-        courses: [],
-        scoreDetails: [],
         scoreModal: false,
         selectedRoundID: null
     }
@@ -52,7 +50,7 @@ class MyScores extends Component {
     render() {
         return (
             <Query
-                query={myScoresQuery}
+                query={GetCourses}
             >
                 {
                     ({data = {}, loading}) => {
@@ -73,7 +71,6 @@ class MyScores extends Component {
                                     />
                                     <ScoreDetailsModal
                                         selectedRoundID={this.state.selectedRoundID || null}
-                                        scoreDetails={this.state.scoreDetails}
                                         showModal={this.state.scoreModal}
                                         closeScoreModal={this.closeScoreModal}
                                     />
