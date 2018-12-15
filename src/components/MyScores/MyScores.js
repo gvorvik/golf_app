@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {graphql, withApollo} from 'react-apollo';
+import {Query} from 'react-apollo';
 
 import NavBar from '../NavBar/NavBar';
 import USER_ACTIONS from '../../redux/actions/userActions';
@@ -17,9 +17,9 @@ class MyScores extends Component {
 
     state = {
         courses: [],
-        searchResults: [],
         scoreDetails: [],
-        scoreModal: false
+        scoreModal: false,
+        selectedRoundID: null
     }
 
     componentDidMount() {
@@ -33,7 +33,7 @@ class MyScores extends Component {
     }
 
     getScoreDetails = (id) => {
-        this.setState({selectedRoundID: Number(id)});
+        this.setState({ selectedRoundID: Number(id) });
         this.openScoreModal();
     }
 
@@ -50,43 +50,49 @@ class MyScores extends Component {
     }
 
     render() {
-        if(this.props.data.loading) {
-            return <div></div>
-        }
-        let content = null;
-        if(this.props.user.username) {
-            content = (
-                <div id="myScoresDiv">
-                    <ScoreSearchForm 
-                        handleChange={this.handleChange}
-                        courses={this.props.data.getCourses}
-                    />
-                    <ScoreList 
-                        selectedCourseID={this.state.selectedCourseID || null}
-                        searchResults={this.state.searchResults}
-                        getScoreDetails={this.getScoreDetails}
-                        handleChange={this.handleChange}
-                    />
-                    <ScoreDetailsModal
-                        selectedRoundID={this.state.selectedRoundID || null}
-                        scoreDetails={this.state.scoreDetails} 
-                        showModal={this.state.scoreModal}
-                        closeScoreModal={this.closeScoreModal}
-                    />
-                    <a className="addBtn" href="/newscore">Add New Score</a>
-                </div>
-            )
-        }
-
         return (
-            <div>
-                <NavBar/>
-                {content}
-            </div>
+            <Query
+                query={myScoresQuery}
+            >
+                {
+                    ({data = {}, loading}) => {
+                        if (loading) {
+                            return <div>loading</div>
+                        }
+                        let content = null;
+                        if (this.props.user.username) {
+                            content = (
+                                <div id="myScoresDiv">
+                                    <ScoreSearchForm
+                                        handleChange={this.handleChange}
+                                        courses={data.getCourses}
+                                    />
+                                    <ScoreList
+                                        selectedCourseID={this.state.selectedCourseID || null}
+                                        getScoreDetails={this.getScoreDetails}
+                                    />
+                                    <ScoreDetailsModal
+                                        selectedRoundID={this.state.selectedRoundID || null}
+                                        scoreDetails={this.state.scoreDetails}
+                                        showModal={this.state.scoreModal}
+                                        closeScoreModal={this.closeScoreModal}
+                                    />
+                                    <a className="addBtn" href="/newscore">Add New Score</a>
+                                </div>
+                            )
+                        }
+
+                        return (
+                            <div>
+                                <NavBar />
+                                {content}
+                            </div>
+                        )
+                    }
+                }
+            </Query>
         )
     }
 }
 
-export default withApollo(graphql(myScoresQuery, {
-    options: () => { return { variables: {id: 1} } }
-})(connect(mapStateToProps)(MyScores)));
+export default connect(mapStateToProps)(MyScores);

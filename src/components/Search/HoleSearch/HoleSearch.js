@@ -9,7 +9,8 @@ const HoleSearch = (props) => (
         variables={{course_id: props.course_id}}
         skip={!props.course_id}
     >
-        { ({data = {}}) => {
+        { ({data = {}, client}) => {
+            console.log(client, data);
             let courseChoices = props.getCourses && props.getCourses.map(course => {
                 return <option key={course.id} value={course.id}>{course.name}</option>
             });
