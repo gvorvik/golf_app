@@ -1,9 +1,9 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import SearchPageQuery from './../../../queries/SearchPageQuery';
+import GetCourses from './../../../queries/GetCourses';
 
 const NewScoreForm = (props) => (
-    <Query query={SearchPageQuery}>
+    <Query query={GetCourses}>
         {({data = {}, loading}) => {
             if(loading) {return null}
             let {getCourses} = data;
