@@ -1,42 +1,43 @@
-#navbar {
+.navbar {
     background-color: $color-primary;
-    height: 60px;
+    height: 80px;
     padding-top: 12px;
-}
+    margin-bottom: 60px;
 
+    h1{
+        float: left;
+        color: $color-white;
+        padding-left: 10px;
+        font-size: 2.2em;
+    }
 
-#navbar h1{
-    float: left;
-    color: $color-white;
-    padding-left: 10px;
-    font-size: 2.2em;
-}
+    li {
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        margin-right: 40px;
+        margin-top: 10px;
+        font-size: 1.2em;
+     }
 
-#navbarList {
-    float: right;
-}
+    a:link,
+    a:visited {
+        color: $color-white;
+        text-decoration: none;
+        padding-bottom: 1px;
+        border-bottom: 2px solid transparent;
+    }
 
-#navbarList li {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-right: 40px;
-    margin-top: 10px;
-    font-size: 1.2em;
- }
+    a:hover,
+    a:active {
+        color: $color-white;
+        border-bottom: 2px solid $color-white;
+        transition: border-bottom 0.3s, color 0.3s;
+    }
 
-#navbar a:link,
-#navbar a:visited {
-    color: $color-white;
-    text-decoration: none;
-    padding-bottom: 1px;
-    border-bottom: 2px solid transparent;
-}
-
-#navbar a:hover,
-#navbar a:active {
-    color: $color-white;
-    border-bottom: 2px solid $color-white;
-    transition: border-bottom 0.3s, color 0.3s;
+    &__list-items {
+        float: right;
+    }
+    
 }

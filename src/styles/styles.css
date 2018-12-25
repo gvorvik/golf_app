@@ -1,3 +1,8 @@
+.dashboard {
+  text-align: center; }
+  .dashboard h2 {
+    margin-bottom: 10px; }
+
 * {
   margin: 0;
   padding: 0;
@@ -6,52 +11,60 @@
   box-sizing: inherit; }
 
 body {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  letter-spacing: .3px; }
 
-#navbar {
-  background-color: #4ac770;
-  height: 60px;
-  padding-top: 12px; }
-
-#navbar h1 {
-  float: left;
-  color: #fff;
-  padding-left: 10px;
-  font-size: 2.2em; }
-
-#navbarList {
-  float: right; }
-
-#navbarList li {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  margin-right: 40px;
-  margin-top: 10px;
-  font-size: 1.2em; }
-
-#navbar a:link,
-#navbar a:visited {
-  color: #fff;
-  text-decoration: none;
-  padding-bottom: 1px;
-  border-bottom: 2px solid transparent; }
-
-#navbar a:hover,
-#navbar a:active {
-  color: #fff;
-  border-bottom: 2px solid #fff;
-  transition: border-bottom 0.3s, color 0.3s; }
+.navbar {
+  background-color: #3ca75c;
+  height: 80px;
+  padding-top: 12px;
+  margin-bottom: 60px; }
+  .navbar h1 {
+    float: left;
+    color: #fff;
+    padding-left: 10px;
+    font-size: 2.2em; }
+  .navbar li {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 40px;
+    margin-top: 10px;
+    font-size: 1.2em; }
+  .navbar a:link,
+  .navbar a:visited {
+    color: #fff;
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 2px solid transparent; }
+  .navbar a:hover,
+  .navbar a:active {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    transition: border-bottom 0.3s, color 0.3s; }
+  .navbar__list-items {
+    float: right; }
 
 table {
   border-collapse: collapse;
-  border: none; }
+  border: none;
+  margin: 0 auto;
+  border: 1px solid #333; }
+
+tr {
+  border-bottom: 1px solid #ddd; }
+  tr:hover {
+    background-color: #ddd; }
+  tr:last-of-type {
+    border-bottom: 1px solid #333; }
 
 th, td {
-  border-collapse: collapse; }
+  padding: 8px;
+  text-align: left;
+  min-width: 150px; }
 
 th {
   color: #fff;
-  background-color: #222;
-  border: none; }
+  background-color: #333;
+  font-weight: 200; }

@@ -27,7 +27,7 @@ class HomePage extends Component {
 
         if (this.props.user.username) {
             content = (
-                <div>
+                <div className="dashboard">
                     <RecentScores
                         recentScores={this.props.data.getAllRounds}
                     />

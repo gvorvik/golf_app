@@ -15,9 +15,9 @@ const NavBar = (props) => {
 
     if (props.user.username) {
         content = (
-            <div id="navbar">
+            <div className="navbar">
                 <h1>Hello {props.user.username}</h1>
-                <ul id="navbarList">
+                <ul className="navbar__list-items">
                     <li><a href='/home'>Dashboard</a></li>
                     <li><a href='/search'>Search</a></li>
                     <li><a href='/scores'>My Scores</a></li>
