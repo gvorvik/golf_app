@@ -2,6 +2,12 @@
   text-align: center; }
   .dashboard h2 {
     margin-bottom: 10px; }
+  .dashboard__recent-scores {
+    display: inline-block; }
+    .dashboard__recent-scores-table {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #333; }
 
 * {
   margin: 0;
@@ -49,8 +55,8 @@ body {
 table {
   border-collapse: collapse;
   border: none;
-  margin: 0 auto;
-  border: 1px solid #333; }
+  border: 1px solid #333;
+  margin: 0 auto; }
 
 tr {
   border-bottom: 1px solid #ddd; }
@@ -60,9 +66,14 @@ tr {
     border-bottom: 1px solid #333; }
 
 th, td {
-  padding: 8px;
+  padding: 8px 30px 8px 8px;
   text-align: left;
-  min-width: 150px; }
+  min-width: 100px; }
+  th input, td input {
+    max-width: 40px;
+    padding: 3px;
+    font-weight: 500;
+    font-size: 12; }
 
 th {
   color: #fff;

@@ -19,7 +19,7 @@ const SubmitScore = (props) => (
                     ];
             }, []);
 
-            let handleSubmit = (number) => {
+            let handleSubmit = async (number) => {
                 let totalScore = 0;
                 if (props.date === '') {
                     return alert('Please select a date');
@@ -33,7 +33,7 @@ const SubmitScore = (props) => (
                     }
                     totalScore = totalScore + props.scores[score];
                 }
-                addRound({
+                await addRound({
                     variables: {
                         date_played: props.date, 
                         total_score: totalScore, 
