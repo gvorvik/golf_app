@@ -8,7 +8,6 @@ const passport = require('passport');
 const pool = require('./modules/pool');
 const schema = require('./graphql/schema');
 const sessionMiddleware = require('./modules/session_middleware');
-const scoreRouter = require('./routes/scoreRouter');
 const loginRouter = require('./routes/loginRouter');
 const {authenticate} = require('./modules/rejectUnauthenticated');
 
@@ -28,7 +27,6 @@ app.use('/graphql', authenticate, expressGraphql(req => ({
 })));
 
 app.use('/api/login', loginRouter);
-app.use('/api/score', scoreRouter);
 
 app.listen(PORT, () => {
     console.log(`App listening at ${PORT}`);
