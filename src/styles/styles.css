@@ -1,58 +1,81 @@
+.dashboard {
+  text-align: center; }
+  .dashboard h2 {
+    margin-bottom: 10px; }
+  .dashboard__recent-scores {
+    display: inline-block; }
+    .dashboard__recent-scores-table {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #333; }
+
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-}
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  box-sizing: inherit; }
 
-h1,
-h2 {
-    margin-bottom: 20px;
-}
+body {
+  box-sizing: border-box;
+  letter-spacing: .3px; }
 
-
-/* ------------------------------ */
-/* Navbar Styling */
-/* ------------------------------ */
-
-#navbar {
-    background-color: rgb(74, 199, 112);
-    height: 60px;
-    padding-top: 12px;
-}
-
-#navbar h1{
+.navbar {
+  background-color: #3ca75c;
+  height: 80px;
+  padding-top: 12px;
+  margin-bottom: 60px; }
+  .navbar h1 {
     float: left;
     color: #fff;
     padding-left: 10px;
-    font-size: 2.2em;
-}
-
-#navbarList {
-    float: right;
-}
-
-#navbarList li {
+    font-size: 2.2em; }
+  .navbar li {
     display: inline-block;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
     margin-right: 40px;
     margin-top: 10px;
-    font-size: 1.2em;
- }
-
-#navbar a:link,
-#navbar a:visited {
+    font-size: 1.2em; }
+  .navbar a:link,
+  .navbar a:visited {
     color: #fff;
     text-decoration: none;
     padding-bottom: 1px;
-    border-bottom: 2px solid transparent;
-}
-
-#navbar a:hover,
-#navbar a:active {
+    border-bottom: 2px solid transparent; }
+  .navbar a:hover,
+  .navbar a:active {
     color: #fff;
     border-bottom: 2px solid #fff;
-    transition: border-bottom 0.3s, color 0.3s;
-}
+    transition: border-bottom 0.3s, color 0.3s; }
+  .navbar__list-items {
+    float: right; }
+
+table {
+  border-collapse: collapse;
+  border: none;
+  border: 1px solid #333;
+  margin: 0 auto; }
+
+tr {
+  border-bottom: 1px solid #ddd; }
+  tr:hover {
+    background-color: #ddd; }
+  tr:last-of-type {
+    border-bottom: 1px solid #333; }
+
+th, td {
+  padding: 8px 30px 8px 8px;
+  text-align: left;
+  min-width: 100px; }
+  th input, td input {
+    max-width: 40px;
+    padding: 3px;
+    font-weight: 500;
+    font-size: 12; }
+
+th {
+  color: #fff;
+  background-color: #333;
+  font-weight: 200; }

@@ -36,10 +36,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
-    "server": "nodemon --watch server server/server.js"
+    "server": "nodemon --watch server server/server.js",
+    "compile:sass": "node-sass src/styles/sass/main.scss src/styles/styles.css -w"
   },
   "devDependencies": {
-    "node-sass": "^4.9.4"
+    "node-sass": "^4.11.0"
   },
   "browserslist": [
     ">0.2%",

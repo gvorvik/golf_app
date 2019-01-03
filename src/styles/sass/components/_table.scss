@@ -1,0 +1,36 @@
+table {
+    border-collapse: collapse;
+    border: none;
+    border: 1px solid $color-black;
+    margin: 0 auto;
+}
+
+tr {
+    border-bottom: 1px solid $color-light-gray;
+
+    &:hover {
+        background-color: $color-light-gray;
+    }
+
+    &:last-of-type {
+        border-bottom: 1px solid $color-black;
+    }
+}
+
+th, td {
+    padding: 8px 30px 8px 8px;
+    text-align: left;
+    min-width: 100px;
+    input {
+        max-width: 40px;
+        padding: 3px;
+        font-weight: 500;
+        font-size: 12;
+    }
+}
+
+th {
+    color: $color-white;
+    background-color: $color-black;
+    font-weight: 200;
+}

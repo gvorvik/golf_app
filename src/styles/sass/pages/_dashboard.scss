@@ -1,0 +1,18 @@
+.dashboard {
+    text-align: center;
+    
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    &__recent-scores {
+        display: inline-block;
+        
+        &-table {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid $color-black;
+        }
+    }
+
+}

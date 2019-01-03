@@ -1,18 +1,45 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const RecentScores = (props) => {
     let scores = props.recentScores.map((score, i) => {
-        return <div key={i} className="recent-score">
-            <h3>{score.course.name}</h3>
-            <p>Date: {score.date_played}</p>
-            <p>Score: {score.total_score}</p>
-        </div>
+        return <tr key={i} className="recent-score">
+            <td>{score.date_played}</td>
+            <td>{score.course.name}</td>
+            <td>{score.total_score}</td>
+            <td>
+                <button>
+                    Score Details
+                </button>
+            </td>
+        </tr>
     })
 
     return (
-        <div id="recent-scores-div">
-            <h2>Latest Scores</h2>
-            {scores}
+        <div className="dashboard__recent-scores">
+            <h2>Most Recent Scores</h2>
+            <div className="dashboard__recent-scores-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Course
+                            </th>
+                            <th>
+                                Score
+                            </th>
+                            <th>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {scores}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

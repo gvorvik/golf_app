@@ -2,7 +2,7 @@ import React from 'react';
 
 const RoundsPlayed = (props) => {
     return (
-    <div className="dashboard-info-div-child">
+    <div className="dashboard__rounds-played">
         <h2>Total Rounds</h2>
         {props.totalRounds}
     </div>
