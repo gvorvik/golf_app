@@ -9,20 +9,29 @@ const ScoreList = (props) => (
         skip={!props.selectedCourseID}
     >
         {({ data = {}, loading, error }) => {
-            if(loading) {return null};
+            if(loading || !data.getRoundsByCourse) {return null};
             if(error) {return <div>Error!!!!</div>}
             let scores = data.getRoundsByCourse && data.getRoundsByCourse.map(score => {
-                return <div className="scoreSearchDiv" key={score.id}>
-                    <h2>{score.date_played}</h2>
-                    <p>{score.total_score}</p>
-                    <button onClick={() => props.getScoreDetails(score.id)} className="scoreDetailsBtn">Score Details</button>
-                </div>
+                return <tr key={score.id}>
+                    <td>{score.date_played}</td>
+                    <td>{score.total_score}</td>
+                    <td><button onClick={() => props.getScoreDetails(score.id)} className="btn btn__table">Score Details</button></td>
+                </tr>
             });
 
             return (
-                <div>
-                    {scores}
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Score</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {scores}
+                    </tbody>
+                </table>
             )
         }}
     </Query>

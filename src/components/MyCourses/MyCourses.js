@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {graphql, withApollo} from 'react-apollo';
 
 import NavBar from './../NavBar/NavBar';
-import CourseDiv from './CourseDiv/CourseDiv';
+import CourseRow from './CourseRow/CourseRow';
 import CourseDetailsModal from './CourseDetailsModal/CourseDetailsModal';
 import myCoursesQuery from './../../queries/MyCoursesQuery';
 
@@ -54,24 +54,35 @@ class MyCourses extends Component {
             return <div></div>
         }
         let content = null;
-        let courseDivs = this.props.data.getCourses.map(course => <CourseDiv 
+        let courseRows = this.props.data.getCourses.map(course => <CourseRow 
             key={course.id} 
             course={course} 
             getCourseInformation={this.getCourseInformation}
         />);
         if (this.props.user.username) {
             content = (
-            <div id="myCoursesDiv">
-                <h1>My Courses</h1>
-                <div>
-                    {courseDivs}
-                </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Number of Holes</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {courseRows}
+                    </tbody>
+                </table>
                 <CourseDetailsModal 
                     selectedCourseInfo={this.state.selectedCourseInfo}
                     closeCourseModal={this.closeCourseModal}
                     showModal={this.state.courseModal.open}
                 />
-                <a className="addBtn" href="/newcourse">Add New Course</a>
+                <div className="a__wrapper-important">
+                    <a className="a a__important" href="/newcourse">Add New Course</a>
+                </div>
             </div>
             )
         }

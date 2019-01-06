@@ -18,7 +18,30 @@
 
 body {
   box-sizing: border-box;
-  letter-spacing: .3px; }
+  letter-spacing: .5px; }
+
+.btn {
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 300;
+  font-size: 1rem; }
+  .btn:hover {
+    cursor: pointer; }
+  .btn__table {
+    background-color: #3f3f3f;
+    color: #fff; }
+
+.a {
+  text-decoration: none; }
+  .a__important {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 200; }
+  .a__wrapper-important {
+    display: inline-block;
+    background-color: #3ca75c;
+    padding: 8px;
+    border-radius: 5px; }
 
 .navbar {
   background-color: #3ca75c;
@@ -66,7 +89,7 @@ tr {
     border-bottom: 1px solid #333; }
 
 th, td {
-  padding: 8px 30px 8px 8px;
+  padding: 8px 50px 8px 8px;
   text-align: left;
   min-width: 100px; }
   th input, td input {

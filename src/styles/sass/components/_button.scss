@@ -1,0 +1,15 @@
+.btn {
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 300;
+    font-size: 1rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &__table {
+        background-color: $color-dark-gray;
+        color: $color-white;
+    }
+}
