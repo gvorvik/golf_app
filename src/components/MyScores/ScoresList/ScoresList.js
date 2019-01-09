@@ -9,7 +9,7 @@ const ScoreList = (props) => (
         skip={!props.selectedCourseID}
     >
         {({ data = {}, loading, error }) => {
-            if(loading || !data.getRoundsByCourse) {return null};
+            if(loading) {return <div>Loading</div>};
             if(error) {return <div>Error!!!!</div>}
             let scores = data.getRoundsByCourse && data.getRoundsByCourse.map(score => {
                 return <tr key={score.id}>

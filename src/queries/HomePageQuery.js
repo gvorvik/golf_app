@@ -10,6 +10,12 @@ export default gql`
             name
         }
     }
+    getCourses {
+        name
+        holes
+        city
+        id
+    }
     getSumRoundsPerCourse {
         course_name
         count

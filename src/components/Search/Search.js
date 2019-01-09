@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {graphql} from 'react-apollo';
+import { Query } from 'react-apollo';
 
 import USER_ACTIONS from '../../redux/actions/userActions';
 import HoleSearch from './HoleSearch/HoleSearch';
 import NavBar from '../NavBar/NavBar';
-import GetCoursesQuery from '../../queries/GetCourses';
+import GetCourses from './../../queries/GetCourses';
+
 
 const mapStateToProps = state => ({
     user: state.user.userReducer,
@@ -22,45 +23,54 @@ class Search extends Component {
 
     selectCourse = (event) => {
         event.preventDefault();
-        let {value} = event.target
-        this.setState({selectedCourseID: Number(value)});
+        let { value } = event.target
+        this.setState({ selectedCourseID: Number(value) });
     }
 
     selectHole = (event) => {
         event.preventDefault();
-        let {value} = event.target;
-        this.setState({selectedHoleIndex: Number(value)});
+        let { value } = event.target;
+        this.setState({ selectedHoleIndex: Number(value) });
     }
 
     showHoleScoresToggle = () => {
-        this.setState({showHoleScores: !this.state.showHoleScores});
+        this.setState({ showHoleScores: !this.state.showHoleScores });
     }
 
     render() {
-        let content = null;
-        if(this.props.user.username) {
-            content = (
-            <div>
-                <h1>Search</h1>
-                <HoleSearch 
-                    selectCourse = {this.selectCourse}
-                    selectHole = {this.selectHole}
-                    selectedHoleIndex = {this.state.selectedHoleIndex}
-                    getHoleScores = {this.getHoleScores}
-                    course_id={this.state.selectedCourseID || null}
-                    getCourses={this.props.data.getCourses}
-                    showHoleScores={this.state.showHoleScores}
-                    showHoleScoresToggle={this.showHoleScoresToggle}
-                />
-            </div>
-            )
-        }
+        return (
+            <Query
+                query={GetCourses}
+            >
+                {({ data = {}, loading }) => {
+                    if (loading) { return null }
+                    let content = null;
+                    if (this.props.user.username) {
+                        content = (
+                            <div>
+                                <h1>Search</h1>
+                                <HoleSearch
+                                    selectCourse={this.selectCourse}
+                                    selectHole={this.selectHole}
+                                    selectedHoleIndex={this.state.selectedHoleIndex}
+                                    getHoleScores={this.getHoleScores}
+                                    course_id={this.state.selectedCourseID || null}
+                                    getCourses={data.getCourses}
+                                    showHoleScores={this.state.showHoleScores}
+                                    showHoleScoresToggle={this.showHoleScoresToggle}
+                                />
+                            </div>
+                        )
+                    }
 
-        return <div>
-            <NavBar />
-            {content}
-        </div>
+                    return <div>
+                        <NavBar />
+                        {content}
+                    </div>
+                }}
+            </Query>
+        )
     }
 }
 
-export default graphql(GetCoursesQuery)(connect(mapStateToProps)(Search));
+export default connect(mapStateToProps)(Search);

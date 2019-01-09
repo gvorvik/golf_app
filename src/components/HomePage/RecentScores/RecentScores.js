@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const RecentScores = (props) => {
     let scores = props.recentScores.map((score, i) => {

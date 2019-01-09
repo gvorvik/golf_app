@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {graphql, withApollo} from 'react-apollo';
+import { Query } from 'react-apollo';
 
 import NavBar from './../NavBar/NavBar';
 import CourseRow from './CourseRow/CourseRow';
 import CourseDetailsModal from './CourseDetailsModal/CourseDetailsModal';
-import myCoursesQuery from './../../queries/MyCoursesQuery';
+import GetCourses from './../../queries/GetCourses';
 
 import USER_ACTIONS from '../../redux/actions/userActions';
 
@@ -16,86 +16,86 @@ const mapStateToProps = state => ({
 class MyCourses extends Component {
 
     state = {
-        selectedCourseInfo: [],
-        selectedCourseId: 0,
-        courseModal: { open: false }
+        selectedCourseId: null,
+        courseModal: false
     }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     }
 
-    getCourseInformation = (id) => {
-        this.props.client.query({
-            query: myCoursesQuery,
-            variables: {course_id: Number(id)}
+    handleChange = (courseId) => {
+        this.setState({
+            selectedCourseId: Number(courseId)
         })
-        .then( response => {
-            this.setState({selectedCourseInfo: response.data.getHoles});
-            this.openCourseModal();
-        })
-        .catch(err => err);
+        this.openCourseModal();
     }
 
     openCourseModal = () => {
         this.setState({
-            courseModal: { open: true }
+            courseModal: true
         });
     }
 
     closeCourseModal = () => {
         this.setState({
-            courseModal: { open: false }
+            courseModal: false
         });
     }
 
     render() {
-        if(this.props.data.loading) {
-            return <div></div>
-        }
-        let content = null;
-        let courseRows = this.props.data.getCourses.map(course => <CourseRow 
-            key={course.id} 
-            course={course} 
-            getCourseInformation={this.getCourseInformation}
-        />);
-        if (this.props.user.username) {
-            content = (
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>City</th>
-                            <th>Number of Holes</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {courseRows}
-                    </tbody>
-                </table>
-                <CourseDetailsModal 
-                    selectedCourseInfo={this.state.selectedCourseInfo}
-                    closeCourseModal={this.closeCourseModal}
-                    showModal={this.state.courseModal.open}
-                />
-                <div className="a__wrapper-important">
-                    <a className="a a__important" href="/newcourse">Add New Course</a>
-                </div>
-            </div>
-            )
-        }
-
         return (
-            <div>
-                <NavBar />
-                {content}
-            </div>
-        );
+            <Query
+                query={GetCourses}
+            >
+                {
+                    ({ data = {}, loading }) => {
+                        if (loading) {
+                            return <div>Loading...</div>
+                        }
+                        let content = null;
+                        if (this.props.user.username) {
+                            let courseRows = data.getCourses && data.getCourses.map(course => <CourseRow
+                                key={course.id}
+                                course={course}
+                                handleChange={this.handleChange}
+                            />);
+                            content = (
+                                <div id="myCoursesDiv">
+                                    <h1>My Courses</h1>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>City</th>
+                                                <th>Length</th>
+                                                <th>Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {courseRows}
+                                        </tbody>
+                                    </table>
+                                    <CourseDetailsModal
+                                        closeCourseModal={this.closeCourseModal}
+                                        showModal={this.state.courseModal}
+                                        selectedCourseId={this.state.selectedCourseId}
+                                    />
+                                    <a className="addBtn" href="/newcourse">Add New Course</a>
+                                </div>
+                            )
+                        }
+
+                        return (
+                            <div>
+                                <NavBar />
+                                {content}
+                            </div>
+                        );
+                    }}
+            </Query>
+        )
     };
 }
 
-export default withApollo(graphql(myCoursesQuery, {
-    options: () => { return { variables: {course_id: 1} } }
-})(connect(mapStateToProps)(MyCourses)));
+export default connect(mapStateToProps)(MyCourses);
