@@ -7,6 +7,7 @@ import HoleSearch from './HoleSearch/HoleSearch';
 import NavBar from '../NavBar/NavBar';
 import GetCourses from './../../queries/GetCourses';
 
+
 const mapStateToProps = state => ({
     user: state.user.userReducer,
 });

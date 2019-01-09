@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 
 import NavBar from './../NavBar/NavBar';
-import CourseDiv from './CourseDiv/CourseDiv';
+import CourseRow from './CourseRow/CourseRow';
 import CourseDetailsModal from './CourseDetailsModal/CourseDetailsModal';
 import GetCourses from './../../queries/GetCourses';
 
@@ -55,7 +55,7 @@ class MyCourses extends Component {
                         }
                         let content = null;
                         if (this.props.user.username) {
-                            let courseDivs = data.getCourses && data.getCourses.map(course => <CourseDiv
+                            let courseRows = data.getCourses && data.getCourses.map(course => <CourseRow
                                 key={course.id}
                                 course={course}
                                 handleChange={this.handleChange}
@@ -63,9 +63,19 @@ class MyCourses extends Component {
                             content = (
                                 <div id="myCoursesDiv">
                                     <h1>My Courses</h1>
-                                    <div>
-                                        {courseDivs}
-                                    </div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>City</th>
+                                                <th>Length</th>
+                                                <th>Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {courseRows}
+                                        </tbody>
+                                    </table>
                                     <CourseDetailsModal
                                         closeCourseModal={this.closeCourseModal}
                                         showModal={this.state.courseModal}

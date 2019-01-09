@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const RecentScores = (props) => {
     let scores = props.recentScores.map((score, i) => {
@@ -7,7 +7,7 @@ const RecentScores = (props) => {
             <td>{score.course.name}</td>
             <td>{score.total_score}</td>
             <td>
-                <button>
+                <button className="btn btn__table">
                     Score Details
                 </button>
             </td>
@@ -31,7 +31,7 @@ const RecentScores = (props) => {
                                 Score
                             </th>
                             <th>
-                                
+                                Details
                             </th>
                         </tr>
                     </thead>
