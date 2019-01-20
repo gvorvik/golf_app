@@ -15,7 +15,7 @@ const backDropStyle = {
 const modalStyle = {
     backgroundColor: '#fff',
     borderRadius: 5,
-    maxWidth: 800,
+    width: '90%',
     minHeight: 500,
     margin: '0 auto',
     padding: 30,

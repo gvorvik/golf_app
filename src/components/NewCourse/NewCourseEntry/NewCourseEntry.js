@@ -54,7 +54,8 @@ class NewCourseEntry extends Component {
                 ...this.state.holeInformation,
                 [holeNumber]:{
                     ...this.state.holeInformation[holeNumber],
-                    [e.target.name]: e.target.value
+                    [e.target.name]: Number(e.target.value),
+                    holeNumber
                 }
             }
         })

@@ -12,12 +12,10 @@ const HoleInformation = (props) => {
 
     for (let i = 1; i <= props.numberOfHoles; i++) {
         holeNumbers = [...holeNumbers, <th key={i} scope="col">{i}</th>];
-        holeYardages = [...holeYardages, <td key={i}><input onChange={(e) => props.handleNewCourseInfoChange(i, e)} name="yardage" type="number" /></td>];
-        holePars = [...holePars, <td key={i}><input onChange={(e) => props.handleNewCourseInfoChange(i, e)} name="par" type="number" /></td>];
-        holeHandicaps = [...holeHandicaps, <td key={i}><input onChange={(e) => props.handleNewCourseInfoChange(i, e)} name="handicap" type="number" /></td>];
+        holeYardages = [...holeYardages, <td key={i}><input onChange={(e) => props.handleNewCourseInfoChange(Number(i), e)} name="yardage" type="number" /></td>];
+        holePars = [...holePars, <td key={i}><input onChange={(e) => props.handleNewCourseInfoChange(Number(i), e)} name="par" type="number" /></td>];
+        holeHandicaps = [...holeHandicaps, <td key={i}><input onChange={(e) => props.handleNewCourseInfoChange(Number(i), e)} name="handicap" type="number" /></td>];
     }
-
-    // console.log(holesArray);
 
     return (
         <Mutation mutation={AddCourse}>
